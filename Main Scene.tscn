@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bq73ukjrg4bxg"]
+
+[ext_resource type="PackedScene" uid="uid://d2bjrjtongb35" path="res://GUI.tscn" id="1_cjw5i"]
+[ext_resource type="Texture2D" uid="uid://chh1vkpbvaxsc" path="res://icon.svg" id="2_rdl26"]
+[ext_resource type="Script" path="res://sprite_2d.gd" id="3_5tk1x"]
+
+[node name="MainScene" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(791, 783)
+texture = ExtResource("2_rdl26")
+script = ExtResource("3_5tk1x")
+
+[node name="GUI" parent="." instance=ExtResource("1_cjw5i")]
+offset_right = 1920.0
+offset_bottom = 1080.0
