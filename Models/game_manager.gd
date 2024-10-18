@@ -1,10 +1,10 @@
 class_name GameManager
 extends Node
 
-@onready var player: Unit = $"../Player/Unit"
+@onready var player: Player = %Player
 
 func _ready() -> void:
-	player.on_die.connect(on_player_die)
+	player.get_node("Unit").on_die.connect(on_player_die)
 	
 func on_player_die():
 	print("You died! Reseting scene...")

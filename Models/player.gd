@@ -6,8 +6,7 @@ extends CharacterBody2D
 @onready var unit: Unit = $Unit
 
 func _ready() -> void:
-	for item in start_items:
-		unit.inventory.add_item(item)
+	unit.inventory.add_items(start_items)
 
 func _physics_process(_delta: float) -> void:
 	var move = Vector3(
