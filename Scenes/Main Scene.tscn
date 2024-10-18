@@ -8,6 +8,11 @@
 
 [node name="MainScene" type="Node2D"]
 
+[node name="GUI" parent="." instance=ExtResource("1_cjw5i")]
+z_index = 1000
+offset_right = 1920.0
+offset_bottom = 1080.0
+
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_0144v")
 
@@ -18,9 +23,8 @@ tile_set = ExtResource("1_whfwv")
 [node name="Player" parent="." instance=ExtResource("2_sggrd")]
 position = Vector2(958, 367)
 
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_speed = 10.0
+
 [node name="DamageZone" parent="." instance=ExtResource("4_1ey18")]
 position = Vector2(1110, 497)
-
-[node name="GUI" parent="." instance=ExtResource("1_cjw5i")]
-offset_right = 1920.0
-offset_bottom = 1080.0
