@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://wtymqw4gadga"]
+
+[ext_resource type="Script" path="res://Models/damage_zone.gd" id="1_1qt8o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tgg7k"]
+size = Vector2(100, 100)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ti3sw"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_1qt8o")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_tgg7k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.376471)
+scale = Vector2(100, 100)
+texture = SubResource("PlaceholderTexture2D_ti3sw")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]

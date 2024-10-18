@@ -9,6 +9,7 @@ signal on_die()
 
 func _ready() -> void:
 	_health = _max_health
+	on_health_change.emit()
 
 func take_damage(damage: int):
 	_health = max(0, _health - damage)
