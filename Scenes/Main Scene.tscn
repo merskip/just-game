@@ -9,9 +9,7 @@
 [node name="MainScene" type="Node2D"]
 
 [node name="GUI" parent="." instance=ExtResource("1_cjw5i")]
-z_index = 1000
-offset_right = 1920.0
-offset_bottom = 1080.0
+layer = 128
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_0144v")
