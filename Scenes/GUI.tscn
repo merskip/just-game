@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://d2bjrjtongb35"]
+[gd_scene load_steps=2 format=3 uid="uid://d2bjrjtongb35"]
+
+[ext_resource type="Script" path="res://Scenes/gui.gd" id="1_jxvrt"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_jxvrt")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 offset_left = 10.0
@@ -17,3 +20,5 @@ horizontal_alignment = 1
 [node name="Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Inventory"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_inventory_button_pressed"]

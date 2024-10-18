@@ -1,6 +1,13 @@
+class_name Player
 extends CharacterBody2D
 
 @export var speed: float = 300.0
+@export var start_items: Array[InventoryItem]
+@onready var unit: Unit = $Unit
+
+func _ready() -> void:
+	for item in start_items:
+		unit.inventory.add_item(item)
 
 func _physics_process(_delta: float) -> void:
 	var move = Vector3(

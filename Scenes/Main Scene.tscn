@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=4 uid="uid://bq73ukjrg4bxg"]
+[gd_scene load_steps=8 format=4 uid="uid://bq73ukjrg4bxg"]
 
 [ext_resource type="Script" path="res://Models/game_manager.gd" id="1_0144v"]
 [ext_resource type="PackedScene" uid="uid://d2bjrjtongb35" path="res://Scenes/GUI.tscn" id="1_cjw5i"]
 [ext_resource type="TileSet" uid="uid://dbdwtvdnk7rff" path="res://Assets/gound.tres" id="1_whfwv"]
 [ext_resource type="PackedScene" uid="uid://bj6istu8r131k" path="res://Models/player.tscn" id="2_sggrd"]
 [ext_resource type="PackedScene" uid="uid://wtymqw4gadga" path="res://Models/damage_zone.tscn" id="4_1ey18"]
+[ext_resource type="Script" path="res://Inventory/inventory_item.gd" id="5_t0nsr"]
+[ext_resource type="Resource" uid="uid://qeg8lkgfx15o" path="res://Inventory/test_item.tres" id="6_sly6m"]
 
 [node name="MainScene" type="Node2D"]
 
@@ -19,7 +21,9 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAA
 tile_set = ExtResource("1_whfwv")
 
 [node name="Player" parent="." instance=ExtResource("2_sggrd")]
+unique_name_in_owner = true
 position = Vector2(958, 367)
+start_items = Array[ExtResource("5_t0nsr")]([ExtResource("6_sly6m")])
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position_smoothing_speed = 10.0

@@ -4,6 +4,8 @@ extends Node
 var _health: int
 var _max_health: int = 100
 
+var inventory: Inventory = Inventory.new()
+
 signal on_health_change()
 signal on_die()
 
