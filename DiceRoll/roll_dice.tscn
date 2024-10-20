@@ -1,0 +1,104 @@
+[gd_scene load_steps=9 format=3 uid="uid://0qsoub3pdeve"]
+
+[ext_resource type="Script" path="res://DiceRoll/roll_dice.gd" id="1_8g52s"]
+[ext_resource type="Texture2D" uid="uid://euexmf7edqyc" path="res://DiceRoll/Dice K6.png" id="2_h1try"]
+[ext_resource type="ArrayMesh" uid="uid://dod8aue8kdnv0" path="res://DiceRoll/dice_k6.tres" id="2_je0a1"]
+[ext_resource type="Script" path="res://DiceRoll/dice_side_raycast.gd" id="4_q5vtt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_onusu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_myky7"]
+albedo_texture = ExtResource("2_h1try")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3isku"]
+shading_mode = 0
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_two6u"]
+
+[node name="RollDice" type="Node3D" node_paths=PackedStringArray("raycasts")]
+script = ExtResource("1_8g52s")
+rotation_speed_max = 8.0
+raycasts = [NodePath("Dice/Raycasts/RayCast 1"), NodePath("Dice/Raycasts/RayCast 2"), NodePath("Dice/Raycasts/RayCast 3"), NodePath("Dice/Raycasts/RayCast 4"), NodePath("Dice/Raycasts/RayCast 5"), NodePath("Dice/Raycasts/RayCast 6")]
+
+[node name="Dice" type="RigidBody3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dice"]
+shape = SubResource("BoxShape3D_onusu")
+
+[node name="DiceK6" type="MeshInstance3D" parent="Dice"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_myky7")
+mesh = ExtResource("2_je0a1")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_3isku")
+
+[node name="Raycasts" type="Node3D" parent="Dice"]
+
+[node name="RayCast 1" type="RayCast3D" parent="Dice/Raycasts"]
+transform = Transform3D(-5.73206e-15, 8.74228e-08, -1, 1.31134e-07, -1, -8.74228e-08, -1, -1.31134e-07, -5.73206e-15, 0, 0.5, 0)
+target_position = Vector3(0, -0.2, 0)
+collision_mask = 2
+hit_from_inside = true
+script = ExtResource("4_q5vtt")
+opposite_side = 6
+
+[node name="RayCast 2" type="RayCast3D" parent="Dice/Raycasts"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0.5)
+target_position = Vector3(0, -0.2, 0)
+collision_mask = 2
+hit_from_inside = true
+script = ExtResource("4_q5vtt")
+opposite_side = 5
+
+[node name="RayCast 3" type="RayCast3D" parent="Dice/Raycasts"]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -0.5, 0, 0)
+target_position = Vector3(0, -0.2, 0)
+collision_mask = 2
+hit_from_inside = true
+script = ExtResource("4_q5vtt")
+opposite_side = 4
+
+[node name="RayCast 4" type="RayCast3D" parent="Dice/Raycasts"]
+transform = Transform3D(1.31134e-07, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, -1.31134e-07, -5.73206e-15, 0.5, 0, 0)
+target_position = Vector3(0, -0.2, 0)
+collision_mask = 2
+hit_from_inside = true
+script = ExtResource("4_q5vtt")
+opposite_side = 3
+
+[node name="RayCast 5" type="RayCast3D" parent="Dice/Raycasts"]
+transform = Transform3D(-1, -8.74228e-08, -3.82137e-15, 0, -4.37114e-08, 1, -8.74228e-08, 1, 4.37114e-08, 0, 0, -0.5)
+target_position = Vector3(0, -0.2, 0)
+collision_mask = 2
+hit_from_inside = true
+script = ExtResource("4_q5vtt")
+opposite_side = 2
+
+[node name="RayCast 6" type="RayCast3D" parent="Dice/Raycasts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+target_position = Vector3(0, -0.2, 0)
+collision_mask = 2
+hit_from_inside = true
+script = ExtResource("4_q5vtt")
+opposite_side = 1
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(4.99999, 0.00651649, -0.00661433, -0.0065229, 4.99999, -0.00483803, 0.00660802, 0.00484665, 4.99999, 0, 0, 0)
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_two6u")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 0, 4, 4)
+
+[node name="DirectionalLight 1" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.450332, -0.631348, 0.631348, 0, 0.707107, 0.707107, -0.892861, -0.318433, 0.318433, 3.74531, 5, 2)
+
+[node name="DirectionalLight 2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.114551, -0.778766, -0.616766, 0.697766, 0.378844, -0.607947, 0.707107, -0.5, 0.5, -4, -0.276866, 2)
+
+[connection signal="sleeping_state_changed" from="Dice" to="." method="_on_dice_sleeping_state_changed"]
