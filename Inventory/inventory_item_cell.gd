@@ -1,5 +1,5 @@
 class_name InventoryItemCell
-extends PanelContainer
+extends Button
 
 @onready var icon_texture: TextureRect = $MarginContainer/ItemIcon
 @onready var name_label: Label = $MarginContainer/ItemName

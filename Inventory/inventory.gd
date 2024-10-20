@@ -7,5 +7,5 @@ signal items_changed
 
 func add_items(new_items: Array[InventoryItem]):
 	items.append_array(new_items)
-	print("Added items to inventory: ", new_items)
+	print("Added items to inventory: %s" % new_items)
 	items_changed.emit()

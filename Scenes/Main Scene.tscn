@@ -13,6 +13,7 @@
 [node name="MainScene" type="Node2D"]
 
 [node name="GUI" parent="." instance=ExtResource("1_cjw5i")]
+unique_name_in_owner = true
 layer = 128
 
 [node name="GameManager" type="Node" parent="."]
