@@ -94,6 +94,7 @@ shape = SubResource("WorldBoundaryShape3D_two6u")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 0, 4, 4)
+far = 10.0
 
 [node name="DirectionalLight 1" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.450332, -0.631348, 0.631348, 0, 0.707107, 0.707107, -0.892861, -0.318433, 0.318433, 3.74531, 5, 2)

@@ -1,3 +1,4 @@
+class_name RollDice
 extends Node3D
 
 @export var rotation_speed_max: float = 10.0
