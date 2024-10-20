@@ -3,5 +3,5 @@ extends Node2D
 
 @export var action_name: String = "Interact"
 
-func interact(unit: Unit):
+func interact(_unit: Unit):
 	pass

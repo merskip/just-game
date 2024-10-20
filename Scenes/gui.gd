@@ -2,6 +2,10 @@ class_name GUI
 extends CanvasLayer
 
 var _window: Control
+@onready var _notifications_text_label = $NotificationsTextLabel
+
+func _ready() -> void:
+	notifications_manager.on_notification.connect(on_notification)
 
 func _on_inventory_button_pressed() -> void:
 	show_inventory()
@@ -26,3 +30,6 @@ func close_window(specific_window: Control = null):
 		print("Close window: %s" % _window)
 		_window.queue_free()
 		_window = null
+
+func on_notification(text: String):
+	_notifications_text_label.add_text(text + "\n")
