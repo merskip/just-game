@@ -2,7 +2,7 @@ class_name GUI
 extends CanvasLayer
 
 var _window: Control
-@onready var _notifications_text_label = $NotificationsTextLabel
+@onready var _notifications_container: VBoxContainer = $NotificationsContainer
 
 func _ready() -> void:
 	notifications_manager.on_notification.connect(on_notification)
@@ -32,4 +32,10 @@ func close_window(specific_window: Control = null):
 		_window = null
 
 func on_notification(text: String):
-	_notifications_text_label.add_text(text + "\n")
+	var label = RichTextLabel.new()
+	label.text = text
+	label.fit_content = true
+	_notifications_container.add_child(label)
+	
+	var timer: SceneTreeTimer = get_tree().create_timer(3)
+	timer.timeout.connect(func (): label.queue_free())
