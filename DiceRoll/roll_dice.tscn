@@ -24,6 +24,8 @@ raycasts = [NodePath("Dice/Raycasts/RayCast 1"), NodePath("Dice/Raycasts/RayCast
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 freeze = true
+contact_monitor = true
+max_contacts_reported = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Dice"]
 shape = SubResource("BoxShape3D_onusu")
@@ -102,4 +104,5 @@ transform = Transform3D(0.450332, -0.631348, 0.631348, 0, 0.707107, 0.707107, -0
 [node name="DirectionalLight 2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.114551, -0.778766, -0.616766, 0.697766, 0.378844, -0.607947, 0.707107, -0.5, 0.5, -4, -0.276866, 2)
 
+[connection signal="body_entered" from="Dice" to="." method="_on_dice_body_entered"]
 [connection signal="sleeping_state_changed" from="Dice" to="." method="_on_dice_sleeping_state_changed"]

@@ -16,6 +16,10 @@ func show_inventory():
 	open_window(inventory_window)
 	inventory_window.fill(player_unit.inventory)
 
+func show_dice_roll():
+	var window: DiceRollWindow = preload("res://DiceRoll/roll_dice_window.tscn").instantiate()
+	open_window(window)
+
 func open_window(window: Control):
 	close_window()
 	print("Open window: %s" % window)

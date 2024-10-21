@@ -5,8 +5,10 @@ extends Node3D
 @onready var dice: RigidBody3D = %Dice
 @export var raycasts: Array[DiceSideRayCast]
 var _start_position: Vector3
+var _rolling_on_ground = false
 
-signal on_roll(value: int)
+signal on_rolling_on_ground()
+signal on_roll_result(value: int)
 
 func _ready() -> void:
 	_start_position = dice.position
@@ -24,15 +26,22 @@ func roll() -> void:
 									randf_range(-rotation_speed_max, rotation_speed_max),
 									randf_range(-rotation_speed_max, rotation_speed_max))
 	dice.freeze = false
+	_rolling_on_ground = false
 
 func _on_dice_sleeping_state_changed() -> void:
 	if dice.sleeping:
 		var value = get_top_side_value()
-		print("You rolled: %s" % value)
-		on_roll.emit(value)
+		print("%s" % value)
+		on_roll_result.emit(value)
 
 func get_top_side_value() -> int:
 	for raycast in raycasts:
 		if raycast.is_colliding():
 			return raycast.opposite_side
 	return -1
+
+
+func _on_dice_body_entered(_body: Node) -> void:
+	if not _rolling_on_ground:
+		_rolling_on_ground = true
+		on_rolling_on_ground.emit()

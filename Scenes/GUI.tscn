@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2bjrjtongb35"]
+[gd_scene load_steps=2 format=3 uid="uid://d2bjrjtongb35"]
 
 [ext_resource type="Script" path="res://Scenes/gui.gd" id="1_jxvrt"]
-[ext_resource type="PackedScene" uid="uid://f7d1pd35oie5" path="res://DiceRoll/roll_dice_window.tscn" id="2_qwycq"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_jxvrt")
@@ -18,9 +17,13 @@ layout_mode = 2
 text = "Menu"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="InventoryButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Inventory"
+
+[node name="DiceRollButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Dice roll"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 6
@@ -41,10 +44,5 @@ custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 alignment = 2
 
-[node name="RollDiceWindow" parent="." instance=ExtResource("2_qwycq")]
-offset_left = 658.0
-offset_top = 106.0
-offset_right = -622.0
-offset_bottom = -494.0
-
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_inventory_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/InventoryButton" to="." method="_on_inventory_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/DiceRollButton" to="." method="show_dice_roll"]

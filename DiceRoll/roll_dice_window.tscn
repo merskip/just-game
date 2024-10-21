@@ -1,14 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://f7d1pd35oie5"]
+[gd_scene load_steps=5 format=3 uid="uid://f7d1pd35oie5"]
 
 [ext_resource type="PackedScene" uid="uid://0qsoub3pdeve" path="res://DiceRoll/roll_dice.tscn" id="1_5n7tl"]
 [ext_resource type="Script" path="res://DiceRoll/roll_dice_window.gd" id="1_32r6j"]
+[ext_resource type="AudioStream" uid="uid://bjsoc8pxowjdo" path="res://DiceRoll/dice_roll_start.mp3" id="3_us7gg"]
+[ext_resource type="AudioStream" uid="uid://b0stn4gkd1v7o" path="res://DiceRoll/dice_rolling.mp3" id="4_4nm2q"]
 
 [node name="RollDiceWindow" type="Panel"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -1280.0
-offset_bottom = -600.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -240.0
+offset_right = 320.0
+offset_bottom = 240.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_32r6j")
@@ -60,5 +66,25 @@ offset_bottom = 53.0
 grow_horizontal = 2
 text = "You rolled: "
 
-[connection signal="on_roll" from="SubViewportContainer/SubViewport/RollDice" to="." method="_on_roll_dice"]
+[node name="CloseButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -70.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 51.0
+grow_horizontal = 0
+text = "Close"
+
+[node name="DiceRollStart" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_us7gg")
+
+[node name="DiceRolling" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_4nm2q")
+
+[connection signal="on_roll_result" from="SubViewportContainer/SubViewport/RollDice" to="." method="_on_roll_result"]
+[connection signal="on_rolling_on_ground" from="SubViewportContainer/SubViewport/RollDice" to="." method="_on_rolling_on_ground"]
 [connection signal="pressed" from="RollButton" to="." method="roll"]
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
