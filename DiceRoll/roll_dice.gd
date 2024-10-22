@@ -22,7 +22,34 @@ var dice: RigidBody3D
 signal on_rolling_on_ground()
 signal on_roll_result(value: int)
 
+func _on_d4_button_pressed() -> void:
+	set_dice_type(DiceType.D4)
+
+func _on_d6_button_pressed() -> void:
+	set_dice_type(DiceType.D6)
+
+func _on_d8_button_pressed() -> void:
+	set_dice_type(DiceType.D8)
+
+func _on_d10_button_pressed() -> void:
+	set_dice_type(DiceType.D10)
+
+func _on_d12_button_pressed() -> void:
+	set_dice_type(DiceType.D12)
+
+func _on_d20_button_pressed() -> void:
+	set_dice_type(DiceType.D20)
+
+func set_dice_type(dice_type: DiceType):
+	self.dice_type = dice_type
+	reload_dice()
+
 func _ready() -> void:
+	reload_dice()
+	
+func reload_dice():
+	if dice:
+		remove_child(dice)
 	var new_dice = load_dice()
 	new_dice.get_parent().remove_child(new_dice)
 	new_dice.global_position = start_marker.global_position
@@ -30,6 +57,7 @@ func _ready() -> void:
 	add_child(new_dice)
 	new_dice.sleeping_state_changed.connect(_on_dice_sleeping_state_changed)
 	dice = new_dice
+	
 
 func load_dice() -> RigidBody3D:
 	var dices = preload("res://DiceRoll/dices.tscn").instantiate()
@@ -57,11 +85,25 @@ func _input(event: InputEvent) -> void:
 func _process(_delta: float) -> void:
 	var top_side = get_top_side_value()
 	
-	label.text = "Rolled value: %s" % top_side
+	match dice_type:
+		DiceType.D4:
+			label.text = "D4"
+		DiceType.D6:
+			label.text = "D6"
+		DiceType.D8:
+			label.text = "D8"
+		DiceType.D10:
+			label.text = "D10"
+		DiceType.D12:
+			label.text = "D12"
+		DiceType.D20:
+			label.text = "D20"
+		DiceType.D100:
+			label.text = "D100"
 	if dice.sleeping:
-		label.text += " (finished)\n"
+		label.text += ": rolled %s" % [top_side]
 	else:
-		label.text += " (rolling)\n"
+		label.text += ": %s (rolling)\n" % top_side
 	
 
 func roll() -> void:

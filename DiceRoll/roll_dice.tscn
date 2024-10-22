@@ -30,7 +30,53 @@ transform = Transform3D(-0.114551, -0.778766, -0.616767, 0.697766, 0.378845, -0.
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 offset_right = 40.0
-offset_bottom = 23.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "Select Dice:"
+
+[node name="D4Button" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "D4"
+
+[node name="D6Button" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "D6"
+
+[node name="D8Button" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "D8"
+
+[node name="D10Button" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "D10"
+
+[node name="D12Button" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "D12"
+
+[node name="D20Button" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "D20"
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_top = 40.0
+offset_right = 89.0
+offset_bottom = 63.0
 text = "Hello world"
+
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/D4Button" to="." method="_on_d4_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/D6Button" to="." method="_on_d6_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/D8Button" to="." method="_on_d8_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/D10Button" to="." method="_on_d10_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/D12Button" to="." method="_on_d12_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/D20Button" to="." method="_on_d20_button_pressed"]
