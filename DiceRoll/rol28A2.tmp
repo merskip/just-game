@@ -6,7 +6,7 @@
 
 [node name="RollDice" type="Node3D"]
 script = ExtResource("1_8g52s")
-dice_type = 5
+dice_type = 1
 rotation_speed_max = 8.0
 
 [node name="StartPosition" type="Marker3D" parent="."]
@@ -20,7 +20,8 @@ collision_layer = 3
 shape = SubResource("WorldBoundaryShape3D_two6u")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 0, 7, 7)
+transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 0, 5, 5)
+fov = 60.0
 
 [node name="DirectionalLight 1" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.450332, -0.631348, 0.631348, 0, 0.707107, 0.707107, -0.892861, -0.318433, 0.318433, 3.74531, 148.669, 157)
