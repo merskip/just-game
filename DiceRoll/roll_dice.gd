@@ -15,6 +15,8 @@ enum DiceType {
 @export var rotation_speed_max: float = 10.0
 @onready var start_marker: Node3D = $StartPosition
 @onready var label := $CanvasLayer/Label
+@onready var dice_roll_start_sfx: AudioStreamPlayer = $DiceRollStart
+@onready var dice_rolling_sfx: AudioStreamPlayer = $DiceRolling
 
 var _rolling_on_ground = false
 var dice: RigidBody3D
@@ -56,6 +58,7 @@ func reload_dice():
 	new_dice.freeze = true
 	add_child(new_dice)
 	new_dice.sleeping_state_changed.connect(_on_dice_sleeping_state_changed)
+	new_dice.body_entered.connect(_on_dice_body_entered)
 	dice = new_dice
 	
 
@@ -117,11 +120,14 @@ func roll() -> void:
 									randf_range(-rotation_speed_max, rotation_speed_max))
 	dice.freeze = false
 	_rolling_on_ground = false
+	dice_roll_start_sfx.play()
 
 func _on_dice_sleeping_state_changed() -> void:
 	if dice.sleeping:
 		var value := get_top_side_value()
 		on_roll_result.emit(value)
+		dice_roll_start_sfx.stop()
+		dice_rolling_sfx.stop()
 
 func get_top_side_value() -> int:
 	var raycasts = dice.get_node("RayCasts").get_children()
@@ -135,3 +141,4 @@ func _on_dice_body_entered(_body: Node) -> void:
 	if not _rolling_on_ground:
 		_rolling_on_ground = true
 		on_rolling_on_ground.emit()
+		dice_rolling_sfx.play()

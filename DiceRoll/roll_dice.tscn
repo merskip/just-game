@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://0qsoub3pdeve"]
+[gd_scene load_steps=5 format=3 uid="uid://0qsoub3pdeve"]
 
 [ext_resource type="Script" path="res://DiceRoll/roll_dice.gd" id="1_8g52s"]
+[ext_resource type="AudioStream" uid="uid://bjsoc8pxowjdo" path="res://DiceRoll/dice_roll_start.mp3" id="2_luuuq"]
+[ext_resource type="AudioStream" uid="uid://b0stn4gkd1v7o" path="res://DiceRoll/dice_rolling.mp3" id="3_iric5"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_two6u"]
 
@@ -73,6 +75,12 @@ offset_top = 40.0
 offset_right = 89.0
 offset_bottom = 63.0
 text = "Hello world"
+
+[node name="DiceRollStart" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_luuuq")
+
+[node name="DiceRolling" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_iric5")
 
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/D4Button" to="." method="_on_d4_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/D6Button" to="." method="_on_d6_button_pressed"]

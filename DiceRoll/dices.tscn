@@ -34,6 +34,7 @@ points = PackedVector3Array(-0.00228405, 11.6672, -0.00217247, -4.34665, 1.98032
 
 [node name="DiceD4" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+contact_monitor = true
 max_contacts_reported = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="DiceD4"]
@@ -80,6 +81,8 @@ opposite_side = 2
 
 [node name="DiceD6" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+contact_monitor = true
+max_contacts_reported = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="DiceD6"]
 mesh = ExtResource("4_1su7d")
@@ -139,6 +142,8 @@ opposite_side = 2
 
 [node name="DiceD8" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+contact_monitor = true
+max_contacts_reported = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="DiceD8"]
 mesh = ExtResource("5_fgjsm")
@@ -214,6 +219,8 @@ opposite_side = 7
 
 [node name="DiceD10" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
+contact_monitor = true
+max_contacts_reported = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="DiceD10"]
 mesh = ExtResource("6_tjypf")
@@ -305,6 +312,8 @@ opposite_side = 8
 
 [node name="DiceD12" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
+contact_monitor = true
+max_contacts_reported = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="DiceD12"]
 mesh = ExtResource("7_et0fp")
@@ -412,6 +421,8 @@ opposite_side = 4
 
 [node name="DiceD20" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, 0)
+contact_monitor = true
+max_contacts_reported = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="DiceD20"]
 mesh = ExtResource("8_l556a")
@@ -583,6 +594,7 @@ opposite_side = 14
 
 [node name="DiceD100" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 210, 0, 0)
+collision_layer = 3
 gravity_scale = 20.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="DiceD100"]
