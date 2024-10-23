@@ -2,13 +2,13 @@ class_name RollDice
 extends Node3D
 
 enum DiceType {
-	D4,
-	D6,
-	D8,
-	D10,
-	D12,
-	D20,
-	D100
+	D4 = 4,
+	D6 = 6,
+	D8 = 8,
+	D10 = 10,
+	D12 = 12,
+	D20 = 20,
+	D100 = 100
 }
 
 var _dices_types: Array[DiceType] = []
@@ -30,34 +30,13 @@ var _rolling_on_ground = false
 @onready var _dice_d20 := $Dices/DiceD20
 @onready var _dice_d100 := $Dices/DiceD100
 
-signal on_roll_result(value: int)
-
-func _on_d4_button_pressed() -> void:
-	add_dice(DiceType.D4)
-
-func _on_d6_button_pressed() -> void:
-	add_dice(DiceType.D6)
-
-func _on_d8_button_pressed() -> void:
-	add_dice(DiceType.D8)
-
-func _on_d10_button_pressed() -> void:
-	add_dice(DiceType.D10)
-
-func _on_d12_button_pressed() -> void:
-	add_dice(DiceType.D12)
-
-func _on_d20_button_pressed() -> void:
-	add_dice(DiceType.D20)
-
-func _on_d100_button_pressed() -> void:
-	add_dice(DiceType.D100)
+signal on_roll_result(dices: Array[DiceType], values: Array[int])
 
 func add_dice(dice_type: DiceType):
 	var dice_body = duplicate_dice(dice_type)
-	dice_body.global_position = start_marker.global_position
-	dice_body.freeze = true
 	add_child(dice_body)
+	dice_body.freeze = true
+	dice_body.global_position = start_marker.global_position
 	dice_body.sleeping_state_changed.connect(_on_dice_sleeping_state_changed.bind(dice_body))
 	dice_body.body_entered.connect(_on_dice_body_entered)
 	
@@ -107,24 +86,7 @@ func _process(_delta: float) -> void:
 
 
 func dice_name(dice_type: DiceType) -> String:
-	match dice_type:
-		DiceType.D4:
-			return "D4"
-		DiceType.D6:
-			return  "D6"
-		DiceType.D8:
-			return  "D8"
-		DiceType.D10:
-			return "D10"
-		DiceType.D12:
-			return "D12"
-		DiceType.D20:
-			return "D20"
-		DiceType.D100:
-			return "D100"
-		_:
-			push_error("Unknown dice_type: %s" % dice_type)
-			return ""
+	return "D%s" % dice_type
 
 func roll() -> void:
 	_rolling_on_ground = false
@@ -142,12 +104,13 @@ func _roll_dice(dice_body: RigidBody3D):
 										 randf_range(-rotation_speed_max, rotation_speed_max))
 	dice_body.freeze = false
 
-func _on_dice_sleeping_state_changed(dice_body: RigidBody3D) -> void:
-	if dice_body.sleeping:
-		var value := get_top_side_value(dice_body)
-		on_roll_result.emit(value)
-		dice_roll_start_sfx.stop()
+func _on_dice_sleeping_state_changed(_dice_body: RigidBody3D) -> void:
+	if all_dices_sleeping():
 		dice_rolling_sfx.stop()
+		var values = _dices_bodies.map(func(dice): return get_top_side_value(dice))
+		print("Roll values: D", _dices_types, " -> ", values)
+		on_roll_result.emit(_dices_types, values)
+
 
 func get_top_side_value(dice: RigidBody3D) -> int:
 	var raycasts = dice.get_node("RayCasts").get_children()
@@ -156,6 +119,11 @@ func get_top_side_value(dice: RigidBody3D) -> int:
 			return raycast.opposite_side
 	return -1
 
+func all_dices_sleeping() -> bool:
+	for dice_body in _dices_bodies:
+		if not dice_body.sleeping:
+			return false
+	return true
 
 func _on_dice_body_entered(_body: Node) -> void:
 	if not _rolling_on_ground:
