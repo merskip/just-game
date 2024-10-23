@@ -27,8 +27,8 @@ points = PackedVector3Array(-0.343887, 0.212314, -1.05801, -0.900117, -0.21249, 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3tsl7"]
 points = PackedVector3Array(-1.09567, 0.547749, -0.000203967, -0.338697, 0.547749, -1.04205, -0.886532, -0.547989, -0.644039, -0.886532, -0.547989, 0.643835, -0.338697, 0.547749, 1.04205, -0.000214458, 1.225, -0.000203967, 0.886317, 0.547749, -0.644039, 0.338482, -0.547989, -1.04205, -0.000214458, -1.225, -0.000203967, 0.338482, -0.547989, 1.04205, 0.886317, 0.547749, 0.643835, 1.09567, -0.547989, -0.000203967)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7ouxb"]
-points = PackedVector3Array(-0.00228405, 11.6672, -0.00217247, -4.34665, 1.98032, -7.8029, -4.80804, 2.78204, -6.89053, -9.4402, 1.23113, -6.86012, -6.72897, 4.23016, 0.182473, -6.36123, 4.63673, 3.19762, -9.4402, 1.23113, 6.85577, -1.1352, 4.85372, 6.11067, 0.248967, 5.18263, 6.24753, 3.60431, 1.23113, 11.0961, 2.81401, 4.89255, 6.54948, 6.03003, 5.18263, 1.67701, 11.6672, 1.23113, -0.00217247, 4.03373, 4.76921, -5.06363, 3.29139, 4.63673, -6.2888, 3.60431, 1.23113, -11.0961, 1.37731, 4.18448, -7.56612, -0.0913649, 1.90951, -9.25182, -3.6066, -1.23342, -11.0961, -5.99577, -2.27954, -6.20191, -8.4489, -3.09268, -1.57492, -11.6672, -1.23342, -0.00217247, -8.86689, 1.86611, 2.89133, -8.24333, -1.65369, 4.06871, -3.6066, -1.23342, 11.0961, -1.06896, 1.98032, 8.86515, -0.159887, 2.78204, 8.39811, 4.93823, -2.54221, 7.07517, 5.5458, -1.73135, 7.64866, 9.43791, -1.23342, 6.85577, 7.86645, 1.72907, 4.46407, 0.121058, 1.86611, 9.36043, 8.8646, -1.8684, 2.9956, 7.9167, -2.9168, -0.393187, 8.75497, -1.98945, -3.47785, 9.43791, -1.23342, -6.86012, 8.60422, 1.91636, -3.16287, 3.57462, -1.83185, -8.19608, -0.886232, -2.09909, -9.39085, -0.550469, -4.68013, -6.82753, -0.00228405, -11.6672, -0.00217247, -3.17947, -4.63901, -6.44738, -5.24887, -4.23244, -4.22512, -7.30456, -4.63901, 0.764648, -8.27987, -3.59061, 1.03619, -7.94183, -2.27954, 3.5213, -3.96749, -5.23288, 4.44669, -1.2791, -4.63901, 7.10124, 4.55907, -5.00675, 4.85509, 6.00034, -2.94421, 6.34746, 7.30685, -3.59061, 3.65598, 6.76551, -4.18905, 1.37941, 6.48457, -4.49968, -2.44601, 7.17894, -3.73223, -3.29972, 4.15707, -4.63216, -5.34385, 1.76561, -3.9652, -6.75585, 6.1351, -4.8857, -3.05208, 5.87471, -5.17349, 1.6314, -5.93182, -5.17349, 1.83342, -6.37036, -5.15751, 1.25342)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ripq0"]
+points = PackedVector3Array(-0.000228405, 1.16672, -0.000217199, 0.360432, 0.123113, -1.10961, -0.94402, 0.123113, -0.686012, -0.94402, 0.123113, 0.685577, 0.360432, 0.123113, 1.10961, 1.16672, 0.123113, -0.000217199, 0.943792, -0.123342, -0.686012, -0.36066, -0.123342, -1.10961, -0.000228405, -1.16672, -0.000217199, -1.16672, -0.123342, -0.000217199, -0.36066, -0.123342, 1.10961, 0.943792, -0.123342, 0.685577)
 
 [node name="Dices" type="Node3D"]
 
@@ -592,14 +592,92 @@ script = ExtResource("2_0ermh")
 opposite_side = 14
 
 [node name="DiceD100" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 210, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0)
 collision_layer = 3
-gravity_scale = 20.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="DiceD100"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 20, 0)
 mesh = ExtResource("9_rl46j")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DiceD100"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 20, 0)
-shape = SubResource("ConvexPolygonShape3D_7ouxb")
+shape = SubResource("ConvexPolygonShape3D_ripq0")
+
+[node name="RayCasts" type="Node3D" parent="DiceD100"]
+
+[node name="RayCast 1" type="RayCast3D" parent="DiceD100/RayCasts"]
+transform = Transform3D(0.965926, 0.183013, 0.183013, -1.49012e-08, -0.707107, 0.707107, 0.258819, -0.683013, -0.683013, -0.154572, 0.415304, 0.635732)
+target_position = Vector3(0, -0.2, 0)
+collision_mask = 2
+hit_from_inside = true
+script = ExtResource("2_0ermh")
+opposite_side = 80
+
+[node name="RayCast 2" type="RayCast3D" parent="DiceD100/RayCasts"]
+transform = Transform3D(0.5, -0.612372, -0.612372, -1.49012e-08, -0.707107, 0.707107, -0.866025, -0.353553, -0.353553, 0.519306, 0.415304, 0.394199)
+target_position = Vector3(0, -0.2, 0)
+collision_mask = 2
+hit_from_inside = true
+script = ExtResource("2_0ermh")
+opposite_side = 20
+
+[node name="RayCast 3" type="RayCast3D" parent="DiceD100/RayCasts"]
+transform = Transform3D(-0.707107, -0.5, -0.5, -2.98023e-08, -0.707107, 0.707107, -0.707107, 0.5, 0.5, 0.562782, 0.415304, -0.337645)
+target_position = Vector3(0, -0.2, 0)
+collision_mask = 2
+hit_from_inside = true
+script = ExtResource("2_0ermh")
+
+[node name="RayCast 4" type="RayCast3D" parent="DiceD100/RayCasts"]
+transform = Transform3D(-0.965926, 0.183013, 0.183013, -5.08758e-08, -0.707107, 0.707107, 0.258819, 0.683013, 0.683013, -0.135248, 0.415304, -0.637146)
+target_position = Vector3(0, -0.2, 0)
+collision_mask = 2
+hit_from_inside = true
+script = ExtResource("2_0ermh")
+opposite_side = 60
+
+[node name="RayCast 5" type="RayCast3D" parent="DiceD100/RayCasts"]
+transform = Transform3D(5.96046e-08, 0.707107, 0.707107, -2.51577e-08, -0.707107, 0.707107, 1, -8.9407e-08, 7.45058e-08, -0.654543, 0.415304, -0.0164068)
+target_position = Vector3(0, -0.2, 0)
+collision_mask = 2
+hit_from_inside = true
+script = ExtResource("2_0ermh")
+opposite_side = 40
+
+[node name="RayCast 6" type="RayCast3D" parent="DiceD100/RayCasts"]
+transform = Transform3D(-0.965926, -0.183013, -0.183013, 9.93451e-08, 0.707107, -0.707107, 0.258819, -0.683013, -0.683013, 0.209663, -0.482423, 0.598867)
+target_position = Vector3(0, -0.2, 0)
+collision_mask = 2
+hit_from_inside = true
+script = ExtResource("2_0ermh")
+opposite_side = 30
+
+[node name="RayCast 7" type="RayCast3D" parent="DiceD100/RayCasts"]
+transform = Transform3D(-0.5, 0.612372, 0.612372, 2.18946e-08, 0.707107, -0.707107, -0.866025, -0.353553, -0.353553, -0.464214, -0.50728, 0.394199)
+target_position = Vector3(0, -0.2, 0)
+collision_mask = 2
+hit_from_inside = true
+script = ExtResource("2_0ermh")
+opposite_side = 90
+
+[node name="RayCast 8" type="RayCast3D" parent="DiceD100/RayCasts"]
+transform = Transform3D(0.707107, 0.5, 0.5, -5.30883e-08, 0.707107, -0.707107, -0.707107, 0.5, 0.5, -0.50769, -0.50728, -0.337645)
+target_position = Vector3(0, -0.2, 0)
+collision_mask = 2
+hit_from_inside = true
+script = ExtResource("2_0ermh")
+opposite_side = 70
+
+[node name="RayCast 9" type="RayCast3D" parent="DiceD100/RayCasts"]
+transform = Transform3D(0.965926, -0.183013, -0.183013, 3.96548e-09, 0.707107, -0.707107, 0.258819, 0.683013, 0.683013, 0.19034, -0.476014, -0.598023)
+target_position = Vector3(0, -0.2, 0)
+collision_mask = 2
+hit_from_inside = true
+script = ExtResource("2_0ermh")
+opposite_side = 10
+
+[node name="RayCast 10" type="RayCast3D" parent="DiceD100/RayCasts"]
+transform = Transform3D(-5.96046e-08, -0.707107, -0.707107, 2.51577e-08, 0.707107, -0.707107, 1, -8.9407e-08, 7.45058e-08, 0.655619, -0.472337, -0.0164068)
+target_position = Vector3(0, -0.2, 0)
+collision_mask = 2
+hit_from_inside = true
+script = ExtResource("2_0ermh")
+opposite_side = 50
