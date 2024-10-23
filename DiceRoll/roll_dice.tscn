@@ -38,6 +38,7 @@ points = PackedVector3Array(-0.000228405, 1.16672, -0.000217199, 0.360432, 0.123
 [node name="RollDice" type="Node3D"]
 script = ExtResource("1_8g52s")
 rotation_speed_max = 8.0
+control_visible = true
 
 [node name="StartPosition" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
@@ -58,60 +59,60 @@ transform = Transform3D(0.450332, -0.631348, 0.631348, 0, 0.707107, 0.707107, -0
 [node name="DirectionalLight 2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.114551, -0.778766, -0.616767, 0.697766, 0.378845, -0.607947, 0.707107, -0.5, 0.5, -4, 143.392, 157)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Controls" type="CanvasLayer" parent="."]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Controls"]
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 309.0
 offset_bottom = 68.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Controls/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="Controls/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Add dice:"
 
-[node name="D4Button" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+[node name="D4Button" type="Button" parent="Controls/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 focus_mode = 0
 text = "D4"
 
-[node name="D6Button" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+[node name="D6Button" type="Button" parent="Controls/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 focus_mode = 0
 text = "D6"
 
-[node name="D8Button" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+[node name="D8Button" type="Button" parent="Controls/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 focus_mode = 0
 text = "D8"
 
-[node name="D10Button" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+[node name="D10Button" type="Button" parent="Controls/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 focus_mode = 0
 text = "D10"
 
-[node name="D12Button" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+[node name="D12Button" type="Button" parent="Controls/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 focus_mode = 0
 text = "D12"
 
-[node name="D20Button" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+[node name="D20Button" type="Button" parent="Controls/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 focus_mode = 0
 text = "D20"
 
-[node name="D100Button" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+[node name="D100Button" type="Button" parent="Controls/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 focus_mode = 0
 text = "D100"
 
-[node name="DicesContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+[node name="DicesContainer" type="HBoxContainer" parent="Controls/VBoxContainer"]
 layout_mode = 2
 
-[node name="RollResult" type="Label" parent="CanvasLayer/VBoxContainer"]
+[node name="RollResult" type="Label" parent="Controls/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Hello world"
@@ -781,10 +782,10 @@ hit_from_inside = true
 script = ExtResource("5_wmfn8")
 opposite_side = 50
 
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer/D4Button" to="." method="add_dice" binds= [4]]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer/D6Button" to="." method="add_dice" binds= [6]]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer/D8Button" to="." method="add_dice" binds= [8]]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer/D10Button" to="." method="add_dice" binds= [10]]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer/D12Button" to="." method="add_dice" binds= [12]]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer/D20Button" to="." method="add_dice" binds= [20]]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer/D100Button" to="." method="add_dice" binds= [100]]
+[connection signal="pressed" from="Controls/VBoxContainer/HBoxContainer/D4Button" to="." method="add_dice" binds= [4]]
+[connection signal="pressed" from="Controls/VBoxContainer/HBoxContainer/D6Button" to="." method="add_dice" binds= [6]]
+[connection signal="pressed" from="Controls/VBoxContainer/HBoxContainer/D8Button" to="." method="add_dice" binds= [8]]
+[connection signal="pressed" from="Controls/VBoxContainer/HBoxContainer/D10Button" to="." method="add_dice" binds= [10]]
+[connection signal="pressed" from="Controls/VBoxContainer/HBoxContainer/D12Button" to="." method="add_dice" binds= [12]]
+[connection signal="pressed" from="Controls/VBoxContainer/HBoxContainer/D20Button" to="." method="add_dice" binds= [20]]
+[connection signal="pressed" from="Controls/VBoxContainer/HBoxContainer/D100Button" to="." method="add_dice" binds= [100]]

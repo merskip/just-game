@@ -15,6 +15,7 @@ var _dices_types: Array[DiceType] = []
 var _dices_bodies: Array[RigidBody3D] = []
 
 @export var rotation_speed_max: float = 10.0
+@export var control_visible: bool = false
 @onready var start_marker: Node3D = $StartPosition
 @onready var roll_result_label := %RollResult
 @onready var dice_roll_start_sfx: AudioStreamPlayer = $DiceRollStart
@@ -30,7 +31,10 @@ var _rolling_on_ground = false
 @onready var _dice_d20 := $Dices/DiceD20
 @onready var _dice_d100 := $Dices/DiceD100
 
-signal on_roll_result(dices: Array[DiceType], values: Array[int])
+signal on_roll_result(values: Array[int])
+
+func _ready() -> void:
+	$Controls.visible = control_visible
 
 func add_dice(dice_type: DiceType):
 	var dice_body = duplicate_dice(dice_type)
@@ -69,6 +73,8 @@ func _input(event: InputEvent) -> void:
 		roll()
 		
 func _process(_delta: float) -> void:
+	if not control_visible:
+		return
 	roll_result_label.text = ""
 	for i in range(_dices_types.size()):
 		var dice_type := _dices_types[i]
@@ -107,9 +113,9 @@ func _roll_dice(dice_body: RigidBody3D):
 func _on_dice_sleeping_state_changed(_dice_body: RigidBody3D) -> void:
 	if all_dices_sleeping():
 		dice_rolling_sfx.stop()
-		var values = _dices_bodies.map(func(dice): return get_top_side_value(dice))
+		var values := _dices_bodies.map(func(dice): return get_top_side_value(dice))
 		print("Roll values: D", _dices_types, " -> ", values)
-		on_roll_result.emit(_dices_types, values)
+		on_roll_result.emit(values)
 
 
 func get_top_side_value(dice: RigidBody3D) -> int:
