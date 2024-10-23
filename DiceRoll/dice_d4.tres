@@ -2,40 +2,40 @@
 
 [ext_resource type="Texture2D" uid="uid://txby1d0f0ilb" path="res://DiceRoll/d2.png" id="1_0lkua"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p7ldn"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0fkv7"]
 resource_name = "D2"
 cull_mode = 2
 albedo_texture = ExtResource("1_0lkua")
 roughness = 0.5
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_wmdo5"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ck5l4"]
 _surfaces = [{
-"aabb": AABB(-0.6364, -0.45, -1.10227, 1.90919, 1.8, 2.20454),
+"aabb": AABB(-0.619733, -0.45, -1.04454, 1.80919, 1.70572, 2.08907),
 "format": 34896613377,
-"index_count": 12,
-"index_data": PackedByteArray("AgADAAEAAQADAAAAAgAAAAMAAQAAAAIA"),
+"index_count": 60,
+"index_data": PackedByteArray("BgAJAAUABAAKAAAABwACAAsAAAACAAEAAwAFAAQABgAIAAcACQALAAoABgALAAkABgAHAAsAAAADAAQAAAABAAMAAQAHAAgAAQACAAcAAgAKAAsAAgAAAAoABAAJAAoABAAFAAkABQAIAAYABQADAAgAAwABAAgA"),
 "name": "D2",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("AAAAAAAAAAD//wAA/38AAAAAAAD//wAAVVX///9/AAA=")
+"vertex_count": 12,
+"vertex_data": PackedByteArray("EwcTBwAAAAC3BAAAiQMAAAAAEweJAwAAo/0AAP9/AAD//xMHdXwAAP//EweJgwAAEwcTB///AAAAABMHdfwAALcEAAB1/AAADFr//4mDAAAMWv//dXwAAPlS/v//fwAA")
 }]
 blend_shape_mode = 0
 
 [resource]
 resource_name = "Dices_D4"
 _surfaces = [{
-"aabb": AABB(-0.6364, -0.45, -1.10227, 1.90919, 1.8, 2.20454),
-"attribute_data": PackedByteArray("2a7Zrtmu2a7Zrtmu/7/Y7v+/2O7/v9ju2e7/v9nu/7/Z7v+/s93/f/9/st3/////"),
+"aabb": AABB(-0.619733, -0.45, -1.04454, 1.80919, 1.70572, 2.08907),
+"attribute_data": PackedByteArray("BGB4YmFhBVolXIFjJVyBY/Nh82HzYfNh82HzYfNh82GBYyVcgWMlXHhiBGCBYyVcjYHk142B5NeNgeTXjYHk1797ctm/e3LZBoUL355/adjNhSTczYUk3M2FJNz4gk/ZT9n4glrc+Hok3M2FJNzNhXLZv3ty2b97adief3LZv3vk142B5NeNgeTXjYHk142Bv7wHBci7SQW++777vvu++7i3rgNtuGMEzgXYuff6pv7Yuc4F2LnOBdi5zgXYuc4F"),
 "format": 34896613399,
-"index_count": 12,
-"index_data": PackedByteArray("CAALAAUABAAKAAIABgAAAAkAAwABAAcA"),
-"material": SubResource("StandardMaterial3D_p7ldn"),
+"index_count": 60,
+"index_data": PackedByteArray("GwAmABUAEQAqAAMAHAAIACwAAAAKAAUADwAXABMAGAAhAB4AJQAvACkAGQAuACQAGQAfAC4AAgANABAAAgAHAA0ABAAdACAABAAJAB0ACwAoAC0ACwABACgAEgAnACsAEgAWACcAFAAjABoAFAAOACMADAAGACIA"),
+"material": SubResource("StandardMaterial3D_0fkv7"),
 "name": "D2",
 "primitive": 3,
-"uv_scale": Vector4(2, 2, 0, 0),
-"vertex_count": 12,
-"vertex_data": PackedByteArray("AAAAAAAAD8AAAAAAAAC82wAAAAAAAHXo//8AAP9/vNv//wAA/3916P//AAD/fx7lAAAAAP//D8AAAAAA//+82wAAAAD//x7lVVX///9/D8BVVf///3916FVV////fx7lY5283kAugdwAxjhPQC6B3ADGOE8iGNEQY5283kAugdwiGNEQY5283gDGOE8iGNEQ")
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 48,
+"vertex_data": PackedByteArray("EwcTBwAA9eYTBxMHAABO5BMHEwcAALL2EwcTBwAAdei3BAAAiQO/xbcEAACJA/XmtwQAAIkDvNu3BAAAiQOy9gAAEweJAw/AAAATB4kDv8UAABMHiQP15gAAEweJA07ko/0AAP9/vNuj/QAA/3+y9qP9AAD/f/jlo/0AAP9/Tfb//xMHdXyy9v//Ewd1fHXo//8TB3V8Su3//xMHdXxN9v//EweJg/jl//8TB4mDHuX//xMHiYNK7f//EweJg032EwcTB///2MMTBxMH//+uoxMHEwf///jlEwcTB///HuUAABMHdfwPwAAAEwd1/L/FAAATB3X82MMAABMHdfyuo7cEAAB1/L/FtwQAAHX82MO3BAAAdfy827cEAAB1/PjlDFr//4mDrqMMWv//iYOmxwxa//+Jgx7lDFr//4mDSu0MWv//dXxO5Axa//91fKbHDFr//3V8degMWv//dXxK7flS/v//fw/A+VL+//9/TuT5Uv7//3+uo/lS/v//f6bHFUiCxqejX8tHK3DHAMY4T/1Oa+0VSILGQC6B3EcrcMdjnbze/U5r7RVIgsano1/LQC6B3EcrcMf6E1Pjp69wZUcrcMcAxjhPNSwTIKevcGX6E1PjIhjREDUsEyCnr3BluNqL+XWuO7H6E1PjIhjREGOdvN79TmvtuNqL+XWuO7H9TmvtuNqL+UAugdz6E1Pjda47sVvBUZ8iGNEQNSwTIKejX8tbwVGfAMY4TzUsEyBjnbzep6Nfy3WuO7FbwVGf")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_wmdo5")
+shadow_mesh = SubResource("ArrayMesh_ck5l4")
