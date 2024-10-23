@@ -33,7 +33,6 @@ points = PackedVector3Array(-0.00228405, 11.6672, -0.00217247, -4.34665, 1.98032
 [node name="Dices" type="Node3D"]
 
 [node name="DiceD4" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 contact_monitor = true
 max_contacts_reported = 1
 
