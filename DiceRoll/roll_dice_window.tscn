@@ -85,6 +85,5 @@ stream = ExtResource("3_us7gg")
 stream = ExtResource("4_4nm2q")
 
 [connection signal="on_roll_result" from="SubViewportContainer/SubViewport/RollDice" to="." method="_on_roll_result"]
-[connection signal="on_rolling_on_ground" from="SubViewportContainer/SubViewport/RollDice" to="." method="_on_rolling_on_ground"]
 [connection signal="pressed" from="RollButton" to="." method="roll"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

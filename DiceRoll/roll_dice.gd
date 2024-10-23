@@ -7,7 +7,8 @@ enum DiceType {
 	D8,
 	D10,
 	D12,
-	D20
+	D20,
+	D100
 }
 
 var _dices_types: Array[DiceType] = []
@@ -21,8 +22,13 @@ var _dices_bodies: Array[RigidBody3D] = []
 
 var _rolling_on_ground = false
 
-
-var dices_scene := preload("res://DiceRoll/dices.tscn")
+@onready var _dice_d4 := $Dices/DiceD4
+@onready var _dice_d6 := $Dices/DiceD6
+@onready var _dice_d8 := $Dices/DiceD8
+@onready var _dice_d10 := $Dices/DiceD10
+@onready var _dice_d12 := $Dices/DiceD12
+@onready var _dice_d20 := $Dices/DiceD20
+@onready var _dice_d100 := $Dices/DiceD100
 
 signal on_roll_result(value: int)
 
@@ -44,9 +50,11 @@ func _on_d12_button_pressed() -> void:
 func _on_d20_button_pressed() -> void:
 	add_dice(DiceType.D20)
 
+func _on_d100_button_pressed() -> void:
+	add_dice(DiceType.D100)
+
 func add_dice(dice_type: DiceType):
-	var dice_body = load_dice(dice_type)
-	dice_body.get_parent().remove_child(dice_body)
+	var dice_body = duplicate_dice(dice_type)
 	dice_body.global_position = start_marker.global_position
 	dice_body.freeze = true
 	add_child(dice_body)
@@ -57,21 +65,22 @@ func add_dice(dice_type: DiceType):
 	_dices_bodies.append(dice_body)
 	
 
-func load_dice(dice_type: DiceType) -> RigidBody3D:
-	var dices := dices_scene.instantiate()
+func duplicate_dice(dice_type: DiceType) -> RigidBody3D:
 	match dice_type:
 		DiceType.D4:
-			return dices.get_node("DiceD4")
+			return _dice_d4.duplicate()
 		DiceType.D6:
-			return dices.get_node("DiceD6")
+			return _dice_d6.duplicate()
 		DiceType.D8:
-			return dices.get_node("DiceD8")
+			return _dice_d8.duplicate()
 		DiceType.D10:
-			return dices.get_node("DiceD10")
+			return _dice_d10.duplicate()
 		DiceType.D12:
-			return dices.get_node("DiceD12")
+			return _dice_d12.duplicate()
 		DiceType.D20:
-			return dices.get_node("DiceD20")
+			return _dice_d20.duplicate()
+		DiceType.D100:
+			return _dice_d100.duplicate()
 		_:
 			push_error("Unknown dice_type: %s" % dice_type)
 			return null
@@ -111,6 +120,8 @@ func dice_name(dice_type: DiceType) -> String:
 			return "D12"
 		DiceType.D20:
 			return "D20"
+		DiceType.D100:
+			return "D100"
 		_:
 			push_error("Unknown dice_type: %s" % dice_type)
 			return ""
