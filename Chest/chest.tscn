@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://dkxt5a0qm7rek"]
+
+[ext_resource type="Texture2D" uid="uid://ihkssf0xiba3" path="res://Chest/chest_closed.svg" id="1_esucf"]
+[ext_resource type="Script" path="res://Chest/chest.gd" id="2_pyivb"]
+[ext_resource type="Texture2D" uid="uid://cc1ykhs2qxkq8" path="res://Chest/chest_open.svg" id="3_kpuow"]
+[ext_resource type="AudioStream" uid="uid://bs0h0cfvu8kba" path="res://Chest/open-chest.mp3" id="4_ldqab"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ffu3"]
+size = Vector2(62, 67)
+
+[node name="Interaction" type="Node2D"]
+script = ExtResource("2_pyivb")
+closed_texture = ExtResource("1_esucf")
+open_texture = ExtResource("3_kpuow")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_0ffu3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("1_esucf")
+
+[node name="OpenChest" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ldqab")

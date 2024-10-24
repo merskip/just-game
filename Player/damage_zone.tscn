@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://wtymqw4gadga"]
 
-[ext_resource type="Script" path="res://Models/damage_zone.gd" id="1_1qt8o"]
+[ext_resource type="Script" path="res://Player/damage_zone.gd" id="1_1qt8o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tgg7k"]
 size = Vector2(100, 100)

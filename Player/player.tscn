@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://bj6istu8r131k"]
 
-[ext_resource type="Script" path="res://Models/player.gd" id="1_3kw8n"]
+[ext_resource type="Script" path="res://Player/player.gd" id="1_3kw8n"]
 [ext_resource type="Texture2D" uid="uid://chh1vkpbvaxsc" path="res://Assets/icon.svg" id="1_bo06m"]
-[ext_resource type="Script" path="res://Models/unity.gd" id="1_cs6h6"]
-[ext_resource type="Script" path="res://Models/health_bar.gd" id="3_8huld"]
+[ext_resource type="Script" path="res://Player/unity.gd" id="1_cs6h6"]
+[ext_resource type="Script" path="res://Player/health_bar.gd" id="3_8huld"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8rq02"]
 size = Vector2(62, 62)
