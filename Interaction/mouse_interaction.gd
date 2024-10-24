@@ -10,19 +10,19 @@ func _input(event: InputEvent) -> void:
 		handle_interation()
 
 func _update_mouse_cursor():
-	var interaction = _get_interaction_under__mouser()
+	var interaction = _get_interaction_under_mouser()
 	if interaction:
 		Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 	else:
 		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 
 func handle_interation():
-	var interaction = _get_interaction_under__mouser()
+	var interaction = _get_interaction_under_mouser()
 	if interaction:
 		print("interaction: " + interaction.to_string())
 		interaction.interact(interact_unit)
 
-func _get_interaction_under__mouser() -> Interaction:
+func _get_interaction_under_mouser() -> Interaction:
 	var spaceState = get_world_2d().direct_space_state
 	var query = PhysicsPointQueryParameters2D.new()
 	query.position = get_global_mouse_position()
@@ -30,8 +30,12 @@ func _get_interaction_under__mouser() -> Interaction:
 	
 	for result in results:
 		var collider: Node2D = result["collider"]
+		var interaction: Interaction
 		if collider is Interaction:
-			return collider as Interaction
+			interaction = collider as Interaction
 		if collider.get_parent() is Interaction:
-			return collider.get_parent() as Interaction
+			interaction = collider.get_parent() as Interaction
+		
+		if interaction != null and interaction.is_interactable(interact_unit):
+			return interaction
 	return null

@@ -18,6 +18,9 @@ enum State {
 func _ready() -> void:
 	set_state(State.CLOSED)
 
+func is_interactable(unit: Unit) -> bool:
+	return not items.is_empty()
+
 func interact(unit: Unit):
 	print("The chest was opened")
 	unit.inventory.add_items(items)
