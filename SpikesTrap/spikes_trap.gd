@@ -6,6 +6,7 @@ extends Node2D
 @onready var released_spikes := $ReleasedTrapSpikes
 
 var _state: State
+var _detected := false
 
 enum State {
 	HIDDEN,
@@ -21,10 +22,12 @@ func _on_body_entered(body: Node2D) -> void:
 		set_state(State.RELEASED)
 
 func _on_detection_area_entered(body: Node2D) -> void:
+	if _detected:
+		return
 	if body is Unit:
-		if randi_range(0, 1) == 1:
-			notifications_manager.notify("Detected %s" % name)
+		if body.check_wisdom():
 			$DetectedOverlay.visible = true
+			_detected = true
 
 func _on_reset_timer_timeout() -> void:
 	set_state(State.HIDDEN)

@@ -1,10 +1,23 @@
-[gd_scene load_steps=8 format=3 uid="uid://bj6istu8r131k"]
+[gd_scene load_steps=16 format=3 uid="uid://bj6istu8r131k"]
 
 [ext_resource type="Script" path="res://Player/player_movement.gd" id="1_3kw8n"]
 [ext_resource type="Texture2D" uid="uid://chh1vkpbvaxsc" path="res://Assets/icon.svg" id="1_bo06m"]
 [ext_resource type="Script" path="res://Player/unit.gd" id="1_cs6h6"]
+[ext_resource type="Script" path="res://Player/abilities.gd" id="2_klrb4"]
 [ext_resource type="Script" path="res://Player/health_bar.gd" id="3_8huld"]
 [ext_resource type="AudioStream" uid="uid://htl5dxtlmt1i" path="res://Player/grunt.mp3" id="5_r828v"]
+[ext_resource type="AudioStream" uid="uid://bbkaf1kj3veqn" path="res://Player/fast_dice_roll.mp3" id="7_3atn1"]
+[ext_resource type="Script" path="res://Player/roll_result.gd" id="8_qpnd3"]
+[ext_resource type="Texture2D" uid="uid://dvf3ggd523202" path="res://Assets/dice_icon.svg" id="8_svv7x"]
+
+[sub_resource type="Resource" id="Resource_sjhfq"]
+script = ExtResource("2_klrb4")
+strength = 15
+dexternity = 14
+constitution = 13
+intelligence = 12
+wisdom = 10
+charisma = 8
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8rq02"]
 size = Vector2(62, 62)
@@ -16,9 +29,46 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="Animation" id="Animation_c5j4w"]
+resource_name = "roll"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.966667),
+"transitions": PackedFloat32Array(0.406127, 1),
+"update": 0,
+"values": [-12.5664, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_y66n1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-12.5664]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_icswr"]
+_data = {
+"RESET": SubResource("Animation_y66n1"),
+"roll": SubResource("Animation_c5j4w")
+}
+
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("movement")]
 script = ExtResource("1_cs6h6")
 movement = NodePath("PlayerMovement")
+abilities = SubResource("Resource_sjhfq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_8rq02")
@@ -44,4 +94,50 @@ script = ExtResource("1_3kw8n")
 stream = ExtResource("5_r828v")
 volume_db = -5.0
 
+[node name="RollResult" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -111.5
+offset_top = -132.0
+offset_right = 111.5
+offset_bottom = -92.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("8_qpnd3")
+
+[node name="TextureRect" type="TextureRect" parent="RollResult"]
+layout_mode = 2
+offset_right = 40.0
+offset_bottom = 40.0
+rotation = -12.5664
+pivot_offset = Vector2(22, 20)
+texture = ExtResource("8_svv7x")
+expand_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RollResult/TextureRect"]
+libraries = {
+"": SubResource("AnimationLibrary_icswr")
+}
+
+[node name="Label" type="Label" parent="RollResult"]
+layout_mode = 2
+offset_left = 44.0
+offset_top = 8.0
+offset_right = 223.0
+offset_bottom = 31.0
+size_flags_horizontal = 4
+text = "Widsom check: success"
+
+[node name="Timer" type="Timer" parent="RollResult"]
+wait_time = 3.0
+one_shot = true
+
+[node name="FastDiceRoll" type="AudioStreamPlayer" parent="RollResult"]
+stream = ExtResource("7_3atn1")
+
 [connection signal="on_health_change" from="." to="HealthBar" method="_on_health_change"]
+[connection signal="timeout" from="RollResult/Timer" to="RollResult" method="_on_timer_timeout"]
