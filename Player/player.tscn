@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bj6istu8r131k"]
+[gd_scene load_steps=8 format=3 uid="uid://bj6istu8r131k"]
 
 [ext_resource type="Script" path="res://Player/player_movement.gd" id="1_3kw8n"]
 [ext_resource type="Texture2D" uid="uid://chh1vkpbvaxsc" path="res://Assets/icon.svg" id="1_bo06m"]
 [ext_resource type="Script" path="res://Player/unit.gd" id="1_cs6h6"]
 [ext_resource type="Script" path="res://Player/health_bar.gd" id="3_8huld"]
+[ext_resource type="AudioStream" uid="uid://htl5dxtlmt1i" path="res://Player/grunt.mp3" id="5_r828v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8rq02"]
 size = Vector2(62, 62)
@@ -38,5 +39,9 @@ script = ExtResource("3_8huld")
 
 [node name="PlayerMovement" type="Node" parent="."]
 script = ExtResource("1_3kw8n")
+
+[node name="Grunt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_r828v")
+volume_db = -5.0
 
 [connection signal="on_health_change" from="." to="HealthBar" method="_on_health_change"]

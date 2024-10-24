@@ -1,23 +1,42 @@
-[gd_scene load_steps=4 format=3 uid="uid://wtymqw4gadga"]
+[gd_scene load_steps=6 format=3 uid="uid://wtymqw4gadga"]
 
 [ext_resource type="Script" path="res://Player/damage_zone.gd" id="1_1qt8o"]
+[ext_resource type="Script" path="res://Player/damage.gd" id="2_p8ecd"]
+[ext_resource type="Texture2D" uid="uid://d22agmsu6pmgu" path="res://Player/trap_spikes.svg" id="3_xok8x"]
+
+[sub_resource type="Resource" id="Resource_3d6f5"]
+script = ExtResource("2_p8ecd")
+count = 1
+dice_type = 4
+modifier = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tgg7k"]
 size = Vector2(100, 100)
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ti3sw"]
-
 [node name="Node2D" type="Node2D"]
+position = Vector2(0, 1)
 script = ExtResource("1_1qt8o")
+damage = SubResource("Resource_3d6f5")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_tgg7k")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.376471)
-scale = Vector2(100, 100)
-texture = SubResource("PlaceholderTexture2D_ti3sw")
+[node name="HiddenSpikes" type="Sprite2D" parent="."]
+texture = ExtResource("3_xok8x")
+region_enabled = true
+region_rect = Rect2(0, 0, 100, 100)
+
+[node name="ReleasedTrapSpikes" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_xok8x")
+region_enabled = true
+region_rect = Rect2(100, 0, 100, 100)
+
+[node name="ResetTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
+[connection signal="timeout" from="ResetTimer" to="." method="_on_reset_timer_timeout"]

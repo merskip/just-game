@@ -52,7 +52,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(1, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0.867867, 0.101722, 0.0889793, 1), Color(0.87, 0.10005, 0.087, 0)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q2va7"]
@@ -69,12 +69,16 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -980.0
-offset_top = -551.5
+offset_top = -594.5
 offset_right = -940.0
-offset_bottom = -528.5
+offset_bottom = -549.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.82881, 2.71939e-06, 5.77569e-07, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 18
 text = "20"
 horizontal_alignment = 1
 vertical_alignment = 1
