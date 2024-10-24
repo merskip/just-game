@@ -1,10 +1,11 @@
 class_name Unit
-extends Node
+extends CharacterBody2D
+
+@export var movement: Movement
+var inventory: Inventory = Inventory.new()
 
 var _health: int
 var _max_health: int = 100
-
-var inventory: Inventory = Inventory.new()
 
 signal on_health_change()
 signal on_die()
@@ -18,3 +19,7 @@ func take_damage(damage: int):
 	on_health_change.emit()
 	if _health <= 0:
 		on_die.emit()
+
+func _physics_process(delta: float) -> void:
+	if movement != null:
+		movement.physics_process(self, delta)
