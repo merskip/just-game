@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://wtymqw4gadga"]
+[gd_scene load_steps=8 format=3 uid="uid://wtymqw4gadga"]
 
-[ext_resource type="Script" path="res://Player/damage_zone.gd" id="1_1qt8o"]
+[ext_resource type="Script" path="res://SpikesTrap/spikes_trap.gd" id="1_1qt8o"]
 [ext_resource type="Script" path="res://Player/damage.gd" id="2_p8ecd"]
-[ext_resource type="Texture2D" uid="uid://d22agmsu6pmgu" path="res://Player/trap_spikes.svg" id="3_xok8x"]
+[ext_resource type="Texture2D" uid="uid://d22agmsu6pmgu" path="res://SpikesTrap/spikes_trap.svg" id="3_xok8x"]
 
 [sub_resource type="Resource" id="Resource_3d6f5"]
 script = ExtResource("2_p8ecd")
@@ -12,6 +12,12 @@ modifier = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tgg7k"]
 size = Vector2(100, 100)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_sk08j"]
+size = Vector2(100, 100)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xnnf1"]
+radius = 300.0
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(0, 1)
@@ -38,5 +44,17 @@ region_rect = Rect2(100, 0, 100, 100)
 wait_time = 3.0
 one_shot = true
 
+[node name="DetectedOverlay" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 0.0627451, 0.25098, 0.392157)
+position = Vector2(-1, 0)
+texture = SubResource("PlaceholderTexture2D_sk08j")
+
+[node name="DetectionArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea2D"]
+shape = SubResource("CircleShape2D_xnnf1")
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
 [connection signal="timeout" from="ResetTimer" to="." method="_on_reset_timer_timeout"]
+[connection signal="body_entered" from="DetectionArea2D" to="." method="_on_detection_area_entered"]

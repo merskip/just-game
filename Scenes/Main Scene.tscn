@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d2bjrjtongb35" path="res://Scenes/GUI.tscn" id="1_cjw5i"]
 [ext_resource type="TileSet" uid="uid://dbdwtvdnk7rff" path="res://Assets/gound.tres" id="1_whfwv"]
 [ext_resource type="PackedScene" uid="uid://bj6istu8r131k" path="res://Player/player.tscn" id="2_sggrd"]
-[ext_resource type="PackedScene" uid="uid://wtymqw4gadga" path="res://Player/damage_zone.tscn" id="4_1ey18"]
+[ext_resource type="PackedScene" uid="uid://wtymqw4gadga" path="res://SpikesTrap/spikes_trap.tscn" id="4_1ey18"]
 [ext_resource type="Script" path="res://Inventory/inventory_item.gd" id="5_t0nsr"]
 [ext_resource type="Resource" uid="uid://qeg8lkgfx15o" path="res://Inventory/test_item.tres" id="6_sly6m"]
 [ext_resource type="Script" path="res://Interaction/mouse_interaction.gd" id="7_eaeqg"]

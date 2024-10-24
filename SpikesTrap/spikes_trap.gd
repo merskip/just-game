@@ -1,3 +1,4 @@
+class_name SpikesTrap
 extends Node2D
 
 @export var damage: Damage
@@ -18,6 +19,12 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is Unit and _state == State.HIDDEN:
 		body.take_damage(damage)
 		set_state(State.RELEASED)
+
+func _on_detection_area_entered(body: Node2D) -> void:
+	if body is Unit:
+		if randi_range(0, 1) == 1:
+			notifications_manager.notify("Detected %s" % name)
+			$DetectedOverlay.visible = true
 
 func _on_reset_timer_timeout() -> void:
 	set_state(State.HIDDEN)
