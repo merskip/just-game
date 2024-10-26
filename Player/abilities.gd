@@ -9,4 +9,4 @@ extends Resource
 @export var charisma: int
 
 func modifier(ability: int) -> int:
-	return int(floor((ability - 10) / 2))
+	return int(floor((float(ability) - 10) / 2))
