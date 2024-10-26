@@ -41,7 +41,19 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-12.5664]
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ResultLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_c5j4w"]
@@ -53,10 +65,22 @@ tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.966667),
-"transitions": PackedFloat32Array(0.406127, 1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
 "values": [-12.5664, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ResultLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_icswr"]
@@ -108,20 +132,43 @@ offset_bottom = -92.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("8_qpnd3")
+success_color = Color(0.180392, 0.619608, 0.356863, 1)
+failure_color = Color(0.644517, 0.109901, 0.113998, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RollResult"]
+root_node = NodePath("../TextureRect")
+libraries = {
+"": SubResource("AnimationLibrary_icswr")
+}
 
 [node name="TextureRect" type="TextureRect" parent="RollResult"]
 layout_mode = 2
 offset_right = 40.0
 offset_bottom = 40.0
-rotation = -12.5664
 pivot_offset = Vector2(20, 20)
 texture = ExtResource("8_svv7x")
 expand_mode = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="RollResult/TextureRect"]
-libraries = {
-"": SubResource("AnimationLibrary_icswr")
-}
+[node name="ResultLabel" type="Label" parent="RollResult/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -13.0
+offset_right = 17.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "99"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Label" type="Label" parent="RollResult"]
 layout_mode = 2

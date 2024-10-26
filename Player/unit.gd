@@ -20,10 +20,11 @@ func _ready() -> void:
 	on_health_change.emit()
 	
 func check_wisdom(skill_name: String) -> bool:
-	var result = randi_range(1, 20) <= abilities.wisdom
-	notifications_manager.notify("Check %s: %s" % [skill_name, result])
-	$RollResult.show_roll_result(skill_name, result)
-	return result
+	var roll_result = randi_range(1, 20)
+	var success = roll_result <= abilities.wisdom
+	notifications_manager.notify("Check %s: %s" % [skill_name, success])
+	$RollResult.show_roll_result(skill_name, roll_result, success)
+	return success
 
 func take_damage(damage: Damage):
 	var damage_value = damage.resolve()
