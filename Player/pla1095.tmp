@@ -56,18 +56,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:material:shader_parameter/outline_color")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_c5j4w"]
 resource_name = "roll"
@@ -95,18 +83,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:material:shader_parameter/outline_color")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.5, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_icswr"]
 _data = {
@@ -116,7 +92,7 @@ _data = {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_or2m6"]
 shader = ExtResource("8_8kneu")
-shader_parameter/outline_width = 3.5
+shader_parameter/outline_width = 3.0
 shader_parameter/outline_color = Color(0, 0, 0, 1)
 
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("movement")]
@@ -161,11 +137,9 @@ offset_right = 111.5
 offset_bottom = -92.0
 grow_horizontal = 2
 grow_vertical = 0
-size_flags_horizontal = 4
-size_flags_vertical = 4
 script = ExtResource("8_qpnd3")
-success_color = Color(0.054902, 0.607843, 0.286275, 1)
-failure_color = Color(0.792059, 0.152802, 0.154783, 1)
+success_color = Color(0.180392, 0.619608, 0.356863, 1)
+failure_color = Color(0.644517, 0.109901, 0.113998, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="RollResult"]
 root_node = NodePath("../TextureRect")
@@ -196,7 +170,7 @@ offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 18
 text = "99"
@@ -210,7 +184,7 @@ offset_top = 8.0
 offset_right = 223.0
 offset_bottom = 31.0
 size_flags_horizontal = 4
-text = "Widsom check"
+text = "Widsom check: success"
 
 [node name="Timer" type="Timer" parent="RollResult"]
 wait_time = 3.0

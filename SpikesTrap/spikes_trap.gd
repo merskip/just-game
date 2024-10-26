@@ -25,7 +25,7 @@ func _on_detection_area_entered(body: Node2D) -> void:
 	if _detected:
 		return
 	if body is Unit:
-		if body.check_wisdom("perception"):
+		if await body.check_wisdom("perception"):
 			$DetectedOverlay.visible = true
 			_detected = true
 

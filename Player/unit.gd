@@ -14,6 +14,7 @@ signal on_health_change()
 signal on_die()
 
 var _floating_damage_label := preload("res://Player/floating_damage_label.tscn")
+var _dice_icon := preload("res://DiceRoll/dice_icon.svg")
 
 func _ready() -> void:
 	_health = max_health
@@ -22,8 +23,9 @@ func _ready() -> void:
 func check_wisdom(skill_name: String) -> bool:
 	var roll_result = randi_range(1, 20)
 	var success = roll_result <= abilities.wisdom
-	notifications_manager.notify("Check %s: %s" % [skill_name, success])
+	notifications_manager.notify("Check %s: %s" % [skill_name, success], _dice_icon)
 	$RollResult.show_roll_result(skill_name, roll_result, success)
+	await get_tree().create_timer(0.8).timeout
 	return success
 
 func take_damage(damage: Damage):
