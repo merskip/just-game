@@ -8,5 +8,5 @@ extends Resource
 @export var wisdom: int
 @export var charisma: int
 
-func modifier(ability: int) -> int:
+static func modifier(ability: int) -> int:
 	return int(floor((float(ability) - 10) / 2))

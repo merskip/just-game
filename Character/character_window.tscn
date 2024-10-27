@@ -1,0 +1,117 @@
+[gd_scene load_steps=4 format=3 uid="uid://bq41q6nbw66wg"]
+
+[ext_resource type="Script" path="res://Character/character_window.gd" id="1_ftth6"]
+[ext_resource type="PackedScene" uid="uid://u5ow42rdox8k" path="res://Character/ability_row.tscn" id="2_1b5d2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hi2af"]
+bg_color = Color(0, 0, 0, 0.858824)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.262745)
+shadow_size = 4
+shadow_offset = Vector2(4, 4)
+
+[node name="CharacterWindow" type="Panel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -391.0
+offset_top = -211.5
+offset_right = 249.0
+offset_bottom = 268.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hi2af")
+script = ExtResource("1_ftth6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Character Sheet"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CloseButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Close"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Header" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Title" type="Label" parent="VBoxContainer/VBoxContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"HeaderSmall"
+text = "Ability"
+
+[node name="Value" type="Label" parent="VBoxContainer/VBoxContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_type_variation = &"HeaderSmall"
+text = "Value"
+
+[node name="Modifier" type="Label" parent="VBoxContainer/VBoxContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_type_variation = &"HeaderSmall"
+text = "Modifier"
+
+[node name="Strength" parent="VBoxContainer/VBoxContainer" instance=ExtResource("2_1b5d2")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Dexterity" parent="VBoxContainer/VBoxContainer" instance=ExtResource("2_1b5d2")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Constitution" parent="VBoxContainer/VBoxContainer" instance=ExtResource("2_1b5d2")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Intelligence" parent="VBoxContainer/VBoxContainer" instance=ExtResource("2_1b5d2")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Wisdom" parent="VBoxContainer/VBoxContainer" instance=ExtResource("2_1b5d2")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Charisma" parent="VBoxContainer/VBoxContainer" instance=ExtResource("2_1b5d2")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]

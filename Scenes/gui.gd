@@ -7,11 +7,14 @@ var _window: Control
 func _ready() -> void:
 	notifications_manager.on_notification.connect(on_notification)
 
-func _on_inventory_button_pressed() -> void:
-	show_inventory()
+func show_character_sheet():
+	var window := preload("res://Character/character_window.tscn").instantiate()
+	window.unit = %Player
+	open_window(window)
+	
 
 func show_inventory():
-	var player_unit: Unit = %Player
+	var player_unit := %Player
 	var inventory_window: InventoryWindow = preload("res://Inventory/inventory_window.tscn").instantiate()
 	open_window(inventory_window)
 	inventory_window.fill(player_unit.inventory)

@@ -17,6 +17,10 @@ layout_mode = 2
 text = "Menu"
 horizontal_alignment = 1
 
+[node name="CharacterSheetButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Character"
+
 [node name="InventoryButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Inventory"
@@ -44,5 +48,6 @@ custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 alignment = 2
 
-[connection signal="pressed" from="VBoxContainer/InventoryButton" to="." method="_on_inventory_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/CharacterSheetButton" to="." method="show_character_sheet"]
+[connection signal="pressed" from="VBoxContainer/InventoryButton" to="." method="show_inventory"]
 [connection signal="pressed" from="VBoxContainer/DiceRollButton" to="." method="show_dice_roll"]
