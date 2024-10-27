@@ -45,5 +45,5 @@ func on_notification(text: String, icon: Texture2D):
 		label.add_image(icon, 28, 28)
 	_notifications_container.add_child(label)
 	
-	var timer: SceneTreeTimer = get_tree().create_timer(3)
-	timer.timeout.connect(func (): label.queue_free())
+	await get_tree().create_timer(3).timeout
+	label.queue_free()

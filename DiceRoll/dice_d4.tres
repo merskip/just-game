@@ -1,14 +1,14 @@
 [gd_resource type="ArrayMesh" load_steps=4 format=4 uid="uid://cevs2yvalbadw"]
 
-[ext_resource type="Texture2D" uid="uid://txby1d0f0ilb" path="res://DiceRoll/d2.png" id="1_0lkua"]
+[ext_resource type="Texture2D" uid="uid://txby1d0f0ilb" path="res://DiceRoll/d2.png" id="1_etaus"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0fkv7"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ppynv"]
 resource_name = "D2"
 cull_mode = 2
-albedo_texture = ExtResource("1_0lkua")
+albedo_texture = ExtResource("1_etaus")
 roughness = 0.5
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_ck5l4"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_igp3m"]
 _surfaces = [{
 "aabb": AABB(-0.619733, -0.45, -1.04454, 1.80919, 1.70572, 2.08907),
 "format": 34896613377,
@@ -30,7 +30,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 60,
 "index_data": PackedByteArray("GwAmABUAEQAqAAMAHAAIACwAAAAKAAUADwAXABMAGAAhAB4AJQAvACkAGQAuACQAGQAfAC4AAgANABAAAgAHAA0ABAAdACAABAAJAB0ACwAoAC0ACwABACgAEgAnACsAEgAWACcAFAAjABoAFAAOACMADAAGACIA"),
-"material": SubResource("StandardMaterial3D_0fkv7"),
+"material": SubResource("StandardMaterial3D_ppynv"),
 "name": "D2",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -38,4 +38,4 @@ _surfaces = [{
 "vertex_data": PackedByteArray("EwcTBwAA9eYTBxMHAABO5BMHEwcAALL2EwcTBwAAdei3BAAAiQO/xbcEAACJA/XmtwQAAIkDvNu3BAAAiQOy9gAAEweJAw/AAAATB4kDv8UAABMHiQP15gAAEweJA07ko/0AAP9/vNuj/QAA/3+y9qP9AAD/f/jlo/0AAP9/Tfb//xMHdXyy9v//Ewd1fHXo//8TB3V8Su3//xMHdXxN9v//EweJg/jl//8TB4mDHuX//xMHiYNK7f//EweJg032EwcTB///2MMTBxMH//+uoxMHEwf///jlEwcTB///HuUAABMHdfwPwAAAEwd1/L/FAAATB3X82MMAABMHdfyuo7cEAAB1/L/FtwQAAHX82MO3BAAAdfy827cEAAB1/PjlDFr//4mDrqMMWv//iYOmxwxa//+Jgx7lDFr//4mDSu0MWv//dXxO5Axa//91fKbHDFr//3V8degMWv//dXxK7flS/v//fw/A+VL+//9/TuT5Uv7//3+uo/lS/v//f6bHFUiCxqejX8tHK3DHAMY4T/1Oa+0VSILGQC6B3EcrcMdjnbze/U5r7RVIgsano1/LQC6B3EcrcMf6E1Pjp69wZUcrcMcAxjhPNSwTIKevcGX6E1PjIhjREDUsEyCnr3BluNqL+XWuO7H6E1PjIhjREGOdvN79TmvtuNqL+XWuO7H9TmvtuNqL+UAugdz6E1Pjda47sVvBUZ8iGNEQNSwTIKejX8tbwVGfAMY4TzUsEyBjnbzep6Nfy3WuO7FbwVGf")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_ck5l4")
+shadow_mesh = SubResource("ArrayMesh_igp3m")
