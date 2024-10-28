@@ -14,7 +14,7 @@
 [sub_resource type="Resource" id="Resource_sjhfq"]
 script = ExtResource("2_klrb4")
 strength = 15
-dexternity = 14
+dexterity = 0
 constitution = 13
 intelligence = 12
 wisdom = 10

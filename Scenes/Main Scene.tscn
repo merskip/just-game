@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://bq73ukjrg4bxg"]
+[gd_scene load_steps=16 format=4 uid="uid://bq73ukjrg4bxg"]
 
 [ext_resource type="Script" path="res://Player/game_manager.gd" id="1_0144v"]
 [ext_resource type="PackedScene" uid="uid://d2bjrjtongb35" path="res://Scenes/GUI.tscn" id="1_cjw5i"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://qeg8lkgfx15o" path="res://Inventory/test_item.tres" id="6_sly6m"]
 [ext_resource type="Script" path="res://Interaction/mouse_interaction.gd" id="7_eaeqg"]
 [ext_resource type="PackedScene" uid="uid://dkxt5a0qm7rek" path="res://Chest/chest.tscn" id="8_b2qjf"]
+[ext_resource type="Script" path="res://Player/skills.gd" id="9_6unx6"]
 [ext_resource type="Script" path="res://Scenes/mouse_movement.gd" id="10_po0qo"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_oe820"]
@@ -23,6 +24,10 @@ point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_p0d3v"]
 colors = PackedColorArray(0.784314, 0.572549, 0.109804, 0.498039, 0.992777, 0.825338, 0.534331, 1)
+
+[sub_resource type="Resource" id="Resource_3d56d"]
+script = ExtResource("9_6unx6")
+proficiencies = Array[int]([11, 17, 8])
 
 [node name="MainScene" type="Node2D"]
 
@@ -62,6 +67,7 @@ unique_name_in_owner = true
 z_index = 100
 position = Vector2(905, 199)
 movement = NodePath("MouseMovement")
+skills = SubResource("Resource_3d56d")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position_smoothing_speed = 10.0

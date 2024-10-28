@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @export var movement: Movement
 @export var abilities: Abilities
+@export var skills: Skills
 @export var max_health: int = 100
 
 @onready var _grunt_sfx := $Grunt
