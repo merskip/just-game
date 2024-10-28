@@ -21,6 +21,7 @@ func handle_interation():
 	if interaction:
 		print("interaction: " + interaction.to_string())
 		interaction.interact(interact_unit)
+		get_viewport().set_input_as_handled()
 
 func _get_interaction_under_mouser() -> Interaction:
 	var spaceState = get_world_2d().direct_space_state

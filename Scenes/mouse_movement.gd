@@ -17,10 +17,14 @@ func _ready() -> void:
 	
 	agent.target_position = get_parent().global_position
 
+
+func _unhandled_input(event: InputEvent) -> void:
+#func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+		agent.target_position = region.get_global_mouse_position()
+		get_viewport().set_input_as_handled()
+
 func physics_process(_character_body: CharacterBody2D, _delta: float) -> void:
-	if Input.is_action_pressed("MouseLeft"):
-		agent.target_position = _character_body.get_global_mouse_position()
-	
 	if agent.is_navigation_finished():
 		return
 		
