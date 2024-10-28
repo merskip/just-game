@@ -10,6 +10,11 @@ extends Movement
 
 
 func _ready() -> void:
+	# Workaround: https://github.com/godotengine/godot/issues/84677
+	set_physics_process(false)
+	await NavigationServer2D.map_changed
+	set_physics_process(true)
+	
 	agent.target_position = get_parent().global_position
 
 func physics_process(_character_body: CharacterBody2D, _delta: float) -> void:
