@@ -1,4 +1,4 @@
-class_name PlayerMovement
+class_name KeyboardMovement
 extends Movement
 
 @export var speed: float = 300.0

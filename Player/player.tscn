@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://bj6istu8r131k"]
 
-[ext_resource type="Script" path="res://Player/player_movement.gd" id="1_3kw8n"]
+[ext_resource type="Script" path="res://Player/keyboard_movement.gd" id="1_3kw8n"]
 [ext_resource type="Texture2D" uid="uid://chh1vkpbvaxsc" path="res://Assets/icon.svg" id="1_bo06m"]
 [ext_resource type="Script" path="res://Player/unit.gd" id="1_cs6h6"]
 [ext_resource type="Script" path="res://Player/abilities.gd" id="2_klrb4"]
@@ -20,8 +20,8 @@ intelligence = 12
 wisdom = 10
 charisma = 8
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8rq02"]
-size = Vector2(62, 62)
+[sub_resource type="CircleShape2D" id="CircleShape2D_l1uhj"]
+radius = 32.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wmkck"]
 bg_color = Color(0.6, 0.108, 0.108, 1)
@@ -121,11 +121,11 @@ shader_parameter/outline_color = Color(0, 0, 0, 1)
 
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("movement")]
 script = ExtResource("1_cs6h6")
-movement = NodePath("PlayerMovement")
+movement = NodePath("KeyboardMovement")
 abilities = SubResource("Resource_sjhfq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_8rq02")
+shape = SubResource("CircleShape2D_l1uhj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -141,7 +141,7 @@ value = 80.0
 show_percentage = false
 script = ExtResource("3_8huld")
 
-[node name="PlayerMovement" type="Node" parent="."]
+[node name="KeyboardMovement" type="Node" parent="."]
 script = ExtResource("1_3kw8n")
 
 [node name="Grunt" type="AudioStreamPlayer" parent="."]
