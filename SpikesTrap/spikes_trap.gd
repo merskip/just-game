@@ -2,6 +2,7 @@ class_name SpikesTrap
 extends Node2D
 
 @export var damage: Damage
+@export var difficulty_class: int = 10
 @onready var hidden_spikes := $HiddenSpikes
 @onready var released_spikes := $ReleasedTrapSpikes
 
@@ -24,10 +25,12 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_detection_area_entered(body: Node2D) -> void:
 	if _detected:
 		return
-	if body is Unit:
-		if await body.check_wisdom("perception"):
-			$DetectedOverlay.visible = true
-			_detected = true
+	if body is not Unit:
+		return
+	var unit = body as Unit
+	if await unit.check_skill_on_fly(Skills.Skill.PERCEPTION, difficulty_class):
+		$DetectedOverlay.visible = true
+		_detected = true
 
 func _on_reset_timer_timeout() -> void:
 	set_state(State.HIDDEN)

@@ -20,12 +20,19 @@ var _dice_icon := preload("res://DiceRoll/dice_icon.svg")
 func _ready() -> void:
 	_health = max_health
 	on_health_change.emit()
-	
-func check_wisdom(skill_name: String) -> bool:
+
+func check_skill_on_fly(skill: Skills.Skill, difficulty_class: int) -> bool:
 	var roll_result = randi_range(1, 20)
-	var success = roll_result <= abilities.wisdom
-	notifications_manager.notify("Check %s: %s" % [skill_name, success], _dice_icon)
-	$RollResult.show_roll_result(skill_name, roll_result, success)
+	roll_result += skills.get_skill_modifier(skill, abilities, 3)
+	var success = roll_result >= difficulty_class
+	notifications_manager.notify(
+		"Check %s: %d (%s), DC: %d" % [
+			Skills.skill_name(skill),
+			roll_result,
+			"success" if success else "failure",
+			difficulty_class],
+		_dice_icon)
+	$RollResult.show_roll_result(skill, roll_result, success)
 	await get_tree().create_timer(0.8).timeout
 	return success
 

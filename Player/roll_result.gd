@@ -12,9 +12,9 @@ extends Control
 func _ready() -> void:
 	visible = false
 
-func show_roll_result(check_name: String, roll_result: int, sucess: bool):
-	label.text = "Check %s" % check_name
-	result_label.text = "%s" % roll_result
+func show_roll_result(skill: Skills.Skill, roll_result: int, sucess: bool):
+	label.text = Skills.skill_name(skill)
+	result_label.text = str(roll_result)
 	if sucess:
 		result_label.add_theme_color_override("font_color", success_color)
 		set_dice_outline(success_color)
