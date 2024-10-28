@@ -218,6 +218,7 @@ one_shot = true
 
 [node name="FastDiceRoll" type="AudioStreamPlayer" parent="RollResult"]
 stream = ExtResource("7_3atn1")
+volume_db = -5.0
 
 [connection signal="on_health_change" from="." to="HealthBar" method="_on_health_change"]
 [connection signal="timeout" from="RollResult/Timer" to="RollResult" method="_on_timer_timeout"]
