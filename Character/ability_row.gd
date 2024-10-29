@@ -1,3 +1,4 @@
+class_name AbilityRow
 extends HBoxContainer
 
 @onready var title_label := $Title
