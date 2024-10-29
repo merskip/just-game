@@ -102,6 +102,12 @@ size_flags_horizontal = 3
 theme_type_variation = &"HeaderSmall"
 text = "Level: %d"
 
+[node name="HitPoints" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+text = "Hit Points: %d/%d"
+
 [node name="HSeparator1" type="HSeparator" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 24
@@ -141,7 +147,7 @@ theme_override_constants/separation = 24
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"HeaderSmall"
-text = "Profinency bonus: %+d"
+text = "Proficency bonus: %+d"
 
 [node name="SkillsContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true

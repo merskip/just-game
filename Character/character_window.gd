@@ -16,6 +16,7 @@ func fill_general_information():
 	%Race.text = %Race.text % Unit.race_name(unit.race)
 	%ClassType.text = %ClassType.text % Unit.class_type_name(unit.class_type)
 	%Level.text = %Level.text % unit.level
+	%HitPoints.text = %HitPoints.text % [unit._current_hit_point, unit._max_hit_points]
 
 func fill_abilities():
 	for ability in Abilities.Ability.values():
