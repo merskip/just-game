@@ -17,6 +17,9 @@ enum State {
 func _ready() -> void:
 	set_state(State.HIDDEN)
 
+func _on_disarmed() -> void:
+	queue_free()
+
 func _on_body_entered(body: Node2D) -> void:
 	if body is Unit and _state == State.HIDDEN:
 		body.take_damage(damage)
@@ -31,6 +34,7 @@ func _on_detection_area_entered(body: Node2D) -> void:
 	if await unit.check_skill_on_fly(Skills.Skill.PERCEPTION, difficulty_class):
 		$DetectedOverlay.visible = true
 		_detected = true
+		%DisarmTrap.enabled = true
 
 func _on_reset_timer_timeout() -> void:
 	set_state(State.HIDDEN)
@@ -45,3 +49,6 @@ func set_state(state: State):
 			released_spikes.visible = true
 			$ResetTimer.start()
 	_state = state
+
+func is_interactable(_unit: Unit) -> bool:
+	return _detected

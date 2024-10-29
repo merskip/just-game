@@ -52,6 +52,35 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Roll"
 
+[node name="ConfirmButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 46.0
+offset_top = -72.0
+offset_right = 125.0
+offset_bottom = -41.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Continue"
+
+[node name="HeaderLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -77.0
+offset_top = 46.0
+offset_right = 77.0
+offset_bottom = 80.0
+grow_horizontal = 2
+theme_type_variation = &"HeaderMedium"
+text = "Header Label"
+
 [node name="ResultLabel" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
@@ -59,9 +88,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -43.5
-offset_top = 30.0
+offset_top = 113.0
 offset_right = 43.5
-offset_bottom = 53.0
+offset_bottom = 136.0
 grow_horizontal = 2
 text = "You rolled: "
 
@@ -79,4 +108,5 @@ text = "Close"
 
 [connection signal="on_roll_result" from="SubViewportContainer/SubViewport/RollDice" to="." method="_on_roll_result"]
 [connection signal="pressed" from="RollButton" to="." method="roll"]
+[connection signal="pressed" from="ConfirmButton" to="." method="_on_confirm_button_pressed"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

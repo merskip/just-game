@@ -19,9 +19,12 @@ func show_inventory():
 	open_window(inventory_window)
 	inventory_window.fill(player_unit.inventory)
 
-func show_dice_roll():
+func show_dice_roll(skill: Skills.Skill, difficulty_class: int) -> DiceRollWindow:
 	var window: DiceRollWindow = preload("res://DiceRoll/roll_dice_window.tscn").instantiate()
+	window.skill = skill
+	window.difficulty_class = difficulty_class
 	open_window(window)
+	return window
 
 func open_window(window: Control):
 	close_window()

@@ -26,6 +26,7 @@ func handle_interation():
 func _get_interaction_under_mouser() -> Interaction:
 	var spaceState = get_world_2d().direct_space_state
 	var query = PhysicsPointQueryParameters2D.new()
+	query.collide_with_areas = true
 	query.position = get_global_mouse_position()
 	var results = spaceState.intersect_point(query)
 	
