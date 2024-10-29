@@ -1,10 +1,15 @@
 class_name Unit
 extends CharacterBody2D
 
-@export var movement: Movement
+@export var character_name: String
+@export var race: Race = Race.HUMAN
+@export var class_type: ClassType = ClassType.FIGHTER
+@export var level: int = 1
 @export var abilities: Abilities
 @export var skills: Skills
 @export var max_health: int = 100
+
+@export var movement: Movement
 
 @onready var _grunt_sfx := $Grunt
 
@@ -23,7 +28,8 @@ func _ready() -> void:
 
 func check_skill_on_fly(skill: Skills.Skill, difficulty_class: int) -> bool:
 	var roll_result = randi_range(1, 20)
-	roll_result += skills.get_skill_modifier(skill, abilities, 3)
+	var proficiency_bonus = get_proficiency_bonus()
+	roll_result += skills.get_skill_modifier(skill, abilities, proficiency_bonus)
 	var success = roll_result >= difficulty_class
 	notifications_manager.notify(
 		"Check %s: %d (%s), DC: %d" % [
@@ -36,6 +42,9 @@ func check_skill_on_fly(skill: Skills.Skill, difficulty_class: int) -> bool:
 	await get_tree().create_timer(0.8).timeout
 	return success
 
+func get_proficiency_bonus() -> int:
+	return 2 + int(float(level - 1) / 4)
+	
 func take_damage(damage: Damage):
 	var damage_value = damage.resolve()
 	_health = max(0, _health - damage_value)
@@ -55,3 +64,80 @@ func _show_floating_damage_label(damage_value: int):
 func _physics_process(delta: float) -> void:
 	if movement != null:
 		movement.physics_process(self, delta)
+
+enum Race {
+	DRAGONBORN,
+	DWARF,
+	ELF,
+	GNOME,
+	HALF_ELF,
+	HALF_ORC,
+	HALFLING,
+	HUMAN,
+	TIEFLING
+}
+
+enum ClassType {
+	BARBARIAN,
+	BARD,
+	CLERIC,
+	DRUID,
+	FIGHTER,
+	MONK,
+	PALADIN,
+	RANGER,
+	ROGUE,
+	SORCERER,
+	WARLOCK,
+	WIZARD
+}
+
+static func race_name(race: Race) -> String:
+	match race:
+		Race.DRAGONBORN:
+			return "Dragonborn"
+		Race.DWARF:
+			return "Dwarf"
+		Race.ELF:
+			return "Elf"
+		Race.GNOME:
+			return "Gnome"
+		Race.HALF_ELF:
+			return "Half-Elf"
+		Race.HALF_ORC:
+			return "Half-Orc"
+		Race.HALFLING:
+			return "Halfling"
+		Race.HUMAN:
+			return "Human"
+		Race.TIEFLING:
+			return "Tiefling"
+	return ""
+
+static func class_type_name(class_type: ClassType) -> String:
+	match class_type:
+		ClassType.BARBARIAN:
+			return "Barbarian"
+		ClassType.BARD:
+			return "Bard"
+		ClassType.CLERIC:
+			return "Cleric"
+		ClassType.DRUID:
+			return "Druid"
+		ClassType.FIGHTER:
+			return "Fighter"
+		ClassType.MONK:
+			return "Monk"
+		ClassType.PALADIN:
+			return "Paladin"
+		ClassType.RANGER:
+			return "Ranger"
+		ClassType.ROGUE:
+			return "Rogue"
+		ClassType.SORCERER:
+			return "Sorcerer"
+		ClassType.WARLOCK:
+			return "Warlock"
+		ClassType.WIZARD:
+			return "Wizard"
+	return ""

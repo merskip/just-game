@@ -66,8 +66,9 @@ antialiased = true
 unique_name_in_owner = true
 z_index = 100
 position = Vector2(905, 199)
-movement = NodePath("MouseMovement")
+character_name = "John Smith"
 skills = SubResource("Resource_3d56d")
+movement = NodePath("MouseMovement")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position_smoothing_speed = 10.0

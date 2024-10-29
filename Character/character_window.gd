@@ -7,8 +7,15 @@ var ability_row_scene := preload("res://Character/ability_row.tscn")
 var skill_row_scene := preload("res://Character/skill_row.tscn")
 
 func _ready() -> void:
+	fill_general_information()
 	fill_abilities()
 	fill_skills()
+
+func fill_general_information():
+	%CharacterName.text = %CharacterName.text % unit.character_name
+	%Race.text = %Race.text % Unit.race_name(unit.race)
+	%ClassType.text = %ClassType.text % Unit.class_type_name(unit.class_type)
+	%Level.text = %Level.text % unit.level
 
 func fill_abilities():
 	for ability in Abilities.Ability.values():
@@ -21,6 +28,7 @@ func add_ability(ability: Abilities.Ability):
 	ability_row.fill(ability_name, unit.abilities.get_ability_value(ability))
 
 func fill_skills():
+	%ProficiencyBonus.text = %ProficiencyBonus.text % unit.get_proficiency_bonus()
 	for skill in Skills.Skill.values():
 		add_skill(skill)
 
