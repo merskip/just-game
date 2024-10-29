@@ -1,13 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://bd5amke2vlxia"]
+[gd_scene load_steps=5 format=3 uid="uid://bd5amke2vlxia"]
 
 [ext_resource type="Script" path="res://Character/skill_row.gd" id="1_6h3nk"]
+[ext_resource type="Shader" path="res://Character/icon.gdshader" id="2_lhi02"]
+[ext_resource type="Texture2D" uid="uid://y4yfusyxch0r" path="res://3rd party/tw-dnd/skill/acrobatics.svg" id="3_0bd4i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cvjvh"]
+shader = ExtResource("2_lhi02")
+shader_parameter/color = Color(1, 1, 1, 1)
 
 [node name="SkillRow" type="HBoxContainer"]
 offset_right = 267.0
 offset_bottom = 23.0
 size_flags_horizontal = 3
+theme_override_constants/separation = 10
 alignment = 1
 script = ExtResource("1_6h3nk")
+
+[node name="Icon" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_cvjvh")
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_0bd4i")
+expand_mode = 3
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 2
@@ -18,7 +34,6 @@ vertical_alignment = 1
 [node name="Ability" type="Label" parent="."]
 layout_mode = 2
 size_flags_horizontal = 6
-size_flags_vertical = 1
 theme_override_font_sizes/font_size = 14
 text = "Dex"
 vertical_alignment = 2
@@ -26,7 +41,6 @@ vertical_alignment = 2
 [node name="Proficiency" type="Label" parent="."]
 layout_mode = 2
 size_flags_horizontal = 6
-size_flags_vertical = 1
 theme_override_constants/line_spacing = 65
 text = "🌟"
 vertical_alignment = 2

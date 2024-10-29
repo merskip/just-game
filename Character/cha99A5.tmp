@@ -1,0 +1,226 @@
+[gd_scene load_steps=7 format=3 uid="uid://bq41q6nbw66wg"]
+
+[ext_resource type="Script" path="res://Character/character_window.gd" id="1_ftth6"]
+[ext_resource type="Texture2D" uid="uid://d4kkv8u4nwl3t" path="res://Assets/avatar_human_figther.png" id="2_hoh6w"]
+[ext_resource type="Shader" path="res://Character/icon.gdshader" id="3_fthsx"]
+[ext_resource type="Texture2D" uid="uid://csybi0vlmmlck" path="res://3rd party/tw-dnd/class/fighter.svg" id="4_4y1eg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hi2af"]
+bg_color = Color(0, 0, 0, 0.858824)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.262745)
+shadow_size = 4
+shadow_offset = Vector2(4, 4)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lrom2"]
+shader = ExtResource("3_fthsx")
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[node name="CharacterWindow" type="Panel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -360.0
+offset_right = 320.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hi2af")
+script = ExtResource("1_ftth6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Character Sheet"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CloseButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Close"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+vertical_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="AvatarIcon" type="TextureRect" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+texture = ExtResource("2_hoh6w")
+expand_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CharacterName" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+text = "Character name: %s"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Race" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"HeaderSmall"
+text = "Race: %s"
+
+[node name="ClassType" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"HeaderSmall"
+text = "Class: %s"
+
+[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"HeaderSmall"
+text = "Level: %d"
+
+[node name="HitPoints" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+text = "Hit Points: %d/%d"
+
+[node name="ClassIcon" type="TextureRect" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_lrom2")
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_4y1eg")
+expand_mode = 3
+
+[node name="HSeparator1" type="HSeparator" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="AbilitiesContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Ability Header" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer/AbilitiesContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Control2" type="Control" parent="VBoxContainer/ScrollContainer/VBoxContainer/AbilitiesContainer/Ability Header"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+
+[node name="Title" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/AbilitiesContainer/Ability Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"HeaderSmall"
+text = "Ability"
+
+[node name="Value" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/AbilitiesContainer/Ability Header"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_type_variation = &"HeaderSmall"
+text = "Value"
+
+[node name="Modifier" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/AbilitiesContainer/Ability Header"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_type_variation = &"HeaderSmall"
+text = "Modifier"
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="ProficiencyBonus" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+text = "Proficency bonus: %+d"
+
+[node name="SkillsContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Skill Header" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer/SkillsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Control" type="Control" parent="VBoxContainer/ScrollContainer/VBoxContainer/SkillsContainer/Skill Header"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+
+[node name="Title" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/SkillsContainer/Skill Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"HeaderSmall"
+text = "Skill"
+
+[node name="Ability" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/SkillsContainer/Skill Header"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_type_variation = &"HeaderSmall"
+text = "Ability"
+
+[node name="Proficiency" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/SkillsContainer/Skill Header"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_type_variation = &"HeaderSmall"
+text = "Proficiency"
+
+[node name="Modifier" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/SkillsContainer/Skill Header"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_type_variation = &"HeaderSmall"
+text = "Modifier"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]

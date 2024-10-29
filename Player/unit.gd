@@ -2,6 +2,7 @@ class_name Unit
 extends CharacterBody2D
 
 @export var character_name: String
+@export var avatar: Texture2D
 @export var race: Race = Race.HUMAN
 @export var class_type: ClassType = ClassType.FIGHTER
 @export var level: int = 1
@@ -116,50 +117,45 @@ enum ClassType {
 
 static func race_name(_race: Race) -> String:
 	match _race:
-		Race.DRAGONBORN:
-			return "Dragonborn"
-		Race.DWARF:
-			return "Dwarf"
-		Race.ELF:
-			return "Elf"
-		Race.GNOME:
-			return "Gnome"
-		Race.HALF_ELF:
-			return "Half-Elf"
-		Race.HALF_ORC:
-			return "Half-Orc"
-		Race.HALFLING:
-			return "Halfling"
-		Race.HUMAN:
-			return "Human"
-		Race.TIEFLING:
-			return "Tiefling"
+		Race.DRAGONBORN: return "Dragonborn"
+		Race.DWARF: return "Dwarf"
+		Race.ELF: return "Elf"
+		Race.GNOME: return "Gnome"
+		Race.HALF_ELF: return "Half-Elf"
+		Race.HALF_ORC: return "Half-Orc"
+		Race.HALFLING: return "Halfling"
+		Race.HUMAN: return "Human"
+		Race.TIEFLING: return "Tiefling"
 	return ""
 
 static func class_type_name(_class_type: ClassType) -> String:
 	match _class_type:
-		ClassType.BARBARIAN:
-			return "Barbarian"
-		ClassType.BARD:
-			return "Bard"
-		ClassType.CLERIC:
-			return "Cleric"
-		ClassType.DRUID:
-			return "Druid"
-		ClassType.FIGHTER:
-			return "Fighter"
-		ClassType.MONK:
-			return "Monk"
-		ClassType.PALADIN:
-			return "Paladin"
-		ClassType.RANGER:
-			return "Ranger"
-		ClassType.ROGUE:
-			return "Rogue"
-		ClassType.SORCERER:
-			return "Sorcerer"
-		ClassType.WARLOCK:
-			return "Warlock"
-		ClassType.WIZARD:
-			return "Wizard"
+		ClassType.BARBARIAN: return "Barbarian"
+		ClassType.BARD: return "Bard"
+		ClassType.CLERIC: return "Cleric"
+		ClassType.DRUID: return "Druid"
+		ClassType.FIGHTER: return "Fighter"
+		ClassType.MONK: return "Monk"
+		ClassType.PALADIN: return "Paladin"
+		ClassType.RANGER: return "Ranger"
+		ClassType.ROGUE: return "Rogue"
+		ClassType.SORCERER: return "Sorcerer"
+		ClassType.WARLOCK: return "Warlock"
+		ClassType.WIZARD: return "Wizard"
 	return ""
+
+static func class_icon(_class_type: ClassType) -> Texture2D:
+	match _class_type:
+		ClassType.BARBARIAN: return load("res://3rd party/tw-dnd/class/barbarian.svg")
+		ClassType.BARD: return load("res://3rd party/tw-dnd/class/bard.svg")
+		ClassType.CLERIC: return load("res://3rd party/tw-dnd/class/cleric.svg")
+		ClassType.DRUID: return load("res://3rd party/tw-dnd/class/druid.svg")
+		ClassType.FIGHTER: return load("res://3rd party/tw-dnd/class/fighter.svg")
+		ClassType.MONK: return load("res://3rd party/tw-dnd/class/monk.svg")
+		ClassType.PALADIN: return load("res://3rd party/tw-dnd/class/paladin.svg")
+		ClassType.RANGER: return load("res://3rd party/tw-dnd/class/ranger.svg")
+		ClassType.ROGUE: return load("res://3rd party/tw-dnd/class/rogue.svg")
+		ClassType.SORCERER: return load("res://3rd party/tw-dnd/class/sorcerer.svg")
+		ClassType.WARLOCK: return load("res://3rd party/tw-dnd/class/warlock.svg")
+		ClassType.WIZARD: return load("res://3rd party/tw-dnd/class/wizard.svg")
+	return null

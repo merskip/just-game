@@ -1,13 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://u5ow42rdox8k"]
+[gd_scene load_steps=5 format=3 uid="uid://u5ow42rdox8k"]
 
 [ext_resource type="Script" path="res://Character/ability_row.gd" id="1_3j3vx"]
+[ext_resource type="Texture2D" uid="uid://bob0pfvqiduhk" path="res://3rd party/tw-dnd/ability/strength.svg" id="2_ubrxk"]
+[ext_resource type="Shader" path="res://Character/icon.gdshader" id="2_wosfy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sf88l"]
+shader = ExtResource("2_wosfy")
+shader_parameter/color = Color(1, 1, 1, 1)
 
 [node name="AbilityRow" type="HBoxContainer"]
 offset_right = 267.0
 offset_bottom = 23.0
 size_flags_horizontal = 3
+theme_override_constants/separation = 10
 alignment = 1
 script = ExtResource("1_3j3vx")
+
+[node name="Icon" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_sf88l")
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_ubrxk")
+expand_mode = 3
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 2

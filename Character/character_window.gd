@@ -14,10 +14,12 @@ func _ready() -> void:
 
 func fill_general_information():
 	%CharacterName.text = "Character name: %s" % unit.character_name
+	%AvatarIcon.texture = unit.avatar
 	%Race.text = "Race: %s" % Unit.race_name(unit.race)
 	%ClassType.text = "Class: %s" % Unit.class_type_name(unit.class_type)
 	%Level.text = "Level: %d" % unit.level
 	%HitPoints.text = "Hit Points: %d/%d" % [unit._current_hit_point, unit._max_hit_points]
+	%ClassIcon.texture = Unit.class_icon(unit.class_type)
 
 func fill_abilities():
 	for ability in Abilities.Ability.values():
@@ -26,8 +28,9 @@ func fill_abilities():
 func add_ability(ability: Abilities.Ability):
 	var ability_row: AbilityRow = ability_row_scene.instantiate()
 	%AbilitiesContainer.add_child(ability_row)
+	var ability_icon = Abilities.ability_icon(ability)
 	var ability_name = Abilities.ability_name(ability)
-	ability_row.fill(ability_name, unit.abilities.get_ability_value(ability))
+	ability_row.fill(ability_icon, ability_name, unit.abilities.get_ability_value(ability))
 
 func fill_skills():
 	%ProficiencyBonus.text = "Proficency bonus: %+d" % unit.get_proficiency_bonus()
@@ -37,12 +40,13 @@ func fill_skills():
 func add_skill(skill: Skills.Skill):
 	var skill_row: SkillRow = skill_row_scene.instantiate()
 	%SkillsContainer.add_child(skill_row)
+	var skill_icon = Skills.skill_icon(skill)
 	var skill_name = Skills.skill_name(skill)
 	var ability = Skills.get_ability_for_skill(skill)
 	var ability_name = Abilities.ability_name(ability)
 	var has_proficiency = unit.skills.has_proficiency(skill)
 	var modifier = unit.skills.get_skill_modifier(skill, unit.abilities, 3)
-	skill_row.fill(skill_name, ability_name, has_proficiency, modifier)
+	skill_row.fill(skill_icon, skill_name, ability_name, has_proficiency, modifier)
 
 func _on_close_button_pressed() -> void:
 	var gui = get_tree().current_scene.get_node("%GUI") as GUI

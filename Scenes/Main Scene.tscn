@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://bq73ukjrg4bxg"]
+[gd_scene load_steps=17 format=4 uid="uid://bq73ukjrg4bxg"]
 
 [ext_resource type="Script" path="res://Player/game_manager.gd" id="1_0144v"]
 [ext_resource type="PackedScene" uid="uid://d2bjrjtongb35" path="res://Scenes/GUI.tscn" id="1_cjw5i"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://qeg8lkgfx15o" path="res://Inventory/test_item.tres" id="6_sly6m"]
 [ext_resource type="Script" path="res://Interaction/mouse_interaction.gd" id="7_eaeqg"]
 [ext_resource type="PackedScene" uid="uid://dkxt5a0qm7rek" path="res://Chest/chest.tscn" id="8_b2qjf"]
+[ext_resource type="Texture2D" uid="uid://d4kkv8u4nwl3t" path="res://Assets/avatar_human_figther.png" id="9_0xcei"]
 [ext_resource type="Script" path="res://Player/skills.gd" id="9_6unx6"]
 [ext_resource type="Script" path="res://Scenes/mouse_movement.gd" id="10_po0qo"]
 
@@ -67,6 +68,7 @@ unique_name_in_owner = true
 z_index = 100
 position = Vector2(905, 199)
 character_name = "John Smith"
+avatar = ExtResource("9_0xcei")
 skills = SubResource("Resource_3d56d")
 movement = NodePath("MouseMovement")
 

@@ -41,16 +41,20 @@ static func modifier(ability_value: int) -> int:
 
 static func ability_name(ability: Ability) -> String:
 	match ability:
-		Ability.STRENGTH:
-			return "Strength"
-		Ability.DEXTERITY:
-			return "Dexterity"
-		Ability.CONSTITUTION:
-			return "Constitution"
-		Ability.INTELLIGENCE:
-			return "Intelligence"
-		Ability.WISDOM:
-			return "Wisdom"
-		Ability.CHARISMA:
-			return "Charisma"
+		Ability.STRENGTH: return "Strength"
+		Ability.DEXTERITY: return "Dexterity"
+		Ability.CONSTITUTION: return "Constitution"
+		Ability.INTELLIGENCE: return "Intelligence"
+		Ability.WISDOM: return "Wisdom"
+		Ability.CHARISMA: return "Charisma"
 	return ""
+
+static func ability_icon(ability: Ability) -> Texture2D:
+	match ability:
+		Ability.STRENGTH: return load("res://3rd party/tw-dnd/ability/strength.svg")
+		Ability.DEXTERITY: return load("res://3rd party/tw-dnd/ability/dexterity.svg")
+		Ability.CONSTITUTION: return load("res://3rd party/tw-dnd/ability/constitution.svg")
+		Ability.INTELLIGENCE: return load("res://3rd party/tw-dnd/ability/intelligence.svg")
+		Ability.WISDOM: return load("res://3rd party/tw-dnd/ability/wisdom.svg")
+		Ability.CHARISMA: return load("res://3rd party/tw-dnd/ability/charisma.svg")
+	return null
