@@ -16,7 +16,7 @@ var inventory: Inventory = Inventory.new()
 var _current_hit_point: int
 var _max_hit_points: int
 
-signal on_health_change()
+signal on_hit_points_change()
 signal on_die()
 
 var _floating_damage_label := preload("res://Player/floating_damage_label.tscn")
@@ -25,7 +25,7 @@ var _dice_icon := preload("res://DiceRoll/dice_icon.svg")
 func _ready() -> void:
 	_max_hit_points = calculate_max_hit_points()
 	_current_hit_point = _max_hit_points
-	on_health_change.emit()
+	on_hit_points_change.emit()
 
 func check_skill_on_fly(skill: Skills.Skill, difficulty_class: int) -> bool:
 	var roll_result = randi_range(1, 20)
@@ -52,7 +52,7 @@ func take_damage(damage: Damage):
 	_grunt_sfx.play()
 	_show_floating_damage_label(damage_value)
 	notifications_manager.notify("Unit \"%s\" received %d damage (%s)" % [name, damage_value, damage])
-	on_health_change.emit()
+	on_hit_points_change.emit()
 	if _current_hit_point <= 0:
 		on_die.emit()
 

@@ -2,7 +2,7 @@ extends ProgressBar
 
 @onready var unit: Unit = $".."
 
-func _on_health_change() -> void:
+func _on_hit_points_change() -> void:
 	_update_progress()
 
 func _update_progress():

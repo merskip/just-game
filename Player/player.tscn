@@ -121,8 +121,8 @@ shader_parameter/outline_color = Color(0, 0, 0, 1)
 
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("movement")]
 script = ExtResource("1_cs6h6")
-movement = NodePath("KeyboardMovement")
 abilities = SubResource("Resource_sjhfq")
+movement = NodePath("KeyboardMovement")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_l1uhj")
@@ -220,5 +220,5 @@ one_shot = true
 stream = ExtResource("7_3atn1")
 volume_db = -5.0
 
-[connection signal="on_health_change" from="." to="HealthBar" method="_on_health_change"]
+[connection signal="on_hit_points_change" from="." to="HealthBar" method="_on_hit_points_change"]
 [connection signal="timeout" from="RollResult/Timer" to="RollResult" method="_on_timer_timeout"]

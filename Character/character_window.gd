@@ -10,13 +10,14 @@ func _ready() -> void:
 	fill_general_information()
 	fill_abilities()
 	fill_skills()
+	unit.on_hit_points_change.connect(fill_general_information)
 
 func fill_general_information():
-	%CharacterName.text = %CharacterName.text % unit.character_name
-	%Race.text = %Race.text % Unit.race_name(unit.race)
-	%ClassType.text = %ClassType.text % Unit.class_type_name(unit.class_type)
-	%Level.text = %Level.text % unit.level
-	%HitPoints.text = %HitPoints.text % [unit._current_hit_point, unit._max_hit_points]
+	%CharacterName.text = "Character name: %s" % unit.character_name
+	%Race.text = "Race: %s" % Unit.race_name(unit.race)
+	%ClassType.text = "Class: %s" % Unit.class_type_name(unit.class_type)
+	%Level.text = "Level: %d" % unit.level
+	%HitPoints.text = "Hit Points: %d/%d" % [unit._current_hit_point, unit._max_hit_points]
 
 func fill_abilities():
 	for ability in Abilities.Ability.values():
@@ -29,7 +30,7 @@ func add_ability(ability: Abilities.Ability):
 	ability_row.fill(ability_name, unit.abilities.get_ability_value(ability))
 
 func fill_skills():
-	%ProficiencyBonus.text = %ProficiencyBonus.text % unit.get_proficiency_bonus()
+	%ProficiencyBonus.text = "Proficency bonus: %+d" % unit.get_proficiency_bonus()
 	for skill in Skills.Skill.values():
 		add_skill(skill)
 
