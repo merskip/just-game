@@ -30,9 +30,15 @@ func _ready() -> void:
 
 func check_skill_on_fly(skill: Skills.Skill, difficulty_class: int) -> bool:
 	var roll_result = randi_range(1, 20)
-	var proficiency_bonus = get_proficiency_bonus()
-	roll_result += skills.get_skill_modifier(skill, abilities, proficiency_bonus)
-	var success = roll_result >= difficulty_class
+	var success: bool
+	if roll_result == 1:
+		success = false
+	elif roll_result == 20:
+		success = true
+	else:
+		var proficiency_bonus = get_proficiency_bonus()
+		roll_result += skills.get_skill_modifier(skill, abilities, proficiency_bonus)
+		success = roll_result >= difficulty_class
 	notifications_manager.notify(
 		"Check %s: %d (%s), DC: %d" % [
 			Skills.skill_name(skill),
