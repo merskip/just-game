@@ -3,7 +3,7 @@ extends Node2D
 
 @export var interact_unit: Unit
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		_update_mouse_cursor()
 	elif event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
