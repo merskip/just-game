@@ -49,5 +49,4 @@ func add_skill(skill: Skills.Skill):
 	skill_row.fill(skill_icon, skill_name, ability_name, has_proficiency, modifier)
 
 func _on_close_button_pressed() -> void:
-	var gui = get_tree().current_scene.get_node("%GUI") as GUI
-	gui.close_window(self)
+	queue_free()

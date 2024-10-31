@@ -1,18 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://f7d1pd35oie5"]
+[gd_scene load_steps=4 format=3 uid="uid://f7d1pd35oie5"]
 
 [ext_resource type="PackedScene" uid="uid://0qsoub3pdeve" path="res://DiceRoll/roll_dice.tscn" id="1_5n7tl"]
 [ext_resource type="Script" path="res://DiceRoll/roll_dice_window.gd" id="1_32r6j"]
+[ext_resource type="AudioStream" uid="uid://blqwr3po4lkok" path="res://DiceRoll/dice_roll_result.mp3" id="3_mwt8e"]
 
 [node name="RollDiceWindow" type="Panel"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -320.0
-offset_top = -240.0
-offset_right = 320.0
-offset_bottom = 240.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_32r6j")
@@ -24,12 +19,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
 gui_disable_input = true
-size = Vector2i(640, 480)
+size = Vector2i(1920, 1080)
 render_target_clear_mode = 1
 render_target_update_mode = 4
 
@@ -37,62 +33,50 @@ render_target_update_mode = 4
 unique_name_in_owner = true
 control_visible = false
 
-[node name="RollButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -71.855
-offset_right = 20.0
-offset_bottom = -40.855
-grow_horizontal = 2
-grow_vertical = 0
-text = "Roll"
-
-[node name="ConfirmButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 46.0
-offset_top = -72.0
-offset_right = 125.0
-offset_bottom = -41.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Continue"
-
-[node name="HeaderLabel" type="Label" parent="."]
-unique_name_in_owner = true
+[node name="HBoxContainer2" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -77.0
-offset_top = 46.0
-offset_right = 77.0
-offset_bottom = 80.0
+offset_left = -189.0
+offset_top = 100.0
+offset_right = 189.0
+offset_bottom = 198.0
 grow_horizontal = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="CheckLabel" type="Label" parent="HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
 theme_type_variation = &"HeaderMedium"
-text = "Header Label"
+text = "Checking "
+
+[node name="DifficultyClassLabel" type="Label" parent="HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"HeaderLarge"
+text = "Difficulty class: %d"
 
 [node name="ResultLabel" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 7
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-offset_left = -43.5
-offset_top = 113.0
-offset_right = 43.5
-offset_bottom = 136.0
+anchor_bottom = 1.0
+offset_left = -43.0
+offset_top = -273.0
+offset_right = 44.0
+offset_bottom = -250.0
 grow_horizontal = 2
+grow_vertical = 0
+theme_type_variation = &"HeaderLarge"
 text = "You rolled: "
+horizontal_alignment = 1
 
 [node name="CloseButton" type="Button" parent="."]
 layout_mode = 1
@@ -106,7 +90,37 @@ offset_bottom = 51.0
 grow_horizontal = 0
 text = "Close"
 
+[node name="RollResultSFX" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_mwt8e")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -68.0
+offset_top = -140.0
+offset_right = 68.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="RollButton" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Roll dice"
+
+[node name="ConfirmButton" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Continue"
+
 [connection signal="on_roll_result" from="SubViewportContainer/SubViewport/RollDice" to="." method="_on_roll_result"]
-[connection signal="pressed" from="RollButton" to="." method="roll"]
-[connection signal="pressed" from="ConfirmButton" to="." method="_on_confirm_button_pressed"]
-[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/RollButton" to="." method="roll"]
+[connection signal="pressed" from="HBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]

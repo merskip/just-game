@@ -50,6 +50,5 @@ custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 alignment = 2
 
-[connection signal="child_exiting_tree" from="." to="." method="on_child_exiting_tree"]
 [connection signal="pressed" from="VBoxContainer/CharacterSheetButton" to="." method="show_character_sheet"]
 [connection signal="pressed" from="VBoxContainer/InventoryButton" to="." method="show_inventory"]

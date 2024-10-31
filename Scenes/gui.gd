@@ -10,8 +10,7 @@ func _ready() -> void:
 func show_character_sheet():
 	var window := preload("res://Character/character_window.tscn").instantiate()
 	window.unit = %Player
-	open_window(window)
-	
+	open_window(window)	
 
 func show_inventory():
 	var player_unit := %Player
@@ -31,6 +30,11 @@ func open_window(window: Control):
 	print("Open window: %s" % window)
 	add_child(window)
 	_window = window
+
+func on_child_exiting_tree(child: Node):
+	if _window == child:
+		print("Closed window: ", child)
+		_window = null
 
 func close_window(specific_window: Control = null):
 	if _window != null:

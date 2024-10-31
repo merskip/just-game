@@ -11,5 +11,4 @@ func fill(inventory: Inventory):
 		cell.fill(item)
 
 func _on_close_button_pressed() -> void:
-	var gui = get_tree().current_scene.get_node("%GUI") as GUI
-	gui.close_window(self)
+	queue_free()
