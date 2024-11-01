@@ -23,7 +23,7 @@ func _ready() -> void:
 	
 	result_label.visible = false
 	confirm_button.visible = false
-	roll_dice.add_dice(RollDice.DiceType.D20)
+	roll_dice.add_dice(Check.DiceType.D20)
 
 func roll() -> void:
 	roll_dice.roll()

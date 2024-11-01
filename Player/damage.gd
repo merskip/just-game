@@ -2,7 +2,7 @@ class_name Damage
 extends Resource
 
 @export var count: int = 1
-@export var dice_type: RollDice.DiceType = RollDice.DiceType.D4
+@export var dice_type: Check.DiceType = Check.DiceType.D4
 @export var modifier: int = 0
 
 func resolve() -> int:

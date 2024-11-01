@@ -1,16 +1,16 @@
 [gd_scene load_steps=20 format=3 uid="uid://0qsoub3pdeve"]
 
-[ext_resource type="Script" path="res://DiceRoll/roll_dice.gd" id="1_8g52s"]
-[ext_resource type="AudioStream" uid="uid://bjsoc8pxowjdo" path="res://DiceRoll/dice_roll_start.mp3" id="2_luuuq"]
-[ext_resource type="AudioStream" uid="uid://b0stn4gkd1v7o" path="res://DiceRoll/dice_rolling.mp3" id="3_iric5"]
-[ext_resource type="ArrayMesh" uid="uid://cevs2yvalbadw" path="res://DiceRoll/dice_d4.tres" id="4_luvjj"]
-[ext_resource type="Script" path="res://DiceRoll/dice_side_raycast.gd" id="5_wmfn8"]
-[ext_resource type="ArrayMesh" uid="uid://chbmqk51g6q0m" path="res://DiceRoll/dice_d6.tres" id="6_s7auq"]
-[ext_resource type="ArrayMesh" uid="uid://bskobr02h6y87" path="res://DiceRoll/dice_d8.tres" id="7_84ujb"]
-[ext_resource type="ArrayMesh" uid="uid://cye0fk275e5sy" path="res://DiceRoll/dice_d10.tres" id="8_kj6bp"]
-[ext_resource type="ArrayMesh" uid="uid://gc5vb652xi5c" path="res://DiceRoll/dice_d12.tres" id="9_eum2n"]
-[ext_resource type="ArrayMesh" uid="uid://qom2hot7k7jv" path="res://DiceRoll/dice_d20.tres" id="10_q7t64"]
-[ext_resource type="ArrayMesh" uid="uid://dpycmvijvu5n1" path="res://DiceRoll/dice_d100.tres" id="11_a7n0t"]
+[ext_resource type="Script" path="res://DiceRoll/roll_dice_scene.gd" id="1_5ir2k"]
+[ext_resource type="AudioStream" uid="uid://bjsoc8pxowjdo" path="res://DiceRoll/dice_roll_start.mp3" id="2_ot40b"]
+[ext_resource type="AudioStream" uid="uid://b0stn4gkd1v7o" path="res://DiceRoll/dice_rolling.mp3" id="3_kpyka"]
+[ext_resource type="ArrayMesh" uid="uid://cevs2yvalbadw" path="res://DiceRoll/dice_d4.tres" id="4_p3tfs"]
+[ext_resource type="Script" path="res://DiceRoll/dice_side_raycast.gd" id="5_ex07f"]
+[ext_resource type="ArrayMesh" uid="uid://chbmqk51g6q0m" path="res://DiceRoll/dice_d6.tres" id="6_f0g18"]
+[ext_resource type="ArrayMesh" uid="uid://bskobr02h6y87" path="res://DiceRoll/dice_d8.tres" id="7_0o76f"]
+[ext_resource type="ArrayMesh" uid="uid://cye0fk275e5sy" path="res://DiceRoll/dice_d10.tres" id="8_j4nr5"]
+[ext_resource type="ArrayMesh" uid="uid://gc5vb652xi5c" path="res://DiceRoll/dice_d12.tres" id="9_uv82w"]
+[ext_resource type="ArrayMesh" uid="uid://qom2hot7k7jv" path="res://DiceRoll/dice_d20.tres" id="10_qcm8x"]
+[ext_resource type="ArrayMesh" uid="uid://dpycmvijvu5n1" path="res://DiceRoll/dice_d100.tres" id="11_3dgb5"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_two6u"]
 
@@ -36,7 +36,7 @@ points = PackedVector3Array(-1.09567, 0.547749, -0.000203967, -0.338697, 0.54774
 points = PackedVector3Array(-0.000228405, 1.16672, -0.000217199, 0.360432, 0.123113, -1.10961, -0.94402, 0.123113, -0.686012, -0.94402, 0.123113, 0.685577, 0.360432, 0.123113, 1.10961, 1.16672, 0.123113, -0.000217199, 0.943792, -0.123342, -0.686012, -0.36066, -0.123342, -1.10961, -0.000228405, -1.16672, -0.000217199, -1.16672, -0.123342, -0.000217199, -0.36066, -0.123342, 1.10961, 0.943792, -0.123342, 0.685577)
 
 [node name="RollDice" type="Node3D"]
-script = ExtResource("1_8g52s")
+script = ExtResource("1_5ir2k")
 rotation_speed_max = 8.0
 control_visible = true
 
@@ -118,10 +118,10 @@ layout_mode = 2
 text = "Hello world"
 
 [node name="DiceRollStart" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_luuuq")
+stream = ExtResource("2_ot40b")
 
 [node name="DiceRolling" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_iric5")
+stream = ExtResource("3_kpyka")
 
 [node name="Dices" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
@@ -133,7 +133,7 @@ max_contacts_reported = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Dices/DiceD4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.320232, 0, -0.0223923)
-mesh = ExtResource("4_luvjj")
+mesh = ExtResource("4_p3tfs")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Dices/DiceD4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.320232, 0, -0.0223923)
@@ -146,7 +146,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0.284626
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 1
 
 [node name="RayCast 2" type="RayCast3D" parent="Dices/DiceD4/RayCasts"]
@@ -154,7 +154,7 @@ transform = Transform3D(0.486022, -0.396848, 0.778648, -0.803697, -0.552935, 0.2
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 4
 
 [node name="RayCast 3" type="RayCast3D" parent="Dices/DiceD4/RayCasts"]
@@ -162,7 +162,7 @@ transform = Transform3D(-0.247103, 0.5199, 0.817707, -0.871532, 0.249594, -0.422
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 3
 
 [node name="RayCast 4" type="RayCast3D" parent="Dices/DiceD4/RayCasts"]
@@ -170,7 +170,7 @@ transform = Transform3D(-0.324197, 0.933988, 0.150207, -0.929658, -0.343935, 0.1
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 2
 
 [node name="DiceD6" type="RigidBody3D" parent="Dices"]
@@ -180,7 +180,7 @@ contact_monitor = true
 max_contacts_reported = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Dices/DiceD6"]
-mesh = ExtResource("6_s7auq")
+mesh = ExtResource("6_f0g18")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Dices/DiceD6"]
 shape = SubResource("ConvexPolygonShape3D_as25x")
@@ -192,7 +192,7 @@ transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0.8
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 6
 
 [node name="RayCast 2" type="RayCast3D" parent="Dices/DiceD6/RayCasts"]
@@ -200,7 +200,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 3
 
 [node name="RayCast 3" type="RayCast3D" parent="Dices/DiceD6/RayCasts"]
@@ -208,7 +208,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, -1.74845e-08)
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 1
 
 [node name="RayCast 4" type="RayCast3D" parent="Dices/DiceD6/RayCasts"]
@@ -216,7 +216,7 @@ transform = Transform3D(1, 0, 0, 0, 1.31134e-07, 1, 0, -1, 1.31134e-07, 0, 2.241
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 4
 
 [node name="RayCast 5" type="RayCast3D" parent="Dices/DiceD6/RayCasts"]
@@ -224,7 +224,7 @@ transform = Transform3D(-4.37114e-08, -1, 2.62268e-07, -1.31134e-07, 2.62268e-07
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 5
 
 [node name="RayCast 6" type="RayCast3D" parent="Dices/DiceD6/RayCasts"]
@@ -232,7 +232,7 @@ transform = Transform3D(-4.37114e-08, 1, -1.74846e-07, -1.31134e-07, -1.74846e-0
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 2
 
 [node name="DiceD8" type="RigidBody3D" parent="Dices"]
@@ -242,7 +242,7 @@ contact_monitor = true
 max_contacts_reported = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Dices/DiceD8"]
-mesh = ExtResource("7_84ujb")
+mesh = ExtResource("7_0o76f")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Dices/DiceD8"]
 shape = SubResource("ConvexPolygonShape3D_isjov")
@@ -254,7 +254,7 @@ transform = Transform3D(0.707107, -0.707107, 6.18172e-08, -0.707107, -0.707107, 
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 8
 
 [node name="RayCast 2" type="RayCast3D" parent="Dices/DiceD8/RayCasts"]
@@ -262,7 +262,7 @@ transform = Transform3D(1, 0, 0, 0, -0.707107, 0.707107, 0, -0.707107, -0.707107
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 2
 
 [node name="RayCast 3" type="RayCast3D" parent="Dices/DiceD8/RayCasts"]
@@ -270,7 +270,7 @@ transform = Transform3D(0.707107, 0.707107, -6.18172e-08, 0.707107, -0.707107, 6
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 4
 
 [node name="RayCast 4" type="RayCast3D" parent="Dices/DiceD8/RayCasts"]
@@ -278,7 +278,7 @@ transform = Transform3D(1, 0, 0, 0, -0.707107, -0.707107, 0, 0.707107, -0.707107
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 6
 
 [node name="RayCast 5" type="RayCast3D" parent="Dices/DiceD8/RayCasts"]
@@ -286,7 +286,7 @@ transform = Transform3D(-0.707107, 0.707107, -6.18173e-08, 0.707107, 0.707107, -
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 1
 
 [node name="RayCast 6" type="RayCast3D" parent="Dices/DiceD8/RayCasts"]
@@ -294,7 +294,7 @@ transform = Transform3D(-1, 6.18172e-08, -6.18172e-08, 8.74228e-08, 0.707107, -0
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 3
 
 [node name="RayCast 7" type="RayCast3D" parent="Dices/DiceD8/RayCasts"]
@@ -302,7 +302,7 @@ transform = Transform3D(-0.707107, -0.707107, 6.18172e-08, -0.707107, 0.707107, 
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 5
 
 [node name="RayCast 8" type="RayCast3D" parent="Dices/DiceD8/RayCasts"]
@@ -310,7 +310,7 @@ transform = Transform3D(-1, 6.18172e-08, 6.18172e-08, 8.74228e-08, 0.707107, 0.7
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 7
 
 [node name="DiceD10" type="RigidBody3D" parent="Dices"]
@@ -320,7 +320,7 @@ contact_monitor = true
 max_contacts_reported = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Dices/DiceD10"]
-mesh = ExtResource("8_kj6bp")
+mesh = ExtResource("8_j4nr5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Dices/DiceD10"]
 shape = SubResource("ConvexPolygonShape3D_tdo1k")
@@ -332,7 +332,7 @@ transform = Transform3D(0.56085, -0.56085, -0.609011, -0.707107, -0.707107, 6.18
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 1
 
 [node name="RayCast 2" type="RayCast3D" parent="Dices/DiceD10/RayCasts"]
@@ -340,7 +340,7 @@ transform = Transform3D(-0.216065, 0.216065, -0.952172, -0.707107, -0.707107, 9.
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 9
 
 [node name="RayCast 3" type="RayCast3D" parent="Dices/DiceD10/RayCasts"]
@@ -348,7 +348,7 @@ transform = Transform3D(-0.707046, 0.707047, -0.0130548, -0.707107, -0.707107, 1
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 5
 
 [node name="RayCast 4" type="RayCast3D" parent="Dices/DiceD10/RayCasts"]
@@ -356,7 +356,7 @@ transform = Transform3D(-0.158595, 0.158595, 0.974523, -0.707107, -0.707107, 1.1
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 3
 
 [node name="RayCast 5" type="RayCast3D" parent="Dices/DiceD10/RayCasts"]
@@ -364,7 +364,7 @@ transform = Transform3D(0.595204, -0.595205, 0.539873, -0.707107, -0.707107, 1.1
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 7
 
 [node name="RayCast 6" type="RayCast3D" parent="Dices/DiceD10/RayCasts"]
@@ -372,7 +372,7 @@ transform = Transform3D(-0.56085, 0.56085, 0.609011, 0.707107, 0.707107, -8.3085
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 2
 
 [node name="RayCast 7" type="RayCast3D" parent="Dices/DiceD10/RayCasts"]
@@ -380,7 +380,7 @@ transform = Transform3D(0.216065, -0.216065, 0.952172, 0.707107, 0.707107, 1.591
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 6
 
 [node name="RayCast 8" type="RayCast3D" parent="Dices/DiceD10/RayCasts"]
@@ -388,7 +388,7 @@ transform = Transform3D(0.707046, -0.707047, 0.0130549, 0.707107, 0.707107, -1.0
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 4
 
 [node name="RayCast 9" type="RayCast3D" parent="Dices/DiceD10/RayCasts"]
@@ -396,7 +396,7 @@ transform = Transform3D(0.158595, -0.158596, -0.974523, 0.707107, 0.707107, -1.8
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 10
 
 [node name="RayCast 10" type="RayCast3D" parent="Dices/DiceD10/RayCasts"]
@@ -404,7 +404,7 @@ transform = Transform3D(-0.595204, 0.595205, -0.539873, 0.707107, 0.707107, -1.6
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 8
 
 [node name="DiceD12" type="RigidBody3D" parent="Dices"]
@@ -414,7 +414,7 @@ contact_monitor = true
 max_contacts_reported = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Dices/DiceD12"]
-mesh = ExtResource("9_eum2n")
+mesh = ExtResource("9_uv82w")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Dices/DiceD12"]
 shape = SubResource("ConvexPolygonShape3D_ylrfj")
@@ -426,7 +426,7 @@ transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0.9
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 12
 
 [node name="RayCast 2" type="RayCast3D" parent="Dices/DiceD12/RayCasts"]
@@ -434,7 +434,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0)
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 1
 
 [node name="RayCast 3" type="RayCast3D" parent="Dices/DiceD12/RayCasts"]
@@ -442,7 +442,7 @@ transform = Transform3D(0.971263, -0.206121, 0.119004, 0, -0.5, -0.866026, 0.238
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 9
 
 [node name="RayCast 4" type="RayCast3D" parent="Dices/DiceD12/RayCasts"]
@@ -450,7 +450,7 @@ transform = Transform3D(-0.427957, 0.782713, -0.451899, -1.06647e-08, -0.5, -0.8
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 10
 
 [node name="RayCast 5" type="RayCast3D" parent="Dices/DiceD12/RayCasts"]
@@ -458,7 +458,7 @@ transform = Transform3D(0.53261, 0.73297, -0.42318, 1.55571e-08, -0.5, -0.866026
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 11
 
 [node name="RayCast 6" type="RayCast3D" parent="Dices/DiceD12/RayCasts"]
@@ -466,7 +466,7 @@ transform = Transform3D(-0.00933751, -0.865988, 0.499978, 2.81689e-08, -0.5, -0.
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 7
 
 [node name="RayCast 7" type="RayCast3D" parent="Dices/DiceD12/RayCasts"]
@@ -474,7 +474,7 @@ transform = Transform3D(-0.939394, -0.296908, 0.17142, 2.78906e-08, -0.5, -0.866
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 8
 
 [node name="RayCast 8" type="RayCast3D" parent="Dices/DiceD12/RayCasts"]
@@ -482,7 +482,7 @@ transform = Transform3D(-0.971263, 0.206121, -0.119004, -7.07242e-08, 0.5, 0.866
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 5
 
 [node name="RayCast 9" type="RayCast3D" parent="Dices/DiceD12/RayCasts"]
@@ -490,7 +490,7 @@ transform = Transform3D(0.427957, -0.782713, 0.451899, 4.87914e-08, 0.5, 0.86602
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 2
 
 [node name="RayCast 10" type="RayCast3D" parent="Dices/DiceD12/RayCasts"]
@@ -498,7 +498,7 @@ transform = Transform3D(-0.53261, -0.73297, 0.42318, -4.95076e-08, 0.5, 0.866026
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 3
 
 [node name="RayCast 11" type="RayCast3D" parent="Dices/DiceD12/RayCasts"]
@@ -506,7 +506,7 @@ transform = Transform3D(0.00933751, 0.865988, -0.499978, -2.70743e-08, 0.5, 0.86
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 6
 
 [node name="RayCast 12" type="RayCast3D" parent="Dices/DiceD12/RayCasts"]
@@ -514,7 +514,7 @@ transform = Transform3D(0.939394, 0.296908, -0.17142, 5.04532e-08, 0.5, 0.866025
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 4
 
 [node name="DiceD20" type="RigidBody3D" parent="Dices"]
@@ -524,7 +524,7 @@ contact_monitor = true
 max_contacts_reported = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Dices/DiceD20"]
-mesh = ExtResource("10_q7t64")
+mesh = ExtResource("10_qcm8x")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Dices/DiceD20"]
 shape = SubResource("ConvexPolygonShape3D_gajo5")
@@ -536,7 +536,7 @@ transform = Transform3D(0.866025, -0.5, 4.37114e-08, -0.5, -0.866025, 7.57104e-0
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 1
 
 [node name="RayCast 2" type="RayCast3D" parent="Dices/DiceD20/RayCasts"]
@@ -544,7 +544,7 @@ transform = Transform3D(0.229541, -0.132526, -0.964234, -0.5, -0.866025, 7.57104
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 7
 
 [node name="RayCast 3" type="RayCast3D" parent="Dices/DiceD20/RayCasts"]
@@ -552,7 +552,7 @@ transform = Transform3D(-0.715933, 0.413344, -0.562661, -0.5, -0.866025, 7.88646
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 17
 
 [node name="RayCast 4" type="RayCast3D" parent="Dices/DiceD20/RayCasts"]
@@ -560,7 +560,7 @@ transform = Transform3D(-0.759406, 0.438443, 0.480698, -0.5, -0.866025, 6.2599e-
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 3
 
 [node name="RayCast 5" type="RayCast3D" parent="Dices/DiceD20/RayCasts"]
@@ -568,7 +568,7 @@ transform = Transform3D(0.0415049, -0.0239628, 0.998851, -0.5, -0.866025, 5.8605
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 19
 
 [node name="RayCast 11" type="RayCast3D" parent="Dices/DiceD20/RayCasts"]
@@ -576,7 +576,7 @@ transform = Transform3D(0.412886, -0.23838, 0.879034, -0.883024, -0.341234, 0.32
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 9
 
 [node name="RayCast 12" type="RayCast3D" parent="Dices/DiceD20/RayCasts"]
@@ -584,7 +584,7 @@ transform = Transform3D(0.320111, -0.939977, -0.1182, -0.883024, -0.341234, 0.32
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 13
 
 [node name="RayCast 13" type="RayCast3D" parent="Dices/DiceD20/RayCasts"]
@@ -592,7 +592,7 @@ transform = Transform3D(-0.230508, -0.282724, -0.931093, -0.883024, -0.341234, 0
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 15
 
 [node name="RayCast 14" type="RayCast3D" parent="Dices/DiceD20/RayCasts"]
@@ -600,7 +600,7 @@ transform = Transform3D(-0.463675, 0.740529, -0.48644, -0.883024, -0.341234, 0.3
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 10
 
 [node name="RayCast 15" type="RayCast3D" parent="Dices/DiceD20/RayCasts"]
@@ -608,7 +608,7 @@ transform = Transform3D(0.00601967, 0.678272, 0.734787, -0.883024, -0.341234, 0.
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 16
 
 [node name="RayCast 16" type="RayCast3D" parent="Dices/DiceD20/RayCasts"]
@@ -616,7 +616,7 @@ transform = Transform3D(-0.412886, 0.23838, -0.879034, 0.883024, 0.341234, -0.32
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 6
 
 [node name="RayCast 17" type="RayCast3D" parent="Dices/DiceD20/RayCasts"]
@@ -624,7 +624,7 @@ transform = Transform3D(-0.320111, 0.939977, 0.1182, 0.883024, 0.341234, -0.3222
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 8
 
 [node name="RayCast 18" type="RayCast3D" parent="Dices/DiceD20/RayCasts"]
@@ -632,7 +632,7 @@ transform = Transform3D(0.230508, 0.282724, 0.931093, 0.883024, 0.341234, -0.322
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 12
 
 [node name="RayCast 19" type="RayCast3D" parent="Dices/DiceD20/RayCasts"]
@@ -640,7 +640,7 @@ transform = Transform3D(0.463675, -0.740529, 0.48644, 0.883024, 0.341234, -0.322
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 5
 
 [node name="RayCast 20" type="RayCast3D" parent="Dices/DiceD20/RayCasts"]
@@ -648,7 +648,7 @@ transform = Transform3D(-0.00601969, -0.678272, -0.734787, 0.883024, 0.341234, -
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 11
 
 [node name="RayCast 6" type="RayCast3D" parent="Dices/DiceD20/RayCasts"]
@@ -656,7 +656,7 @@ transform = Transform3D(-0.866025, 0.5, -4.37114e-08, 0.5, 0.866025, -7.57103e-0
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 20
 
 [node name="RayCast 7" type="RayCast3D" parent="Dices/DiceD20/RayCasts"]
@@ -664,7 +664,7 @@ transform = Transform3D(-0.229541, 0.132526, 0.964234, 0.5, 0.866025, -1.56806e-
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 2
 
 [node name="RayCast 8" type="RayCast3D" parent="Dices/DiceD20/RayCasts"]
@@ -672,7 +672,7 @@ transform = Transform3D(0.715933, -0.413344, 0.562661, 0.5, 0.866025, -1.23893e-
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 18
 
 [node name="RayCast 9" type="RayCast3D" parent="Dices/DiceD20/RayCasts"]
@@ -680,7 +680,7 @@ transform = Transform3D(0.759406, -0.438443, -0.480698, 0.5, 0.866025, 1.45509e-
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 4
 
 [node name="RayCast 10" type="RayCast3D" parent="Dices/DiceD20/RayCasts"]
@@ -688,7 +688,7 @@ transform = Transform3D(-0.0415049, 0.0239629, -0.998851, 0.5, 0.866025, 2.55846
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 14
 
 [node name="DiceD100" type="RigidBody3D" parent="Dices"]
@@ -696,7 +696,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0)
 freeze = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Dices/DiceD100"]
-mesh = ExtResource("11_a7n0t")
+mesh = ExtResource("11_3dgb5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Dices/DiceD100"]
 shape = SubResource("ConvexPolygonShape3D_6kbld")
@@ -708,7 +708,7 @@ transform = Transform3D(0.965926, 0.183013, 0.183013, -1.49012e-08, -0.707107, 0
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 80
 
 [node name="RayCast 2" type="RayCast3D" parent="Dices/DiceD100/RayCasts"]
@@ -716,7 +716,7 @@ transform = Transform3D(0.5, -0.612372, -0.612372, -1.49012e-08, -0.707107, 0.70
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 20
 
 [node name="RayCast 3" type="RayCast3D" parent="Dices/DiceD100/RayCasts"]
@@ -724,14 +724,14 @@ transform = Transform3D(-0.707107, -0.5, -0.5, -2.98023e-08, -0.707107, 0.707107
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 
 [node name="RayCast 4" type="RayCast3D" parent="Dices/DiceD100/RayCasts"]
 transform = Transform3D(-0.965926, 0.183013, 0.183013, -5.08758e-08, -0.707107, 0.707107, 0.258819, 0.683013, 0.683013, -0.135248, 0.415304, -0.637146)
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 60
 
 [node name="RayCast 5" type="RayCast3D" parent="Dices/DiceD100/RayCasts"]
@@ -739,7 +739,7 @@ transform = Transform3D(5.96046e-08, 0.707107, 0.707107, -2.51577e-08, -0.707107
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 40
 
 [node name="RayCast 6" type="RayCast3D" parent="Dices/DiceD100/RayCasts"]
@@ -747,7 +747,7 @@ transform = Transform3D(-0.965926, -0.183013, -0.183013, 9.93451e-08, 0.707107, 
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 30
 
 [node name="RayCast 7" type="RayCast3D" parent="Dices/DiceD100/RayCasts"]
@@ -755,7 +755,7 @@ transform = Transform3D(-0.5, 0.612372, 0.612372, 2.18946e-08, 0.707107, -0.7071
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 90
 
 [node name="RayCast 8" type="RayCast3D" parent="Dices/DiceD100/RayCasts"]
@@ -763,7 +763,7 @@ transform = Transform3D(0.707107, 0.5, 0.5, -5.30883e-08, 0.707107, -0.707107, -
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 70
 
 [node name="RayCast 9" type="RayCast3D" parent="Dices/DiceD100/RayCasts"]
@@ -771,7 +771,7 @@ transform = Transform3D(0.965926, -0.183013, -0.183013, 3.96548e-09, 0.707107, -
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 10
 
 [node name="RayCast 10" type="RayCast3D" parent="Dices/DiceD100/RayCasts"]
@@ -779,7 +779,7 @@ transform = Transform3D(-5.96046e-08, -0.707107, -0.707107, 2.51577e-08, 0.70710
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2
 hit_from_inside = true
-script = ExtResource("5_wmfn8")
+script = ExtResource("5_ex07f")
 opposite_side = 50
 
 [connection signal="pressed" from="Controls/VBoxContainer/HBoxContainer/D4Button" to="." method="add_dice" binds= [4]]

@@ -6,9 +6,9 @@
 [ext_resource type="Script" path="res://Player/abilities.gd" id="2_klrb4"]
 [ext_resource type="Script" path="res://Player/health_bar.gd" id="3_8huld"]
 [ext_resource type="AudioStream" uid="uid://htl5dxtlmt1i" path="res://Player/grunt.mp3" id="5_r828v"]
+[ext_resource type="Script" path="res://Player/roll_result_popup.gd" id="7_2r1r4"]
 [ext_resource type="AudioStream" uid="uid://bbkaf1kj3veqn" path="res://Player/fast_dice_roll.mp3" id="7_3atn1"]
 [ext_resource type="Shader" path="res://Player/outline_shader.gdshader" id="8_8kneu"]
-[ext_resource type="Script" path="res://Player/roll_result.gd" id="8_qpnd3"]
 [ext_resource type="Texture2D" uid="uid://dvf3ggd523202" path="res://DiceRoll/dice_icon.svg" id="8_svv7x"]
 
 [sub_resource type="Resource" id="Resource_sjhfq"]
@@ -148,7 +148,8 @@ script = ExtResource("1_3kw8n")
 stream = ExtResource("5_r828v")
 volume_db = -5.0
 
-[node name="RollResult" type="Control" parent="."]
+[node name="RollResultPopup" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
@@ -163,17 +164,17 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = ExtResource("8_qpnd3")
-success_color = Color(0.054902, 0.607843, 0.286275, 1)
-failure_color = Color(0.792059, 0.152802, 0.154783, 1)
+script = ExtResource("7_2r1r4")
+success_color = Color(0.055, 0.608, 0, 1)
+failure_color = Color(0.792, 0.153, 0.155, 1)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="RollResult"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RollResultPopup"]
 root_node = NodePath("../TextureRect")
 libraries = {
 "": SubResource("AnimationLibrary_icswr")
 }
 
-[node name="TextureRect" type="TextureRect" parent="RollResult"]
+[node name="TextureRect" type="TextureRect" parent="RollResultPopup"]
 material = SubResource("ShaderMaterial_or2m6")
 layout_mode = 2
 offset_right = 40.0
@@ -182,7 +183,7 @@ pivot_offset = Vector2(20, 20)
 texture = ExtResource("8_svv7x")
 expand_mode = 2
 
-[node name="ResultLabel" type="Label" parent="RollResult/TextureRect"]
+[node name="ResultLabel" type="Label" parent="RollResultPopup/TextureRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -203,7 +204,7 @@ text = "99"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="RollResult"]
+[node name="Label" type="Label" parent="RollResultPopup"]
 layout_mode = 2
 offset_left = 44.0
 offset_top = 8.0
@@ -212,13 +213,13 @@ offset_bottom = 31.0
 size_flags_horizontal = 4
 text = "Widsom check"
 
-[node name="Timer" type="Timer" parent="RollResult"]
+[node name="Timer" type="Timer" parent="RollResultPopup"]
 wait_time = 3.0
 one_shot = true
 
-[node name="FastDiceRoll" type="AudioStreamPlayer" parent="RollResult"]
+[node name="FastDiceRoll" type="AudioStreamPlayer" parent="RollResultPopup"]
 stream = ExtResource("7_3atn1")
 volume_db = -5.0
 
 [connection signal="on_hit_points_change" from="." to="HealthBar" method="_on_hit_points_change"]
-[connection signal="timeout" from="RollResult/Timer" to="RollResult" method="_on_timer_timeout"]
+[connection signal="timeout" from="RollResultPopup/Timer" to="RollResultPopup" method="_on_timer_timeout"]

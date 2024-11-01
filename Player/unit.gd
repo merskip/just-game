@@ -12,6 +12,7 @@ extends CharacterBody2D
 @export var movement: Movement
 
 @onready var _grunt_sfx := $Grunt
+@onready var _roll_result_popup := %RollResultPopup
 
 var inventory: Inventory = Inventory.new()
 var _current_hit_point: int
@@ -28,27 +29,21 @@ func _ready() -> void:
 	_current_hit_point = _max_hit_points
 	on_hit_points_change.emit()
 
-func check_skill_on_fly(skill: Skills.Skill, difficulty_class: int) -> bool:
-	var roll_result = randi_range(1, 20)
-	var success: bool
-	if roll_result == 1:
-		success = false
-	elif roll_result == 20:
-		success = true
-	else:
-		var proficiency_bonus = get_proficiency_bonus()
-		roll_result += skills.get_skill_modifier(skill, abilities, proficiency_bonus)
-		success = roll_result >= difficulty_class
+func check_on_fly(check: Check) -> bool:
+	var roll_result := check.roll(self)
+	var bonuses := check.get_bonuses(self)
 	notifications_manager.notify(
-		"Check %s: %d (%s), DC: %d" % [
-			Skills.skill_name(skill),
-			roll_result,
-			"success" if success else "failure",
-			difficulty_class],
+		"Check %s: %d (%s), DC: %d, bonuses: %s" % [
+			Skills.skill_name(check.skill),
+			roll_result.value,
+			"success" if roll_result.success else "failure",
+			check.difficulty_class,
+			bonuses],
 		_dice_icon)
-	$RollResult.show_roll_result(skill, roll_result, success)
+	_roll_result_popup.show_roll_result(check.skill, roll_result.value, roll_result.success)
+	
 	await get_tree().create_timer(0.8).timeout
-	return success
+	return roll_result.success
 
 func get_proficiency_bonus() -> int:
 	return 2 + int(float(level - 1) / 4)
@@ -82,17 +77,17 @@ func calculate_max_hit_points() -> int:
 	total_hp += (int(float(hit_dice) / 2) + 1 + constitution_modifier) * (level - 1)
 	return total_hp
 
-static func get_hit_dice(_class_type: ClassType) -> RollDice.DiceType:
+static func get_hit_dice(_class_type: ClassType) -> Check.DiceType:
 	match _class_type:
 		ClassType.BARBARIAN:
-			return RollDice.DiceType.D12
+			return Check.DiceType.D12
 		ClassType.BARD, ClassType.CLERIC, ClassType.DRUID, ClassType.MONK, ClassType.ROGUE, ClassType.WARLOCK:
-			return RollDice.DiceType.D8
+			return Check.DiceType.D8
 		ClassType.FIGHTER, ClassType.PALADIN, ClassType.RANGER:
-			return RollDice.DiceType.D10
+			return Check.DiceType.D10
 		ClassType.SORCERER, ClassType.WIZARD:
-			return RollDice.DiceType.D6
-	return RollDice.DiceType.D8
+			return Check.DiceType.D6
+	return Check.DiceType.D8
 
 enum Race {
 	DRAGONBORN,

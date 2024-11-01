@@ -1,4 +1,4 @@
-class_name RollResult
+class_name RollResultPopup
 extends Control
 
 @export var success_color := Color.GREEN

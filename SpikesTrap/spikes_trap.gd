@@ -31,7 +31,11 @@ func _on_detection_area_entered(body: Node2D) -> void:
 	if body is not Unit:
 		return
 	var unit = body as Unit
-	if await unit.check_skill_on_fly(Skills.Skill.PERCEPTION, difficulty_class):
+	check_detection(unit)
+
+func check_detection(unit: Unit):
+	var check = Check.of_skill(difficulty_class, Skills.Skill.PERCEPTION)
+	if await unit.check_on_fly(check):
 		$DetectedOverlay.visible = true
 		_detected = true
 		%DisarmTrap.enabled = true

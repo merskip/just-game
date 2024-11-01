@@ -1,17 +1,7 @@
-class_name RollDice
+class_name RollDiceScene
 extends Node3D
 
-enum DiceType {
-	D4 = 4,
-	D6 = 6,
-	D8 = 8,
-	D10 = 10,
-	D12 = 12,
-	D20 = 20,
-	D100 = 100
-}
-
-var _dices_types: Array[DiceType] = []
+var _dices_types: Array[Check.DiceType] = []
 var _dices_bodies: Array[RigidBody3D] = []
 
 @export var rotation_speed_max: float = 10.0
@@ -36,7 +26,7 @@ signal on_roll_result(values: Array[int])
 func _ready() -> void:
 	$Controls.visible = control_visible
 
-func add_dice(dice_type: DiceType):
+func add_dice(dice_type: Check.DiceType):
 	var dice_body = duplicate_dice(dice_type)
 	add_child(dice_body)
 	dice_body.freeze = true
@@ -48,21 +38,21 @@ func add_dice(dice_type: DiceType):
 	_dices_bodies.append(dice_body)
 	
 
-func duplicate_dice(dice_type: DiceType) -> RigidBody3D:
+func duplicate_dice(dice_type: Check.DiceType) -> RigidBody3D:
 	match dice_type:
-		DiceType.D4:
+		Check.DiceType.D4:
 			return _dice_d4.duplicate()
-		DiceType.D6:
+		Check.DiceType.D6:
 			return _dice_d6.duplicate()
-		DiceType.D8:
+		Check.DiceType.D8:
 			return _dice_d8.duplicate()
-		DiceType.D10:
+		Check.DiceType.D10:
 			return _dice_d10.duplicate()
-		DiceType.D12:
+		Check.DiceType.D12:
 			return _dice_d12.duplicate()
-		DiceType.D20:
+		Check.DiceType.D20:
 			return _dice_d20.duplicate()
-		DiceType.D100:
+		Check.DiceType.D100:
 			return _dice_d100.duplicate()
 		_:
 			push_error("Unknown dice_type: %s" % dice_type)
@@ -81,7 +71,7 @@ func _process(_delta: float) -> void:
 		var dice_body := _dices_bodies[i]
 		
 		var dice_value = get_top_side_value(dice_body)
-		roll_result_label.text += dice_name(dice_type) + ": "
+		roll_result_label.text += Check.dice_name(dice_type) + ": "
 		
 		if dice_body.sleeping:
 			roll_result_label.text += "rolled %s\n" % [dice_value]
@@ -89,10 +79,6 @@ func _process(_delta: float) -> void:
 			roll_result_label.text += "%s (rolling)\n" % dice_value
 		else:
 			roll_result_label.text += "? (rolling)\n"
-
-
-func dice_name(dice_type: DiceType) -> String:
-	return "D%s" % dice_type
 
 func roll() -> void:
 	_rolling_on_ground = false

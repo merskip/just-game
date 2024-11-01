@@ -24,14 +24,16 @@ enum Skill {
 	SURVIVAL
 }
 
-func get_skill_modifier(skill: Skill, abilities: Abilities, proficiency_bonus: int) -> int:
+func get_skill_and_ability_modifier(skill: Skill, abilities: Abilities, proficiency_bonus: int) -> int:
 	var ability = get_ability_for_skill(skill)
 	var ability_modifier = abilities.get_ability_modifier(ability)
-	
+	return ability_modifier + get_skill_modifier(skill, proficiency_bonus)
+
+func get_skill_modifier(skill: Skill, proficiency_bonus: int) -> int:
 	if has_proficiency(skill):
-		return ability_modifier + proficiency_bonus
+		return proficiency_bonus
 	else:
-		return ability_modifier
+		return 0
 
 
 func has_proficiency(skill: Skill) -> bool:

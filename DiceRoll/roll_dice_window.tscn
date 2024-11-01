@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://f7d1pd35oie5"]
 
-[ext_resource type="PackedScene" uid="uid://0qsoub3pdeve" path="res://DiceRoll/roll_dice.tscn" id="1_5n7tl"]
+[ext_resource type="PackedScene" uid="uid://0qsoub3pdeve" path="res://DiceRoll/roll_dice_scene.tscn" id="1_5n7tl"]
 [ext_resource type="Script" path="res://DiceRoll/roll_dice_window.gd" id="1_32r6j"]
 [ext_resource type="AudioStream" uid="uid://blqwr3po4lkok" path="res://DiceRoll/dice_roll_result.mp3" id="3_mwt8e"]
 

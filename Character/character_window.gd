@@ -45,7 +45,8 @@ func add_skill(skill: Skills.Skill):
 	var ability = Skills.get_ability_for_skill(skill)
 	var ability_name = Abilities.ability_name(ability)
 	var has_proficiency = unit.skills.has_proficiency(skill)
-	var modifier = unit.skills.get_skill_modifier(skill, unit.abilities, 3)
+	var proficiency_bonus = unit.get_proficiency_bonus()
+	var modifier = unit.skills.get_skill_and_ability_modifier(skill, unit.abilities, proficiency_bonus)
 	skill_row.fill(skill_icon, skill_name, ability_name, has_proficiency, modifier)
 
 func _on_close_button_pressed() -> void:
