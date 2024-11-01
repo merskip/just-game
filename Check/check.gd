@@ -20,6 +20,9 @@ class AbilityCheck:
 		bonus.icon = Abilities.ability_icon(ability)
 		bonus.modifier = unit.abilities.get_ability_modifier(ability)
 		return bonus
+		
+	func title() -> String:
+		return Abilities.ability_name(ability)
 
 class SkillCheck:
 	extends AbilityCheck
@@ -36,6 +39,9 @@ class SkillCheck:
 		bonus.icon = Skills.skill_icon(skill)
 		bonus.modifier = unit.skills.get_skill_modifier(skill, unit.get_proficiency_bonus())
 		return bonus
+		
+	func title() -> String:
+		return Skills.skill_name(skill)
 
 class Bonus:
 	var name: String
@@ -52,8 +58,8 @@ static func of_skill(_difficulty_class: int, _skill: Skills.Skill) -> Check:
 	check.ability = Skills.get_ability_for_skill(_skill)
 	return check
 
-func roll(unit: Unit) -> RollResult:
-	var value = randi_range(1, DiceType.D20)
+func roll(unit: Unit, value: int = 0) -> RollResult:
+	value = randi_range(1, DiceType.D20) if value == 0 else value
 	if value == CRITICAL_FAILURE:
 		return RollResult.new(value, false)
 	elif value == CRITICAL_SUCCESS:
@@ -71,6 +77,9 @@ func get_total_bonuses_modifiers(unit: Unit) -> int:
 
 func get_bonuses(_unit: Unit) -> Array[Bonus]:
 	return []
+
+func title() -> String:
+	return ""
 
 enum DiceType {
 	D4 = 4,

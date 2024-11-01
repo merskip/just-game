@@ -1,6 +1,10 @@
 class_name DiceRollWindow
 extends Panel
 
+var check: Check
+var unit: Unit
+var _roll_result: Check.RollResult
+
 @onready var roll_dice := %RollDice
 @onready var check_label := %CheckLabel
 @onready var difficulty_class_label := %DifficultyClassLabel
@@ -8,22 +12,20 @@ extends Panel
 @onready var roll_button := %RollButton
 @onready var confirm_button := %ConfirmButton
 
-@export var difficulty_class: int = 10
-@export var skill: Skills.Skill
-@export var unit: Unit
-
-var _roll_result: int
-var _success: bool
-
-signal on_roll_result(bool)
+signal on_roll_result(roll_result: Check.RollResult)
 
 func _ready() -> void:
-	check_label.text = "Checking %s" % Skills.skill_name(skill)
-	difficulty_class_label.text = "Difficulty class: %d" % difficulty_class
+	check_label.text = "Checking %s" % check.title()
+	difficulty_class_label.text = "Difficulty class: %d" % check.difficulty_class
 	
 	result_label.visible = false
 	confirm_button.visible = false
 	roll_dice.add_dice(Check.DiceType.D20)
+	
+	for bonus in check.get_bonuses(unit):
+		var bonus_cell = preload("res://DiceRoll/bonus_cell.tscn").instantiate()
+		%BonusesContainer.add_child(bonus_cell)
+		bonus_cell.fill(bonus)
 
 func roll() -> void:
 	roll_dice.roll()
@@ -32,10 +34,9 @@ func roll() -> void:
 	confirm_button.visible = false
 
 func _on_roll_result(values: Array) -> void:
-	_roll_result = values[0]
-	_success = _roll_result >= difficulty_class
-	result_label.text = "You rolled: %s" % _roll_result
-	if _success:
+	_roll_result = check.roll(unit, values[0])
+	result_label.text = "You rolled: %s" % _roll_result.value
+	if _roll_result.success:
 		result_label.text += "\nSuccess!"
 	else:
 		result_label.text += "\nFailure"
@@ -49,7 +50,7 @@ func _on_roll_result(values: Array) -> void:
 	%RollResultSFX.play()
 
 func _on_confirm_button_pressed() -> void:
-	on_roll_result.emit(_success)
+	on_roll_result.emit(_roll_result)
 	queue_free()
 
 func _on_close_button_pressed() -> void:

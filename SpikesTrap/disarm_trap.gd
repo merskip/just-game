@@ -9,9 +9,8 @@ signal on_disarmed
 func is_interactable(_unit: Unit) -> bool:
 	return enabled
 
-func interact(_unit: Unit):
-	var gui = get_tree().current_scene.get_node("%GUI") as GUI
-	var success = await gui.show_dice_roll(Skills.Skill.SLEIGHT_OF_HAND, difficulty_class).on_roll_result
-	if success:
+func interact(unit: Unit):
+	var check = Check.of_skill(difficulty_class, Skills.Skill.SLEIGHT_OF_HAND)
+	if await unit.check_interactive(check):
 		notifications_manager.notify("Disarmed successfully")
 		on_disarmed.emit()

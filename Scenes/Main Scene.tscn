@@ -38,7 +38,7 @@ charisma = 14
 
 [sub_resource type="Resource" id="Resource_3d56d"]
 script = ExtResource("9_6unx6")
-proficiencies = Array[int]([11, 17, 8])
+proficiencies = Array[int]([11, 17, 8, 15])
 
 [node name="MainScene" type="Node2D"]
 

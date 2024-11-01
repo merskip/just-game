@@ -33,51 +33,6 @@ render_target_update_mode = 4
 unique_name_in_owner = true
 control_visible = false
 
-[node name="HBoxContainer2" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -189.0
-offset_top = 100.0
-offset_right = 189.0
-offset_bottom = 198.0
-grow_horizontal = 2
-theme_override_constants/separation = 20
-alignment = 1
-
-[node name="CheckLabel" type="Label" parent="HBoxContainer2"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-theme_type_variation = &"HeaderMedium"
-text = "Checking "
-
-[node name="DifficultyClassLabel" type="Label" parent="HBoxContainer2"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-theme_type_variation = &"HeaderLarge"
-text = "Difficulty class: %d"
-
-[node name="ResultLabel" type="Label" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -43.0
-offset_top = -273.0
-offset_right = 44.0
-offset_bottom = -250.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_type_variation = &"HeaderLarge"
-text = "You rolled: "
-horizontal_alignment = 1
-
 [node name="CloseButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 1
@@ -90,37 +45,85 @@ offset_bottom = 51.0
 grow_horizontal = 0
 text = "Close"
 
+[node name="TopContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -189.0
+offset_top = 100.0
+offset_right = 189.0
+offset_bottom = 198.0
+grow_horizontal = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="CheckLabel" type="Label" parent="TopContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"HeaderMedium"
+text = "Checking "
+
+[node name="DifficultyClassLabel" type="Label" parent="TopContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"HeaderLarge"
+text = "Difficulty class: %d"
+
 [node name="RollResultSFX" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("3_mwt8e")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="BottomContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -68.0
-offset_top = -140.0
-offset_right = 68.0
+offset_left = -76.0
+offset_top = -213.0
+offset_right = 76.0
 offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = 20
+theme_override_constants/separation = 30
 
-[node name="RollButton" type="Button" parent="HBoxContainer"]
+[node name="ResultLabel" type="Label" parent="BottomContainer"]
 unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "You rolled: "
+horizontal_alignment = 1
+
+[node name="BonusesContainer" type="HBoxContainer" parent="BottomContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomContainer"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="RollButton" type="Button" parent="BottomContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Roll dice"
 
-[node name="ConfirmButton" type="Button" parent="HBoxContainer"]
+[node name="ConfirmButton" type="Button" parent="BottomContainer/HBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Continue"
 
 [connection signal="on_roll_result" from="SubViewportContainer/SubViewport/RollDice" to="." method="_on_roll_result"]
-[connection signal="pressed" from="HBoxContainer/RollButton" to="." method="roll"]
-[connection signal="pressed" from="HBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="BottomContainer/HBoxContainer/RollButton" to="." method="roll"]
+[connection signal="pressed" from="BottomContainer/HBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]

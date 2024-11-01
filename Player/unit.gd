@@ -45,6 +45,20 @@ func check_on_fly(check: Check) -> bool:
 	await get_tree().create_timer(0.8).timeout
 	return roll_result.success
 
+func check_interactive(check: Check) -> bool:
+	var gui = get_tree().current_scene.get_node("%GUI") as GUI
+	var roll_result = await gui.show_dice_roll(check, self).on_roll_result
+	var bonuses := check.get_bonuses(self)
+	notifications_manager.notify(
+		"Check %s: %d (%s), DC: %d, bonuses: %s" % [
+			Skills.skill_name(check.skill),
+			roll_result.value,
+			"success" if roll_result.success else "failure",
+			check.difficulty_class,
+			bonuses],
+		_dice_icon)
+	return roll_result.success
+
 func get_proficiency_bonus() -> int:
 	return 2 + int(float(level - 1) / 4)
 	
