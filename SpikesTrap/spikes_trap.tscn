@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://wtymqw4gadga"]
+[gd_scene load_steps=10 format=3 uid="uid://wtymqw4gadga"]
 
 [ext_resource type="Script" path="res://SpikesTrap/spikes_trap.gd" id="1_1qt8o"]
 [ext_resource type="Script" path="res://Player/damage.gd" id="2_p8ecd"]
 [ext_resource type="Script" path="res://SpikesTrap/disarm_trap.gd" id="3_rw3ha"]
 [ext_resource type="Texture2D" uid="uid://d22agmsu6pmgu" path="res://SpikesTrap/spikes_trap.svg" id="3_xok8x"]
+[ext_resource type="Resource" uid="uid://c1kt3um4iubot" path="res://Inventory/thieves_tools.tres" id="4_hcrn0"]
 
 [sub_resource type="Resource" id="Resource_3d6f5"]
 script = ExtResource("2_p8ecd")
@@ -20,7 +21,7 @@ size = Vector2(100, 100)
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_sk08j"]
 size = Vector2(100, 100)
 
-[node name="Node2D" type="Node2D"]
+[node name="SpikesTrap" type="Node2D"]
 position = Vector2(0, 1)
 script = ExtResource("1_1qt8o")
 damage = SubResource("Resource_3d6f5")
@@ -33,6 +34,7 @@ shape = SubResource("CircleShape2D_xnnf1")
 [node name="DisarmTrap" type="Node2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3_rw3ha")
+thieves_tools_item = ExtResource("4_hcrn0")
 action_name = "Disarm trap"
 
 [node name="Area2D" type="Area2D" parent="DisarmTrap"]

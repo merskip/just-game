@@ -60,7 +60,7 @@ tile_set = ExtResource("1_whfwv")
 
 [node name="Chest" parent="NavigationRegion2D" instance=ExtResource("8_b2qjf")]
 position = Vector2(1268, 387)
-items = Array[ExtResource("5_t0nsr")]([ExtResource("6_sly6m"), ExtResource("7_ommf7")])
+items = Array[ExtResource("5_t0nsr")]([ExtResource("6_sly6m"), ExtResource("7_ommf7"), ExtResource("7_ommf7")])
 
 [node name="SpikesTrap" parent="NavigationRegion2D" instance=ExtResource("4_1ey18")]
 position = Vector2(1153, 654)

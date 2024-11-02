@@ -17,8 +17,11 @@ enum State {
 func _ready() -> void:
 	set_state(State.HIDDEN)
 
-func _on_disarmed() -> void:
-	queue_free()
+func _on_disarmed(unit: Unit, success: bool) -> void:
+	if success:
+		queue_free()
+	else:
+		unit.take_damage(damage)
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Unit and _state == State.HIDDEN:
@@ -38,7 +41,6 @@ func check_detection(unit: Unit):
 	if await unit.check_on_fly(check):
 		$DetectedOverlay.visible = true
 		_detected = true
-		%DisarmTrap.enabled = true
 
 func _on_reset_timer_timeout() -> void:
 	set_state(State.HIDDEN)
