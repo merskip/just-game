@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cp1tc4gkohlow"]
+
+[ext_resource type="Shader" path="res://Character/icon.gdshader" id="1_uqn3l"]
+
+[resource]
+shader = ExtResource("1_uqn3l")
+shader_parameter/color = Color(1, 1, 1, 1)

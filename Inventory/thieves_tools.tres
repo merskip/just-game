@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://c1kt3um4iubot"]
+
+[ext_resource type="Texture2D" uid="uid://doonviguk0gr1" path="res://3rd party/tw-dnd/entity/object.svg" id="1_el4rv"]
+[ext_resource type="Script" path="res://Inventory/inventory_item.gd" id="2_e2mk8"]
+
+[resource]
+script = ExtResource("2_e2mk8")
+name = "Thieves' Tools"
+description = "This set of tools includes a small file, a set of lock picks, a small mirror mounted on a metal handle, a set of narrow-bladed scissors, and a pair of pliers."
+icon = ExtResource("1_el4rv")

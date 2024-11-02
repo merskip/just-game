@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://bq73ukjrg4bxg"]
+[gd_scene load_steps=20 format=4 uid="uid://bq73ukjrg4bxg"]
 
 [ext_resource type="Script" path="res://Player/game_manager.gd" id="1_0144v"]
 [ext_resource type="PackedScene" uid="uid://d2bjrjtongb35" path="res://Scenes/GUI.tscn" id="1_cjw5i"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Inventory/inventory_item.gd" id="5_t0nsr"]
 [ext_resource type="Resource" uid="uid://qeg8lkgfx15o" path="res://Inventory/test_item.tres" id="6_sly6m"]
 [ext_resource type="Script" path="res://Interaction/mouse_interaction.gd" id="7_eaeqg"]
+[ext_resource type="Resource" uid="uid://c1kt3um4iubot" path="res://Inventory/thieves_tools.tres" id="7_ommf7"]
 [ext_resource type="PackedScene" uid="uid://dkxt5a0qm7rek" path="res://Chest/chest.tscn" id="8_b2qjf"]
 [ext_resource type="Texture2D" uid="uid://d4kkv8u4nwl3t" path="res://Assets/avatar_human_figther.png" id="9_0xcei"]
 [ext_resource type="Script" path="res://Player/skills.gd" id="9_6unx6"]
@@ -59,7 +60,7 @@ tile_set = ExtResource("1_whfwv")
 
 [node name="Chest" parent="NavigationRegion2D" instance=ExtResource("8_b2qjf")]
 position = Vector2(1268, 387)
-items = Array[ExtResource("5_t0nsr")]([ExtResource("6_sly6m")])
+items = Array[ExtResource("5_t0nsr")]([ExtResource("6_sly6m"), ExtResource("7_ommf7")])
 
 [node name="SpikesTrap" parent="NavigationRegion2D" instance=ExtResource("4_1ey18")]
 position = Vector2(1153, 654)
