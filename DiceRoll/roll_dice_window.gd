@@ -35,11 +35,10 @@ func roll() -> void:
 
 func _on_roll_result(values: Array) -> void:
 	_roll_result = check.roll(unit, values[0])
-	result_label.text = "You rolled: %s" % _roll_result.value
-	if _roll_result.success:
-		result_label.text += "\nSuccess!"
-	else:
-		result_label.text += "\nFailure"
+	result_label.text = "You rolled: %s\n" % _roll_result.value
+	if _roll_result.critical:
+		result_label.text += "Critical "
+	result_label.text += "Success!" if _roll_result.success else "Failure"
 	result_label.visible = true
 	
 	roll_button.text = "Reroll"

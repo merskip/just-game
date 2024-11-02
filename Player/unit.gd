@@ -33,9 +33,10 @@ func check_on_fly(check: Check) -> bool:
 	var roll_result := check.roll(self)
 	var bonuses := check.get_bonuses(self)
 	notifications_manager.notify(
-		"Check %s: %d (%s), DC: %d, bonuses: %s" % [
+		"Check %s: %d (%s%s), DC: %d, bonuses: %s" % [
 			Skills.skill_name(check.skill),
 			roll_result.value,
+			"critical " if roll_result.critical else "",
 			"success" if roll_result.success else "failure",
 			check.difficulty_class,
 			bonuses],

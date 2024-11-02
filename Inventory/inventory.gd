@@ -24,5 +24,5 @@ func remove_item(item: InventoryItem):
 	if not items.has(item):
 		return
 	items.erase(item)
-	notifications_manager.notify("Item %s removed from inventory" % item.name)
+	notifications_manager.notify("Item %s removed from inventory" % item.name, item.icon)
 	items_changed.emit()

@@ -61,9 +61,9 @@ static func of_skill(_difficulty_class: int, _skill: Skills.Skill) -> Check:
 func roll(unit: Unit, value: int = 0) -> RollResult:
 	value = randi_range(1, DiceType.D20) if value == 0 else value
 	if value == CRITICAL_FAILURE:
-		return RollResult.new(value, false)
+		return RollResult.new(value, false, true)
 	elif value == CRITICAL_SUCCESS:
-		return RollResult.new(value, true)
+		return RollResult.new(value, true, true)
 	else:
 		value += get_total_bonuses_modifiers(unit)
 		var success = value >= difficulty_class
@@ -97,7 +97,9 @@ static func dice_name(dice_type: DiceType) -> String:
 class RollResult:
 	var value: int
 	var success: bool
+	var critical: bool
 	
-	func _init(_value: int, _success: bool):
+	func _init(_value: int, _success: bool, _critical: bool = false):
 		self.value = _value
 		self.success = _success
+		self.critical = _critical
