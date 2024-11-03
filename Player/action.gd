@@ -1,5 +1,4 @@
 class_name Action
-extends Resource
 
 @warning_ignore("unused_signal")
 signal finished
