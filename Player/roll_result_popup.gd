@@ -4,16 +4,15 @@ extends Control
 @export var success_color := Color.GREEN
 @export var failure_color := Color.RED
 
-@onready var icon := $TextureRect
-@onready var label := $Label
-@onready var result_label := $TextureRect/ResultLabel
+@onready var result_label := %ResultLabel
+@onready var check_label := %CheckLabel
 @onready var _fast_dice_roll_sfx := $FastDiceRoll
 
 func _ready() -> void:
 	visible = false
 
 func show_roll_result(skill: Skills.Skill, roll_result: int, sucess: bool):
-	label.text = Skills.skill_name(skill)
+	check_label.text = Skills.skill_name(skill)
 	result_label.text = str(roll_result)
 	if sucess:
 		result_label.add_theme_color_override("font_color", success_color)

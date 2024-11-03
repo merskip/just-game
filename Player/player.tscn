@@ -1,15 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://bj6istu8r131k"]
+[gd_scene load_steps=10 format=3 uid="uid://bj6istu8r131k"]
 
-[ext_resource type="Script" path="res://Player/keyboard_movement.gd" id="1_3kw8n"]
 [ext_resource type="Texture2D" uid="uid://chh1vkpbvaxsc" path="res://Assets/icon.svg" id="1_bo06m"]
 [ext_resource type="Script" path="res://Player/unit.gd" id="1_cs6h6"]
 [ext_resource type="Script" path="res://Player/abilities.gd" id="2_klrb4"]
 [ext_resource type="Script" path="res://Player/health_bar.gd" id="3_8huld"]
 [ext_resource type="AudioStream" uid="uid://htl5dxtlmt1i" path="res://Player/grunt.mp3" id="5_r828v"]
-[ext_resource type="Script" path="res://Player/roll_result_popup.gd" id="7_2r1r4"]
-[ext_resource type="AudioStream" uid="uid://bbkaf1kj3veqn" path="res://Player/fast_dice_roll.mp3" id="7_3atn1"]
-[ext_resource type="Shader" path="res://Player/outline_shader.gdshader" id="8_8kneu"]
-[ext_resource type="Texture2D" uid="uid://dvf3ggd523202" path="res://DiceRoll/dice_icon.svg" id="8_svv7x"]
+[ext_resource type="PackedScene" uid="uid://d30stwho5jnob" path="res://Player/roll_result_popup.tscn" id="7_50l6n"]
 
 [sub_resource type="Resource" id="Resource_sjhfq"]
 script = ExtResource("2_klrb4")
@@ -30,106 +26,16 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="Animation" id="Animation_y66n1"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ResultLabel:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:material:shader_parameter/outline_color")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_c5j4w"]
-resource_name = "roll"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [-12.5664, 0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ResultLabel:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.5, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:material:shader_parameter/outline_color")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.5, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_icswr"]
-_data = {
-"RESET": SubResource("Animation_y66n1"),
-"roll": SubResource("Animation_c5j4w")
-}
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_or2m6"]
-shader = ExtResource("8_8kneu")
-shader_parameter/outline_width = 3.5
-shader_parameter/outline_color = Color(0, 0, 0, 1)
-
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("movement")]
+[node name="PlayerUnit" type="CharacterBody2D"]
 script = ExtResource("1_cs6h6")
 abilities = SubResource("Resource_sjhfq")
-movement = NodePath("KeyboardMovement")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_l1uhj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_bo06m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_l1uhj")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = -60.0
@@ -141,85 +47,22 @@ value = 80.0
 show_percentage = false
 script = ExtResource("3_8huld")
 
-[node name="KeyboardMovement" type="Node" parent="."]
-script = ExtResource("1_3kw8n")
-
-[node name="Grunt" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_r828v")
-volume_db = -5.0
-
-[node name="RollResultPopup" type="Control" parent="."]
+[node name="RollResultPopup" parent="." instance=ExtResource("7_50l6n")]
 unique_name_in_owner = true
-layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -111.5
-offset_top = -132.0
-offset_right = 111.5
-offset_bottom = -92.0
+offset_left = -56.5
+offset_top = -150.0
+offset_right = 56.5
+offset_bottom = -110.0
 grow_horizontal = 2
 grow_vertical = 0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-script = ExtResource("7_2r1r4")
-success_color = Color(0.055, 0.608, 0, 1)
-failure_color = Color(0.792, 0.153, 0.155, 1)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="RollResultPopup"]
-root_node = NodePath("../TextureRect")
-libraries = {
-"": SubResource("AnimationLibrary_icswr")
-}
-
-[node name="TextureRect" type="TextureRect" parent="RollResultPopup"]
-material = SubResource("ShaderMaterial_or2m6")
-layout_mode = 2
-offset_right = 40.0
-offset_bottom = 40.0
-pivot_offset = Vector2(20, 20)
-texture = ExtResource("8_svv7x")
-expand_mode = 2
-
-[node name="ResultLabel" type="Label" parent="RollResultPopup/TextureRect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -16.0
-offset_top = -13.0
-offset_right = 17.0
-offset_bottom = 13.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 18
-text = "99"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label" type="Label" parent="RollResultPopup"]
-layout_mode = 2
-offset_left = 44.0
-offset_top = 8.0
-offset_right = 223.0
-offset_bottom = 31.0
-size_flags_horizontal = 4
-text = "Widsom check"
-
-[node name="Timer" type="Timer" parent="RollResultPopup"]
-wait_time = 3.0
-one_shot = true
-
-[node name="FastDiceRoll" type="AudioStreamPlayer" parent="RollResultPopup"]
-stream = ExtResource("7_3atn1")
+[node name="Grunt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_r828v")
 volume_db = -5.0
 
 [connection signal="on_hit_points_change" from="." to="HealthBar" method="_on_hit_points_change"]
-[connection signal="timeout" from="RollResultPopup/Timer" to="RollResultPopup" method="_on_timer_timeout"]
