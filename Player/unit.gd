@@ -9,7 +9,11 @@ extends CharacterBody2D
 @export var abilities: Abilities
 @export var skills: Skills
 
+@export var speed: float = 300.0
 @export var movement: Movement
+
+var _actions: Array[Action] = []
+var _current_action: Action
 
 @onready var _grunt_sfx := $Grunt
 @onready var _roll_result_popup := %RollResultPopup
@@ -79,9 +83,36 @@ func _show_floating_damage_label(damage_value: int):
 	add_child(floating_damage_label)
 	floating_damage_label.position = Vector2.ZERO
 
-func _physics_process(delta: float) -> void:
-	if movement != null:
-		movement.physics_process(self, delta)
+func set_action(action: Action):
+	if _current_action != null:
+		_current_action.dismissed(self)
+		_current_action = null
+	_actions.clear()
+	_actions.append(action)
+	_start_next_action_if_needed()
+
+func add_action(action: Action):
+	_actions.append(action)
+	_start_next_action_if_needed()
+
+func _start_next_action_if_needed():
+	if _current_action == null and not _actions.is_empty():
+		var next_action = _actions[0]
+		_current_action = next_action
+		
+		next_action.start(self)
+		await next_action.finished
+		
+		_actions.erase(next_action)
+		next_action.dismissed(self)
+		_current_action = null
+		
+		_start_next_action_if_needed()
+
+func _physics_process(delta: float) -> void:	
+	if _current_action != null:
+		_current_action.physics_process(delta, self)
+
 
 func calculate_max_hit_points() -> int:
 	var hit_dice = get_hit_dice(class_type)
