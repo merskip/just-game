@@ -4,6 +4,8 @@ extends Resource
 @warning_ignore("unused_signal")
 signal finished
 
+var icon: Texture2D
+
 func start(_unit: Unit):
 	# Override in subclass 
 	pass

@@ -3,6 +3,7 @@ extends CanvasLayer
 
 var _window: Control
 @onready var _notifications_container: VBoxContainer = %NotificationsContainer
+@onready var _actions_container := %ActionsContainer
 
 func _ready() -> void:
 	notifications_manager.on_notification.connect(on_notification)
@@ -57,3 +58,7 @@ func on_notification(text: String, icon: Texture2D):
 	
 	await get_tree().create_timer(3).timeout
 	label.queue_free()
+	
+func on_player_actions_queue_change(player: Unit):
+	_actions_container.fill(player._actions_queue)
+	

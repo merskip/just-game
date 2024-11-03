@@ -40,9 +40,8 @@ proficiencies = Array[int]([11, 17, 8, 15])
 unique_name_in_owner = true
 layer = 128
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player")]
+[node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_0144v")
-player = NodePath("../Player")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_oe820")

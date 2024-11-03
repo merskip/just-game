@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2bjrjtongb35"]
+[gd_scene load_steps=5 format=3 uid="uid://d2bjrjtongb35"]
 
 [ext_resource type="Script" path="res://Scenes/gui.gd" id="1_jxvrt"]
 [ext_resource type="Texture2D" uid="uid://60q3g8mvjbtp" path="res://3rd party/tw-dnd/game/character.svg" id="2_2hpcm"]
 [ext_resource type="Texture2D" uid="uid://bgawwm4aknrkx" path="res://3rd party/tw-dnd/entity/pack.svg" id="3_t4g2k"]
+[ext_resource type="Script" path="res://Scenes/actions_container.gd" id="4_23ekp"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_jxvrt")
@@ -49,6 +50,14 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 alignment = 2
+
+[node name="ActionsContainer" type="HFlowContainer" parent="."]
+unique_name_in_owner = true
+offset_left = 180.0
+offset_top = 10.0
+offset_right = 680.0
+offset_bottom = 60.0
+script = ExtResource("4_23ekp")
 
 [connection signal="child_exiting_tree" from="." to="." method="on_child_exiting_tree"]
 [connection signal="pressed" from="VBoxContainer/CharacterSheetButton" to="." method="show_character_sheet"]

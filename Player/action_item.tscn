@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://r7w8t8e2l1rq"]
+
+[ext_resource type="Script" path="res://Player/action_item.gd" id="1_4brc1"]
+[ext_resource type="Material" uid="uid://cp1tc4gkohlow" path="res://Scenes/white_icon.tres" id="1_tcw2k"]
+
+[node name="ActionItem" type="PanelContainer"]
+custom_minimum_size = Vector2(50, 50)
+script = ExtResource("1_4brc1")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="IconTexture" type="TextureRect" parent="MarginContainer"]
+unique_name_in_owner = true
+material = ExtResource("1_tcw2k")
+layout_mode = 2
+expand_mode = 3

@@ -5,6 +5,11 @@ var agent: NavigationAgent2D
 var target_position: Vector2
 var movement_path := preload("res://Player/movement_path.tscn").instantiate()
 
+func _init(_agent: NavigationAgent2D, _target_position: Vector2) -> void:
+	self.agent = _agent
+	self.target_position = _target_position
+	icon = load("res://3rd party/tw-dnd/movement/walking.svg")
+
 func start(unit: Unit):
 	agent.target_position = target_position
 	

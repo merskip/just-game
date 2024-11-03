@@ -10,9 +10,8 @@ extends Movement
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
-		var action = MoveToAction.new()
-		action.agent = agent
-		action.target_position = region.get_global_mouse_position()
+		var target_position = region.get_global_mouse_position()
+		var action = MoveToAction.new(agent, target_position)
 		if Input.is_key_pressed(KEY_SHIFT):
 			unit.add_action(action)
 		else:

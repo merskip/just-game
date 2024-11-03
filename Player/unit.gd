@@ -12,7 +12,7 @@ extends CharacterBody2D
 @export var speed: float = 300.0
 @export var movement: Movement
 
-var _actions: Array[Action] = []
+var _actions_queue: Array[Action] = []
 var _current_action: Action
 
 @onready var _grunt_sfx := $Grunt
@@ -24,6 +24,8 @@ var _max_hit_points: int
 
 signal on_hit_points_change()
 signal on_die()
+
+signal on_actions_queue_change()
 
 var _floating_damage_label := preload("res://Player/floating_damage_label.tscn")
 var _dice_icon := preload("res://DiceRoll/dice_icon.svg")
@@ -87,25 +89,28 @@ func set_action(action: Action):
 	if _current_action != null:
 		_current_action.dismissed(self)
 		_current_action = null
-	_actions.clear()
-	_actions.append(action)
+	_actions_queue.clear()
+	_actions_queue.append(action)
 	_start_next_action_if_needed()
+	on_actions_queue_change.emit()
 
 func add_action(action: Action):
-	_actions.append(action)
+	_actions_queue.append(action)
 	_start_next_action_if_needed()
+	on_actions_queue_change.emit()
 
 func _start_next_action_if_needed():
-	if _current_action == null and not _actions.is_empty():
-		var next_action = _actions[0]
+	if _current_action == null and not _actions_queue.is_empty():
+		var next_action = _actions_queue[0]
 		_current_action = next_action
 		
 		next_action.start(self)
 		await next_action.finished
 		
-		_actions.erase(next_action)
+		_actions_queue.erase(next_action)
 		next_action.dismissed(self)
 		_current_action = null
+		on_actions_queue_change.emit()
 		
 		_start_next_action_if_needed()
 
