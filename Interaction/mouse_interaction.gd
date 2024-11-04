@@ -22,10 +22,13 @@ func handle_interation():
 		return
 	var distance = interact_unit.global_position.distance_to(interaction.global_position)
 	if distance > interaction.max_distance:
+		var interact_point = interaction.get_closest_point(interact_unit.global_position)
+		var target_distance =  interaction.max_distance - interact_unit.agent.path_desired_distance
 		var interact_position = get_position_at_distance(
 			interact_unit.global_position,
-			interaction.global_position,
-			interaction.max_distance - interact_unit.agent.path_desired_distance)
+			interact_point,
+			target_distance
+		)
 		var move_to_action = MoveToAction.new(interact_position)
 		interact_unit.add_or_set_action(move_to_action)
 	

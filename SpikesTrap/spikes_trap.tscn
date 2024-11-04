@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://wtymqw4gadga"]
+[gd_scene load_steps=11 format=3 uid="uid://wtymqw4gadga"]
 
 [ext_resource type="Script" path="res://SpikesTrap/spikes_trap.gd" id="1_1qt8o"]
 [ext_resource type="Script" path="res://Player/damage.gd" id="2_p8ecd"]
@@ -14,6 +14,9 @@ modifier = 1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xnnf1"]
 radius = 300.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2svk"]
+size = Vector2(110, 110)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tgg7k"]
 size = Vector2(100, 100)
@@ -36,6 +39,7 @@ unique_name_in_owner = true
 script = ExtResource("3_rw3ha")
 thieves_tools_item = ExtResource("4_hcrn0")
 action_name = "Disarm trap"
+shape = SubResource("RectangleShape2D_e2svk")
 
 [node name="Area2D" type="Area2D" parent="DisarmTrap"]
 priority = 1
