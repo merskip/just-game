@@ -4,15 +4,13 @@ class_name Action
 signal finished
 
 var icon: Texture2D
+var unit: Unit
 
-func start(_unit: Unit):
-	# Override in subclass 
+func start():
 	pass
 
-func dismissed(_unit: Unit):
-	# Override in subclass 
+func dismiss():
 	pass
 
-func physics_process(_delta: float, _unit: Unit):
-	# Override in subclass 
+func physics_process(_delta: float):
 	pass

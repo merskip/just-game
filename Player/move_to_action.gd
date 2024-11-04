@@ -8,7 +8,7 @@ func _init( _target_position: Vector2) -> void:
 	self.target_position = _target_position
 	icon = load("res://3rd party/tw-dnd/movement/walking.svg")
 
-func start(unit: Unit):
+func start():
 	unit.agent.target_position = target_position
 	
 	await unit.agent.path_changed
@@ -18,11 +18,11 @@ func start(unit: Unit):
 	await unit.agent.navigation_finished
 	finished.emit()
 
-func dismissed(_unit: Unit):
+func dismiss():
 	if movement_path != null:
 		movement_path.queue_free()
 
-func physics_process(_delta: float, unit: Unit):
+func physics_process(_delta: float):
 	var next_location = unit.agent.get_next_path_position()
 	var direction = unit.global_position.direction_to(next_location)
 	unit.velocity = direction * unit.speed

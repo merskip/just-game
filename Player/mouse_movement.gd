@@ -11,8 +11,5 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
 		var target_position = region.get_global_mouse_position()
 		var action = MoveToAction.new(target_position)
-		if Input.is_key_pressed(KEY_SHIFT):
-			unit.add_action(action)
-		else:
-			unit.set_action(action)
+		unit.add_or_set_action(action)
 		get_viewport().set_input_as_handled()

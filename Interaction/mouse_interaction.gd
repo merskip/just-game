@@ -18,16 +18,14 @@ func _update_mouse_cursor():
 
 func handle_interation():
 	var interaction = _get_interaction_under_mouser()
-	if interaction:
-		var move_to_action = MoveToAction.new(interaction.global_position)
-		if Input.is_key_pressed(KEY_SHIFT):
-			interact_unit.add_action(move_to_action)
-		else:
-			interact_unit.set_action(move_to_action)
-		
-		var interact_action = InteractAction.new(interaction)
-		interact_unit.add_action(interact_action)
-		get_viewport().set_input_as_handled()
+	if interaction == null:
+		return
+	var move_to_action = MoveToAction.new(interaction.global_position)
+	interact_unit.add_or_set_action(move_to_action)
+	
+	var interact_action = InteractAction.new(interaction)
+	interact_unit.add_action(interact_action)
+	get_viewport().set_input_as_handled()
 
 func _get_interaction_under_mouser() -> Interaction:
 	var spaceState = get_world_2d().direct_space_state

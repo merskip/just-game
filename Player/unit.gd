@@ -86,38 +86,47 @@ func _show_floating_damage_label(damage_value: int):
 	add_child(floating_damage_label)
 	floating_damage_label.position = Vector2.ZERO
 
+func add_or_set_action(action: Action):
+	if Input.is_key_pressed(KEY_SHIFT):
+		add_action(action)
+	else:
+		set_action(action)
+
 func set_action(action: Action):
 	if _current_action != null:
-		_current_action.dismissed(self)
+		_current_action.dismiss()
 		_current_action = null
-	_actions_queue.clear()
-	_actions_queue.append(action)
-	_start_next_action_if_needed()
+	_actions_queue = [action]
 	on_actions_queue_change.emit()
+	_start_next_action_if_needed()
 
 func add_action(action: Action):
 	_actions_queue.append(action)
-	_start_next_action_if_needed()
 	on_actions_queue_change.emit()
+	_start_next_action_if_needed()
 
 func _start_next_action_if_needed():
-	if _current_action == null and not _actions_queue.is_empty():
-		var next_action = _actions_queue[0]
-		_current_action = next_action
-		
-		next_action.start(self)
-		await next_action.finished
-		
+	if _current_action != null or _actions_queue.is_empty():
+		return
+	var next_action = _actions_queue[0]
+	_current_action = next_action
+	
+	next_action.unit = self
+	next_action.start()
+	await next_action.finished
+	
+	# Check if action was canceled
+	if _actions_queue.has(next_action):
 		_actions_queue.erase(next_action)
-		next_action.dismissed(self)
+		next_action.dismiss()
 		_current_action = null
 		on_actions_queue_change.emit()
-		
-		_start_next_action_if_needed()
+	
+	_start_next_action_if_needed()
 
-func _physics_process(delta: float) -> void:	
+func _physics_process(delta: float) -> void:
 	if _current_action != null:
-		_current_action.physics_process(delta, self)
+		_current_action.physics_process(delta)
 
 
 func calculate_max_hit_points() -> int:
