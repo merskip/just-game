@@ -10,24 +10,30 @@ func _unhandled_input(event: InputEvent) -> void:
 		handle_interation()
 
 func _update_mouse_cursor():
-	var interaction = _get_interaction_under_mouser()
+	var interaction = _get_interaction_under_mouse()
 	if interaction:
 		Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 	else:
 		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 
 func handle_interation():
-	var interaction = _get_interaction_under_mouser()
+	var interaction = _get_interaction_under_mouse()
 	if interaction == null:
 		return
-	var move_to_action = MoveToAction.new(interaction.global_position)
-	interact_unit.add_or_set_action(move_to_action)
+	var distance = interact_unit.global_position.distance_to(interaction.global_position)
+	if distance > interaction.max_distance:
+		var interact_position = get_position_at_distance(
+			interact_unit.global_position,
+			interaction.global_position,
+			interaction.max_distance - interact_unit.agent.path_desired_distance)
+		var move_to_action = MoveToAction.new(interact_position)
+		interact_unit.add_or_set_action(move_to_action)
 	
 	var interact_action = InteractAction.new(interaction)
 	interact_unit.add_action(interact_action)
 	get_viewport().set_input_as_handled()
 
-func _get_interaction_under_mouser() -> Interaction:
+func _get_interaction_under_mouse() -> Interaction:
 	var spaceState = get_world_2d().direct_space_state
 	var query = PhysicsPointQueryParameters2D.new()
 	query.collide_with_areas = true
@@ -45,3 +51,7 @@ func _get_interaction_under_mouser() -> Interaction:
 		if interaction != null and interaction.is_interactable(interact_unit):
 			return interaction
 	return null
+
+func get_position_at_distance(start: Vector2, target: Vector2, distance: float) -> Vector2:
+	var direction = (start - target).normalized()
+	return target + direction * distance

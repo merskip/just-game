@@ -8,8 +8,10 @@ func _init(_interaction: Interaction) -> void:
 	icon = load("res://3rd party/tw-dnd/util/cog.svg")
 
 func start():
-	if interaction.is_interactable(unit):
+	if interaction.can_interact(unit):
 		interaction.interact(unit)
+	else:
+		push_warning(unit, " cannot interact with ", self)
 	await unit.get_tree().physics_frame # temp workaround
 	finished.emit()
 
