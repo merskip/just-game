@@ -46,8 +46,6 @@ func _get_interaction_under_mouse() -> Interaction:
 	for result in results:
 		var collider: Node2D = result["collider"]
 		var interaction: Interaction
-		if collider is Interaction:
-			interaction = collider as Interaction
 		if collider.get_parent() is Interaction:
 			interaction = collider.get_parent() as Interaction
 		
