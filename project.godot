@@ -18,6 +18,7 @@ config/icon="res://Assets/icon.svg"
 [autoload]
 
 notifications_manager="*res://Scenes/notifications_manager.gd"
+game_manager="*res://Player/game_manager.gd"
 
 [display]
 

@@ -1,6 +1,5 @@
-[gd_scene load_steps=18 format=4 uid="uid://bq73ukjrg4bxg"]
+[gd_scene load_steps=17 format=4 uid="uid://bq73ukjrg4bxg"]
 
-[ext_resource type="Script" path="res://Player/game_manager.gd" id="1_0144v"]
 [ext_resource type="PackedScene" uid="uid://d2bjrjtongb35" path="res://Scenes/GUI.tscn" id="1_cjw5i"]
 [ext_resource type="TileSet" uid="uid://dbdwtvdnk7rff" path="res://Assets/gound.tres" id="1_whfwv"]
 [ext_resource type="PackedScene" uid="uid://bj6istu8r131k" path="res://Player/player.tscn" id="2_sggrd"]
@@ -39,9 +38,6 @@ proficiencies = Array[int]([11, 17, 8, 15])
 [node name="GUI" parent="." instance=ExtResource("1_cjw5i")]
 unique_name_in_owner = true
 layer = 128
-
-[node name="GameManager" type="Node" parent="."]
-script = ExtResource("1_0144v")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_oe820")

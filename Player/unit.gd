@@ -60,8 +60,7 @@ enum CheckInteractiveResult {
 }
 
 func check_interactive(check: Check) -> CheckInteractiveResult:
-	var gui = get_tree().current_scene.get_node("%GUI") as GUI
-	var roll_result = await gui.show_dice_roll(check, self).on_roll_result
+	var roll_result = await game_manager.gui.show_dice_roll(check, self).on_roll_result
 	if roll_result == null:
 		return CheckInteractiveResult.CANCELLED
 	
