@@ -14,7 +14,7 @@ pipeline {
             steps {
                 sh 'wget https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip -O Godot_v4.3-stable_linux.x86_64.zip'
                 sh 'unzip Godot_v4.3-stable_linux.x86_64.zip'
-                sh 'chmod +x $GODOT_BINARY'
+                sh "chmod +x $GODOT_BINARY"
             }
         }
 
