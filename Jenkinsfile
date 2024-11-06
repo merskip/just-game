@@ -4,6 +4,7 @@ pipeline {
     environment {
         EXPORT_TEMPLATE = 'Web'
         BUILD_DIR = 'Build/Web'
+        XDG_CACHE_HOME = './.cache' // Sets cahce directory for Godot
     }
 
     stages {
@@ -26,6 +27,7 @@ pipeline {
         cleanup {
             sh 'rm -f Godot_v4.3-stable_linux.x86_64.zip'
             sh 'rm -f Godot_v4.3-stable_linux.x86_64'
+            sh 'rm -f .cache'
         }
     }
 }
