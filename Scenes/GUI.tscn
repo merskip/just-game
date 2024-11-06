@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bgawwm4aknrkx" path="res://3rd party/tw-dnd/entity/pack.svg" id="3_t4g2k"]
 [ext_resource type="Script" path="res://Scenes/actions_container.gd" id="4_23ekp"]
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="GUI" type="CanvasLayer"]
 script = ExtResource("1_jxvrt")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]

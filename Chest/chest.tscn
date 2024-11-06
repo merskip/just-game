@@ -12,6 +12,7 @@ size = Vector2(62, 67)
 script = ExtResource("2_pyivb")
 closed_texture = ExtResource("1_esucf")
 open_texture = ExtResource("3_kpuow")
+action_name = "Open"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(0, -1)

@@ -7,7 +7,13 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		_update_mouse_cursor()
 	elif event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
-		handle_interation()
+		var interaction = _get_interaction_under_mouse()
+		if interaction == null:
+			return
+		handle_interation(interaction)
+	elif event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_RIGHT:
+		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+		handle_context_menu(event)
 
 func _update_mouse_cursor():
 	var interaction = _get_interaction_under_mouse()
@@ -16,10 +22,7 @@ func _update_mouse_cursor():
 	else:
 		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 
-func handle_interation():
-	var interaction = _get_interaction_under_mouse()
-	if interaction == null:
-		return
+func handle_interation(interaction: Interaction):
 	var distance = interact_unit.global_position.distance_to(interaction.global_position)
 	if distance > interaction.max_distance:
 		var interact_point = interaction.get_closest_point(interact_unit.global_position)
@@ -35,6 +38,23 @@ func handle_interation():
 	var interact_action = InteractAction.new(interaction)
 	interact_unit.add_action(interact_action)
 	get_viewport().set_input_as_handled()
+
+func handle_context_menu(event: InputEventMouseButton):
+	var interaction := _get_interaction_under_mouse()
+	if interaction == null:
+		return
+		
+	var popup_menu := PopupMenu.new()
+	popup_menu.position = event.position
+	popup_menu.add_icon_item(load("res://3rd party/tw-dnd/util/cog.svg"), interaction.action_name)
+	popup_menu.set_item_icon_max_width(0, 20)
+	add_child(popup_menu)
+	popup_menu.popup_hide.connect(func (): popup_menu.queue_free())
+	
+	popup_menu.popup()
+	match await popup_menu.index_pressed:
+		0:
+			handle_interation(interaction)
 
 func _get_interaction_under_mouse() -> Interaction:
 	var spaceState = get_world_2d().direct_space_state
