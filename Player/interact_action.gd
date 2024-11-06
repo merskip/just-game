@@ -9,7 +9,7 @@ func _init(_interaction: Interaction) -> void:
 
 func start():
 	if interaction.can_interact(unit):
-		interaction.interact(unit)
+		await interaction.interact(unit)
 	else:
 		push_warning(unit, " cannot interact with ", self)
 	await unit.get_tree().physics_frame # temp workaround
