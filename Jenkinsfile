@@ -20,7 +20,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh "./Godot_v4.3-stable_linux.x86_64 --verbose --headless --import --export-release $EXPORT_TEMPLATE $BUILD_DIR"
+                sh "./Godot_v4.3-stable_linux.x86_64 --verbose --headless --editor --import --export-release $EXPORT_TEMPLATE $BUILD_DIR"
             }
         }
     }
