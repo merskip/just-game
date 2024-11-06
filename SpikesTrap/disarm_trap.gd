@@ -17,9 +17,10 @@ func interact(unit: Unit):
 		return
 	
 	var check = Check.of_skill(difficulty_class, Skills.Skill.SLEIGHT_OF_HAND)
-	if await unit.check_interactive(check):
-		notifications_manager.notify("Disarmed successfully")
-		on_disarmed.emit(unit, true)
-	else:
-		unit.inventory.remove_item(thieves_tools_item)
-		on_disarmed.emit(unit, false)
+	match await unit.check_interactive(check):
+		Unit.CheckInteractiveResult.SUCCESS:
+			notifications_manager.notify("Disarmed successfully")
+			on_disarmed.emit(unit, true)
+		Unit.CheckInteractiveResult.FAILURE:
+			unit.inventory.remove_item(thieves_tools_item)
+			on_disarmed.emit(unit, false)

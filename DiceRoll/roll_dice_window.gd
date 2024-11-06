@@ -53,4 +53,5 @@ func _on_confirm_button_pressed() -> void:
 	queue_free()
 
 func _on_close_button_pressed() -> void:
+	on_roll_result.emit(null)
 	queue_free()
