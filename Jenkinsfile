@@ -4,8 +4,9 @@ pipeline {
     environment {
         EXPORT_TEMPLATE = 'Web'
         BUILD_DIR = 'Build/Web'
-        XDG_CACHE_HOME = '.cache' // Sets cahce directory for Godot
+        XDG_CACHE_HOME = '.cache'
         XDG_DATA_HOME = '.data'
+        XDG_CONFIG_HOME = '.config'
     }
 
     stages {
