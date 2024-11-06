@@ -15,8 +15,8 @@
 [ext_resource type="Script" path="res://Player/mouse_movement.gd" id="10_po0qo"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_oe820"]
-vertices = PackedVector2Array(896, 736, 1888, 1056, 32, 1056, 480, 736, 1331, 457, 1331, 326, 1888, 32, 32, 32, 1205, 326, 1205, 457, 896, 352, 480, 352, 672, 352, 704, 448, 800, 448, 800, 640, 576, 640, 576, 448, 672, 448, 704, 352)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 1), PackedInt32Array(7, 6, 5, 8), PackedInt32Array(4, 1, 0, 9), PackedInt32Array(9, 0, 10, 8), PackedInt32Array(3, 2, 7, 11), PackedInt32Array(11, 7, 8, 12), PackedInt32Array(13, 14, 15, 16), PackedInt32Array(16, 17, 18), PackedInt32Array(13, 16, 18), PackedInt32Array(19, 13, 18, 12), PackedInt32Array(19, 12, 8), PackedInt32Array(8, 10, 19)])
+vertices = PackedVector2Array(896, 736, 1888, 1056, 32, 1056, 480, 736, 32, 32, 480, 352, 1888, 32, 672, 352, 896, 352, 704, 448, 800, 448, 800, 640, 639, 640, 639, 572, 576, 572, 576, 448, 672, 448, 704, 352)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5), PackedInt32Array(5, 4, 6, 7), PackedInt32Array(6, 1, 0, 8), PackedInt32Array(9, 10, 11, 12, 13), PackedInt32Array(13, 14, 15, 16), PackedInt32Array(9, 13, 16, 17), PackedInt32Array(17, 16, 7), PackedInt32Array(17, 7, 6), PackedInt32Array(6, 8, 17)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(1920, 0, 1920, 1088, 0, 1088, 0, 0)])
 agent_radius = 32.0
 
@@ -47,11 +47,11 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAA
 tile_set = ExtResource("1_whfwv")
 
 [node name="Chest" parent="NavigationRegion2D" instance=ExtResource("8_b2qjf")]
-position = Vector2(1268, 387)
+position = Vector2(576, 633)
 items = Array[ExtResource("5_t0nsr")]([ExtResource("6_sly6m"), ExtResource("7_ommf7"), ExtResource("7_ommf7")])
 
 [node name="SpikesTrap" parent="NavigationRegion2D" instance=ExtResource("4_1ey18")]
-position = Vector2(1153, 654)
+position = Vector2(1236, 687)
 
 [node name="Player" parent="." node_paths=PackedStringArray("movement") instance=ExtResource("2_sggrd")]
 unique_name_in_owner = true
