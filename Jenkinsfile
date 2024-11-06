@@ -3,10 +3,10 @@ pipeline {
 
     environment {
         EXPORT_TEMPLATE = 'Web'
-        BUILD_DIR = 'Build/Web'
-        XDG_CACHE_HOME = './.cache'
-        XDG_DATA_HOME = './.data'
-        XDG_CONFIG_HOME = './.config'
+        BUILD_DIR = "${WORKSPACE}/Build/Web"
+        XDG_CACHE_HOME = "${WORKSPACE}/.cache"
+        XDG_DATA_HOME = "${WORKSPACE}./.data"
+        XDG_CONFIG_HOME = "${WORKSPACE}./.config"
     }
 
     stages {
