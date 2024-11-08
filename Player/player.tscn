@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bj6istu8r131k"]
+[gd_scene load_steps=11 format=3 uid="uid://bj6istu8r131k"]
 
 [ext_resource type="Script" path="res://Player/unit.gd" id="1_cs6h6"]
 [ext_resource type="Script" path="res://Player/abilities.gd" id="2_klrb4"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ctgxh1y3yo0pv" path="res://HumanoidSprite/humanoid_sprite.tscn" id="3_uupj1"]
 [ext_resource type="AudioStream" uid="uid://htl5dxtlmt1i" path="res://Player/grunt.mp3" id="5_r828v"]
 [ext_resource type="PackedScene" uid="uid://d30stwho5jnob" path="res://Player/roll_result_popup.tscn" id="7_50l6n"]
+[ext_resource type="AudioStream" uid="uid://cg65ev43gq5v6" path="res://Player/walk_gravel.mp3" id="7_ed23k"]
 
 [sub_resource type="Resource" id="Resource_sjhfq"]
 script = ExtResource("2_klrb4")
@@ -69,5 +70,11 @@ grow_vertical = 0
 [node name="Grunt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_r828v")
 volume_db = -5.0
+
+[node name="WalkSFX" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_ed23k")
+volume_db = -5.0
+parameters/looping = true
 
 [connection signal="on_hit_points_change" from="." to="HealthBar" method="_on_hit_points_change"]

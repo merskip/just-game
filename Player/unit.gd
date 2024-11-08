@@ -16,6 +16,7 @@ var _actions_queue: Array[Action] = []
 var _current_action: Action
 
 @onready var humanoid_sprite := %HumanoidSprite
+@onready var walk_sfx :AudioStreamPlayer = %WalkSFX
 @onready var agent := $NavigationAgent2D
 @onready var _grunt_sfx := $Grunt
 @onready var _roll_result_popup := %RollResultPopup

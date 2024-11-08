@@ -11,6 +11,7 @@ func _init( _target_position: Vector2) -> void:
 func start():
 	unit.agent.target_position = target_position
 	unit.humanoid_sprite.set_anim(HumanoidSprite.Anim.WALK)
+	unit.walk_sfx.play()
 	
 	await unit.agent.path_changed
 	movement_path.points = unit.agent.get_current_navigation_path()
@@ -18,10 +19,12 @@ func start():
 	
 	await unit.agent.navigation_finished
 	unit.humanoid_sprite.set_anim(HumanoidSprite.Anim.IDLE)
+	unit.walk_sfx.stop()
 	finished.emit()
 
 func dismiss():
 	unit.humanoid_sprite.set_anim(HumanoidSprite.Anim.IDLE)
+	unit.walk_sfx.stop()
 	if movement_path != null:
 		movement_path.queue_free()
 
@@ -31,6 +34,7 @@ func physics_process(_delta: float):
 	unit.velocity = direction * unit.speed
 	unit.humanoid_sprite.direction = get_humanorid_sprite_direction(direction)
 	unit.move_and_slide()
+	unit.walk_sfx.pitch_scale = randf_range(0.8, 1.2)
 
 func get_humanorid_sprite_direction(vector: Vector2) -> HumanoidSprite.Direction:
 	if abs(vector.x) > abs(vector.y):
