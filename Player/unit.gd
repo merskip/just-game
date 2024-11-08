@@ -15,6 +15,7 @@ extends CharacterBody2D
 var _actions_queue: Array[Action] = []
 var _current_action: Action
 
+@onready var humanoid_sprite := %HumanoidSprite
 @onready var agent := $NavigationAgent2D
 @onready var _grunt_sfx := $Grunt
 @onready var _roll_result_popup := %RollResultPopup
@@ -135,7 +136,6 @@ func _start_next_action_if_needed():
 func _physics_process(delta: float) -> void:
 	if _current_action != null:
 		_current_action.physics_process(delta)
-
 
 func calculate_max_hit_points() -> int:
 	var hit_dice = get_hit_dice(class_type)

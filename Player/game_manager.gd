@@ -16,8 +16,9 @@ func on_player_die():
 
 func setup():
 	var scene = get_tree().current_scene
-	player = scene.get_node("%Player")
-	gui = scene.get_node("%GUI")
+	player = scene.get_node_or_null("%Player")
+	gui = scene.get_node_or_null("%GUI")
 	
-	player.on_die.connect(on_player_die)
-	player.on_actions_queue_change.connect(gui.on_player_actions_queue_change.bind(player))
+	if player != null:
+		player.on_die.connect(on_player_die)
+		player.on_actions_queue_change.connect(gui.on_player_actions_queue_change.bind(player))

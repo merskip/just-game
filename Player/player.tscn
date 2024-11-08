@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://bj6istu8r131k"]
 
-[ext_resource type="Texture2D" uid="uid://chh1vkpbvaxsc" path="res://Assets/icon.svg" id="1_bo06m"]
 [ext_resource type="Script" path="res://Player/unit.gd" id="1_cs6h6"]
 [ext_resource type="Script" path="res://Player/abilities.gd" id="2_klrb4"]
 [ext_resource type="Script" path="res://Player/health_bar.gd" id="3_8huld"]
+[ext_resource type="PackedScene" uid="uid://ctgxh1y3yo0pv" path="res://HumanoidSprite/humanoid_sprite.tscn" id="3_uupj1"]
 [ext_resource type="AudioStream" uid="uid://htl5dxtlmt1i" path="res://Player/grunt.mp3" id="5_r828v"]
 [ext_resource type="PackedScene" uid="uid://d30stwho5jnob" path="res://Player/roll_result_popup.tscn" id="7_50l6n"]
 
@@ -30,9 +30,14 @@ corner_radius_bottom_left = 8
 script = ExtResource("1_cs6h6")
 abilities = SubResource("Resource_sjhfq")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_bo06m")
+[node name="HumanoidSprite" parent="." instance=ExtResource("3_uupj1")]
+unique_name_in_owner = true
+position = Vector2(0, -9)
+scale = Vector2(1.3, 1.3)
+torso = 1
+feet = 2
+head = 1
+legs = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_l1uhj")

@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://bc4rek6tkmkki"
+path="res://.godot/imported/TORSO_leather_armor_shoulders.png-8bb5ac037d78da63b49e61ab5ec313b6.ctex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://3rd party/lpc_entry/walkcycle/TORSO_leather_armor_shoulders.png"
+dest_files=["res://.godot/imported/TORSO_leather_armor_shoulders.png-8bb5ac037d78da63b49e61ab5ec313b6.ctex"]
+
+[params]
+
+compress/mode=0
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=1

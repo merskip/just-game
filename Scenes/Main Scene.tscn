@@ -65,6 +65,7 @@ character_name = "John Smith"
 avatar = ExtResource("9_0xcei")
 abilities = SubResource("Resource_vxgre")
 skills = SubResource("Resource_3d56d")
+speed = 250.0
 movement = NodePath("MouseMovement")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]

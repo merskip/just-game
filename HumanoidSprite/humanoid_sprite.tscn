@@ -1,0 +1,199 @@
+[gd_scene load_steps=7 format=3 uid="uid://ctgxh1y3yo0pv"]
+
+[ext_resource type="Script" path="res://HumanoidSprite/humanoid_sprite.gd" id="1_niuwv"]
+[ext_resource type="Texture2D" uid="uid://33ueuvnpxshc" path="res://3rd party/lpc_entry/walkcycle/BODY_male.png" id="2_a2jfn"]
+
+[sub_resource type="Animation" id="Animation_qo7x1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:state")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:direction")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_ynk37"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:state")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:direction")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_urtee"]
+resource_name = "walk"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1, 8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:state")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_icr3p"]
+_data = {
+"RESET": SubResource("Animation_qo7x1"),
+"idle": SubResource("Animation_ynk37"),
+"walk": SubResource("Animation_urtee")
+}
+
+[node name="HumanoidSprite" type="Node2D"]
+script = ExtResource("1_niuwv")
+frame = 1
+
+[node name="Behind" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1, 0)
+hframes = 9
+frame = 1
+region_enabled = true
+region_rect = Rect2(0, 128, 576, 64)
+
+[node name="Body" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1, 0)
+texture = ExtResource("2_a2jfn")
+hframes = 9
+frame = 1
+region_enabled = true
+region_rect = Rect2(0, 128, 576, 64)
+
+[node name="Torso" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1, 0)
+hframes = 9
+frame = 1
+region_enabled = true
+region_rect = Rect2(0, 128, 576, 64)
+
+[node name="Head" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1, 0)
+hframes = 9
+frame = 1
+region_enabled = true
+region_rect = Rect2(0, 128, 576, 64)
+
+[node name="Feet" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1, 0)
+hframes = 9
+frame = 1
+region_enabled = true
+region_rect = Rect2(0, 128, 576, 64)
+
+[node name="Legs" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1, 0)
+hframes = 9
+frame = 1
+region_enabled = true
+region_rect = Rect2(0, 128, 576, 64)
+
+[node name="Belt" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1, 0)
+hframes = 9
+frame = 1
+region_enabled = true
+region_rect = Rect2(0, 128, 576, 64)
+
+[node name="Hands" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1, 0)
+hframes = 9
+frame = 1
+region_enabled = true
+region_rect = Rect2(0, 128, 576, 64)
+
+[node name="Weapon" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1, 0)
+hframes = 9
+frame = 1
+region_enabled = true
+region_rect = Rect2(0, 128, 576, 64)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_icr3p")
+}
