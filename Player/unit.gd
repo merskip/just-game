@@ -12,6 +12,8 @@ extends CharacterBody2D
 @export var speed: float = 300.0
 @export var movement: Movement
 
+@export var skin: HumanoidSkin
+
 var _actions_queue: Array[Action] = []
 var _current_action: Action
 
@@ -34,6 +36,7 @@ var _floating_damage_label := preload("res://Player/floating_damage_label.tscn")
 var _dice_icon := preload("res://DiceRoll/dice_icon.svg")
 
 func _ready() -> void:
+	humanoid_sprite.skin = skin
 	_max_hit_points = calculate_max_hit_points()
 	_current_hit_point = _max_hit_points
 	on_hit_points_change.emit()

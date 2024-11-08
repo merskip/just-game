@@ -32,15 +32,15 @@ func physics_process(_delta: float):
 	var next_location = unit.agent.get_next_path_position()
 	var direction = unit.global_position.direction_to(next_location)
 	unit.velocity = direction * unit.speed
-	unit.humanoid_sprite.direction = get_humanorid_sprite_direction(direction)
+	unit.humanoid_sprite.direction = _get_humanorid_skin_direction(direction)
 	unit.move_and_slide()
 	unit.walk_sfx.pitch_scale = randf_range(0.8, 1.2)
 
-func get_humanorid_sprite_direction(vector: Vector2) -> HumanoidSprite.Direction:
+func _get_humanorid_skin_direction(vector: Vector2) -> HumanoidSkin.Direction:
 	if abs(vector.x) > abs(vector.y):
-		return HumanoidSprite.Direction.RIGHT if vector.x > 0 else HumanoidSprite.Direction.LEFT
+		return HumanoidSkin.Direction.RIGHT if vector.x > 0 else HumanoidSkin.Direction.LEFT
 	else:
-		return HumanoidSprite.Direction.DOWN if vector.y > 0 else HumanoidSprite.Direction.UP
+		return HumanoidSkin.Direction.DOWN if vector.y > 0 else HumanoidSkin.Direction.UP
 
 func _to_string() -> String:
 	return "MoveToAction(target_position=%s)" % target_position
