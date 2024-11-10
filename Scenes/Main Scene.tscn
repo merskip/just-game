@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://bq73ukjrg4bxg"]
+[gd_scene load_steps=20 format=4 uid="uid://bq73ukjrg4bxg"]
 
 [ext_resource type="PackedScene" uid="uid://d2bjrjtongb35" path="res://Scenes/GUI.tscn" id="1_cjw5i"]
 [ext_resource type="TileSet" uid="uid://dbdwtvdnk7rff" path="res://Assets/gound.tres" id="1_whfwv"]
@@ -42,6 +42,19 @@ torso = 1
 weapon = 0
 feet = 2
 head = 1
+behind = 0
+belt = 0
+hands = 0
+legs = 1
+
+[sub_resource type="Resource" id="Resource_ty52m"]
+script = ExtResource("12_bqbih")
+state = 0
+body = 0
+torso = 5
+weapon = 0
+feet = 2
+head = 4
 behind = 0
 belt = 0
 hands = 0
@@ -94,7 +107,12 @@ region = NodePath("../../NavigationRegion2D")
 script = ExtResource("7_eaeqg")
 interact_unit = NodePath("..")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Player"]
-
-[connection signal="path_changed" from="Player/NavigationAgent2D" to="Player/MouseMovement" method="_on_agent_path_changed"]
-[connection signal="target_reached" from="Player/NavigationAgent2D" to="Player/MouseMovement" method="_on_navigation_agent_2d_target_reached"]
+[node name="Enemy1" parent="." instance=ExtResource("2_sggrd")]
+unique_name_in_owner = true
+z_index = 10
+position = Vector2(1670, 332)
+character_name = "Bandit"
+abilities = SubResource("Resource_vxgre")
+skills = SubResource("Resource_3d56d")
+speed = 250.0
+skin = SubResource("Resource_ty52m")
