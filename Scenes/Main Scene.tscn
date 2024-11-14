@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://bq73ukjrg4bxg"]
+[gd_scene load_steps=21 format=4 uid="uid://bq73ukjrg4bxg"]
 
 [ext_resource type="PackedScene" uid="uid://d2bjrjtongb35" path="res://Scenes/GUI.tscn" id="1_cjw5i"]
 [ext_resource type="TileSet" uid="uid://dbdwtvdnk7rff" path="res://Assets/gound.tres" id="1_whfwv"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://Player/abilities.gd" id="10_ccamp"]
 [ext_resource type="Script" path="res://Player/mouse_movement.gd" id="10_po0qo"]
 [ext_resource type="Script" path="res://HumanoidSprite/humanoid_skin.gd" id="12_bqbih"]
+[ext_resource type="Script" path="res://Player/attack_interact.gd" id="15_wapwj"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_oe820"]
 vertices = PackedVector2Array(928, 742.648, 1888, 32, 1888, 1056, 899.383, 768, 928, 345.906, 848, 416, 848.25, 448, 848, 448, 704, 416, 848.25, 480, 848, 480, 672, 416, 848.25, 512, 848, 512, 848.25, 544, 848, 544, 848.25, 576, 848, 576, 848.25, 608, 848, 608, 609, 588, 528.25, 416, 848.25, 640, 848, 640, 848.25, 672, 609, 672, 528.25, 588, 704, 320, 672, 320, 900.422, 320, 32, 32, 476.039, 320, 448, 346.438, 32, 1056, 448, 739.359, 471.273, 768)
@@ -116,3 +117,6 @@ abilities = SubResource("Resource_vxgre")
 skills = SubResource("Resource_3d56d")
 speed = 250.0
 skin = SubResource("Resource_ty52m")
+
+[node name="AttackInteract" type="Node2D" parent="Enemy1"]
+script = ExtResource("15_wapwj")

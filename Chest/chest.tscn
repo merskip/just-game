@@ -8,7 +8,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ffu3"]
 size = Vector2(62, 67)
 
-[node name="Interaction" type="Node2D"]
+[node name="Chest" type="Node2D"]
 script = ExtResource("2_pyivb")
 closed_texture = ExtResource("1_esucf")
 open_texture = ExtResource("3_kpuow")
